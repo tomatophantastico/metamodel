@@ -22,7 +22,12 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
@@ -37,6 +42,7 @@ import org.apache.metamodel.schema.Table;
 import org.apache.metamodel.schema.TableType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 
 /**
  * {@link MetadataLoader} for JDBC metadata loading.
@@ -420,7 +426,13 @@ final class JdbcMetadataLoader implements MetadataLoader {
     }
 
     private void loadRelations(ResultSet rs, Schema schema) throws SQLException {
+        // the relations table, constructed out of hashmaps is used to first exhaust the result set
+        // it stores all relations between the mentioned tables.
+        // the values of the tables are two Lists of columns, which form pairs.
+        // in the join later the two columns need to be identical.
+        Map<Table,Map<Table, List<List<Column>>>> relations = new HashMap<Table,Map<Table, List<List<Column>>>>();
         while (rs.next()) {
+
             String pkTableName = rs.getString(3);
             String pkColumnName = rs.getString(4);
 
@@ -453,7 +465,31 @@ final class JdbcMetadataLoader implements MetadataLoader {
                 logger.error("pkColumn={}", pkColumn);
                 logger.error("fkColumn={}", fkColumn);
             } else {
-                MutableRelationship.createRelationship(new Column[] { pkColumn }, new Column[] { fkColumn });
+
+                if (!relations.containsKey(pkTable) ){
+                    relations.put(pkTable, new HashMap<Table,List<List<Column>>>());
+                }
+                if (!relations.get(pkTable).containsKey(fkTable)){
+                    List<Column> innerpk = new ArrayList<Column>();
+                    List<Column> innerfk = new ArrayList<Column>();
+                    //this list is more or less 2-tuple
+                    List<List<Column>> outList = new ArrayList<List<Column>>();
+                    outList.add(innerpk);
+                    outList.add(innerfk);
+                    relations.get(pkTable).put(fkTable, outList);
+                }
+                // we can now safely add the columns
+                relations.get(pkTable).get(fkTable).get(0).add(pkColumn);
+                relations.get(pkTable).get(fkTable).get(1).add(fkColumn);
+            }
+        }
+        
+        // after constructing all the realtions, these are materialized
+        for(Table pktable: relations.keySet()){
+            for(Table fktable: relations.get(pktable).keySet()){
+                List<Column> innerpk = relations.get(pktable).get(fktable).get(0);
+                List<Column> innerfk = relations.get(pktable).get(fktable).get(1);
+                MutableRelationship.createRelationship(innerpk.toArray(new Column[0]), innerfk.toArray(new Column[0]));  
             }
         }
     }
