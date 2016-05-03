@@ -229,7 +229,7 @@ public class MetaModelHelperTest extends MetaModelTestCase {
       
       DataSet dataSet5 = createDataSet(
           new SelectItem[] { 
-              new SelectItem(new MutableColumn("pnr", ColumnType.BIGINT)),
+              new SelectItem(new MutableColumn("nr", ColumnType.BIGINT)),
               new SelectItem(new MutableColumn("name", ColumnType.STRING)),
               new SelectItem(new MutableColumn("dnr", ColumnType.BIGINT))
           }, 
@@ -250,7 +250,7 @@ public class MetaModelHelperTest extends MetaModelTestCase {
       
       DataSet dataSet6 = createDataSet(
           new SelectItem[] { 
-              new SelectItem(new MutableColumn("dnr", ColumnType.BIGINT)),
+              new SelectItem(new MutableColumn("nr", ColumnType.BIGINT)),
               new SelectItem(new MutableColumn("name", ColumnType.STRING)),
           }, 
           data6);
