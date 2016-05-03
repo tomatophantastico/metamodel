@@ -49,7 +49,7 @@ public abstract class BaseObject {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final int hashCode() {
+	public int hashCode() {
 		logger.debug("{}.hashCode()", this);
 		int hashCode = -1;
 		List<Object> list = new ArrayList<Object>();
@@ -107,7 +107,7 @@ public abstract class BaseObject {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public final boolean equals(Object obj) {
+	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
 		}

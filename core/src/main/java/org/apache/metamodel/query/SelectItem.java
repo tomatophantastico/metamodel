@@ -558,23 +558,7 @@ public class SelectItem extends BaseObject implements QueryItem, Cloneable {
         return eb.isEquals();
     }
 
-    @Override
-    protected void decorateIdentity(List<Object> identifiers) {
-        identifiers.add(_expression);
-        identifiers.add(_alias);
-        identifiers.add(_column);
-        identifiers.add(_function);
-        identifiers.add(_functionApproximationAllowed);
-        if (_fromItem == null && _column != null && _column.getTable() != null) {
-            // add a FromItem representing the column's table - this makes equal
-            // comparison work when the only difference is whether or not
-            // FromItem is specified
-            identifiers.add(new FromItem(_column.getTable()));
-        } else {
-            identifiers.add(_fromItem);
-        }
-        identifiers.add(_subQuerySelectItem);
-    }
+
 
     @Override
     protected SelectItem clone() {
@@ -661,4 +645,108 @@ public class SelectItem extends BaseObject implements QueryItem, Cloneable {
     public String toString() {
         return toSql();
     }
+    
+    @Override
+    protected void decorateIdentity(List<Object> identifiers) {
+        identifiers.add(_expression);
+        identifiers.add(_alias);
+        identifiers.add(_column);
+        identifiers.add(_function);
+        identifiers.add(_functionApproximationAllowed);
+        if (_fromItem == null && _column != null && _column.getTable() != null) {
+            // add a FromItem representing the column's table - this makes equal
+            // comparison work when the only difference is whether or not
+            // FromItem is specified
+            identifiers.add(new FromItem(_column.getTable()));
+        } else {
+            identifiers.add(_fromItem);
+        }
+        identifiers.add(_subQuerySelectItem);
+    }
+
+    @Override
+    public int hashCode() {
+      final int prime = 31;
+      int result = super.hashCode();
+      result = prime * result + ((_alias == null) ? 0 : _alias.hashCode());
+      result = prime * result + ((_column == null) ? 0 : _column.hashCode());
+      result = prime * result + ((_expression == null) ? 0 : _expression.hashCode());
+      result = prime * result + ((_fromItem == null) ? 0 : _fromItem.hashCode());
+      result = prime * result + ((_function == null) ? 0 : _function.hashCode());
+      result = prime * result + (_functionApproximationAllowed ? 1231 : 1237);
+      result = prime * result + ((_query == null) ? 0 : _query.hashCode());
+      result = prime * result + ((_subQuerySelectItem == null) ? 0 : _subQuerySelectItem.hashCode());
+      return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+      if (this == obj) {
+        return true;
+      }
+      if (!super.equals(obj)) {
+        return false;
+      }
+      if (getClass() != obj.getClass()) {
+        return false;
+      }
+      SelectItem other = (SelectItem) obj;
+      if (_alias == null) {
+        if (other._alias != null) {
+          return false;
+        }
+      } else if (!_alias.equals(other._alias)) {
+        return false;
+      }
+      if (_column == null) {
+        if (other._column != null) {
+          return false;
+        }
+      } else if (!_column.equals(other._column)) {
+        return false;
+      }
+      if (_expression == null) {
+        if (other._expression != null) {
+          return false;
+        }
+      } else if (!_expression.equals(other._expression)) {
+        return false;
+      }
+      if (_fromItem == null) {
+        if (other._fromItem != null) {
+          return false;
+        }
+      } else if (!_fromItem.equals(other._fromItem)) {
+        return false;
+      }
+      if (_function == null) {
+        if (other._function != null) {
+          return false;
+        }
+      } else if (!_function.equals(other._function)) {
+        return false;
+      }
+      if (_functionApproximationAllowed != other._functionApproximationAllowed) {
+        return false;
+      }
+      if (_query == null) {
+        if (other._query != null) {
+          return false;
+        }
+      } else if (!_query.equals(other._query)) {
+        return false;
+      }
+      if (_subQuerySelectItem == null) {
+        if (other._subQuerySelectItem != null) {
+          return false;
+        }
+      } else if (!_subQuerySelectItem.equals(other._subQuerySelectItem)) {
+        return false;
+      }
+      return true;
+    }
+    
+    
+    
+    
 }
