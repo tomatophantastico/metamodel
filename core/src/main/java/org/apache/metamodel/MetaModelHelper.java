@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -218,14 +219,7 @@ public final class MetaModelHelper {
               mapLeft = new HashMap<SelectItem,FilterItem>();
               equiJoins.put(right, mapLeft);
             }
-            mapLeft.put(right, whereItem);
-            
-            Map<SelectItem,FilterItem>  mapRight = equiJoins.get(right);
-            if(mapRight==null){
-              mapRight = new HashMap<SelectItem,FilterItem>();
-              equiJoins.put(right, mapRight);
-            }
-            mapRight.put(left, whereItem);
+            mapLeft.put(left, whereItem);
           }
           
         }
@@ -313,7 +307,7 @@ public final class MetaModelHelper {
         for(Row row: ((InMemoryDataSet)startDataSet).getRows()){
           
           // determine position of the select items of the dataset in the final result
-          int selItemPos  = selectItems.indexOf(startDataSet.getSelectItems()[0]);
+          int selItemPos  = selectItemDsStart.get(startDataSet);
           Object[] rowObjects = new Object[selectItems.size()];
           System.arraycopy(row.getValues(), 0, rowObjects, selItemPos, row.getValues().length);
           
@@ -349,18 +343,42 @@ public final class MetaModelHelper {
 
           //now collect all filters applicable
           List<FilterItem> filters = new ArrayList<FilterItem>();
+          //and collect where each select item of the equi joins is
           
-          for(SelectItem processedSi: headerAlreadyProcessed){
-            for(SelectItem newSi : next.getSelectItems()){
-              
+          List<Integer> filterSiPosProcessed = new ArrayList<Integer>();
+          List<Integer> filterSiPosNewSi = new ArrayList<Integer>();
+
+          for(int hapCount = 0; hapCount<headerAlreadyProcessed.size();hapCount++){
+            SelectItem processedSi = headerAlreadyProcessed.get(hapCount);
+            for(int nextSiCount = 0;nextSiCount < next.getSelectItems().length ;nextSiCount++){
+              SelectItem newSi = next.getSelectItems()[nextSiCount];
               Map<SelectItem,FilterItem> newSi2filter = equiJoins.get(processedSi);
               if(newSi2filter!=null){
                 if(newSi2filter.containsKey(newSi)){
+                  filterSiPosProcessed.add(hapCount);
+                  filterSiPosNewSi.add(nextSiCount);
+                  
                   filters.add(newSi2filter.get(newSi));
                 }
               }  
             }
           }
+          // and the inverse
+          for(int nextSiCount = 0;nextSiCount < next.getSelectItems().length ;nextSiCount++){
+            SelectItem newSi = next.getSelectItems()[nextSiCount];
+            for(int hapCount = 0; hapCount<headerAlreadyProcessed.size();hapCount++){
+              SelectItem processedSi = headerAlreadyProcessed.get(hapCount);
+              Map<SelectItem,FilterItem> newSi2filter = equiJoins.get(newSi);
+              if(newSi2filter!=null){
+                if(newSi2filter.containsKey(processedSi)){
+                  filterSiPosProcessed.add(hapCount);
+                  filterSiPosNewSi.add(nextSiCount);
+                  filters.add(newSi2filter.get(processedSi));
+                }
+              }  
+            }
+          }
+          
           
           // now exhaust the new dataset
           
@@ -372,29 +390,38 @@ public final class MetaModelHelper {
             for(Row row :rows){
               Object[] valuesRow = row.getValues();
               Object[] valuesRowFromNext = rowFromNext.getValues();
-              Object[] newRowValues = new Object[valuesRow.length];
-              
-              int selItemPosStartDs = selectItemDsStart.get(startDataSet);
-
-              
-              System.arraycopy(valuesRow, 0, newRowValues, selItemPosStartDs, valuesRow.length);
-              // determine the insertion position
-              
-              int selItemPosNext = selectItemDsStart.get(next);
-              
-              System.arraycopy(valuesRowFromNext, 0, newRowValues, selItemPosNext, valuesRowFromNext.length);
-              
-              Row newRow  = new DefaultRow(resultHeader, newRowValues);
-             
               
               //filters are assumed in conjunctive form
               boolean add = true;
-              for(FilterItem filter: filters){
-                add = add && filter.evaluate(newRow);
+              
+              for (int i = 0; i < filters.size(); i++) {
+            
+                Object selectItemValue = valuesRow[filterSiPosProcessed.get(i)];
+                Object operandValue = valuesRowFromNext[filterSiPosNewSi.get(i)];
+                
+                add = add && filters.get(i).compare(selectItemValue, operandValue);
               }
               if(add){
+              
+              
+              
+                Object[] newRowValues = new Object[valuesRow.length];
+                
+                int selItemPosStartDs = selectItemDsStart.get(startDataSet);
+  
+                
+                System.arraycopy(valuesRow, 0, newRowValues, selItemPosStartDs, valuesRow.length);
+                // determine the insertion position
+                
+                int selItemPosNext = selectItemDsStart.get(next);
+                
+                System.arraycopy(valuesRowFromNext, 0, newRowValues, selItemPosNext, valuesRowFromNext.length);
+                
+                Row newRow  = new DefaultRow(resultHeader, newRowValues);
+               
                 newRows.add(newRow);
               }
+             
             }
           }
           rows = newRows;

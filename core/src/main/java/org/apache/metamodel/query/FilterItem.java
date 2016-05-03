@@ -358,7 +358,8 @@ public class FilterItem extends BaseObject implements QueryItem, Cloneable, IRow
         }
     }
 
-    private boolean compare(Object selectItemValue, Object operandValue) {
+    
+    public boolean compare(Object selectItemValue, Object operandValue) {
         Comparator<Object> comparator = ObjectComparator.getComparator();
         if (_operator == OperatorType.DIFFERENT_FROM) {
             return comparator.compare(selectItemValue, operandValue) != 0;
