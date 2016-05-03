@@ -25,9 +25,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.metamodel.data.CachingDataSetHeader;
 import org.apache.metamodel.data.DataSet;
@@ -46,6 +49,7 @@ import org.apache.metamodel.data.SubSelectionDataSet;
 import org.apache.metamodel.query.FilterItem;
 import org.apache.metamodel.query.FromItem;
 import org.apache.metamodel.query.GroupByItem;
+import org.apache.metamodel.query.OperatorType;
 import org.apache.metamodel.query.OrderByItem;
 import org.apache.metamodel.query.Query;
 import org.apache.metamodel.query.ScalarFunction;
@@ -178,70 +182,242 @@ public final class MetaModelHelper {
     public static DataSet getCarthesianProduct(DataSet... fromDataSets) {
         return getCarthesianProduct(fromDataSets, new FilterItem[0]);
     }
+    
+    
+    
 
     public static DataSet getCarthesianProduct(DataSet[] fromDataSets, Iterable<FilterItem> whereItems) {
         // First check if carthesian product is even nescesary
         if (fromDataSets.length == 1) {
             return getFiltered(fromDataSets[0], whereItems);
         }
-
+        
+        //determine the order of the select items
         List<SelectItem> selectItems = new ArrayList<SelectItem>();
-        for (DataSet dataSet : fromDataSets) {
-            for (int i = 0; i < dataSet.getSelectItems().length; i++) {
-                SelectItem item = dataSet.getSelectItems()[i];
-                selectItems.add(item);
+        //keeps track, where in the result set the selectitems can be found.
+        Map<DataSet,Integer> selectItemDsStart = new HashMap<DataSet,Integer>();
+        int previouInsertLocation = 0;
+        for(DataSet ds: fromDataSets){
+          selectItemDsStart.put(ds, previouInsertLocation);
+          previouInsertLocation += ds.getSelectItems().length;
+          selectItems.addAll(Arrays.asList(ds.getSelectItems()));
+        }
+        DataSetHeader resultHeader = new CachingDataSetHeader(selectItems);
+        
+        
+        //first construct an accessible list of equijoins, which we can more easily use later on
+        Map<SelectItem,Map<SelectItem,FilterItem>> equiJoins = new HashMap<SelectItem,Map<SelectItem,FilterItem>>();
+        
+        for( FilterItem whereItem : whereItems){
+          if(whereItem.getOperator().equals(OperatorType.EQUALS_TO) && whereItem.getOperand() instanceof SelectItem ){
+            SelectItem left = whereItem.getSelectItem();
+            SelectItem right = (SelectItem) whereItem.getOperand();
+            
+            Map<SelectItem,FilterItem>  mapLeft = equiJoins.get(left);
+            if(mapLeft==null){
+              mapLeft = new HashMap<SelectItem,FilterItem>();
+              equiJoins.put(right, mapLeft);
             }
-        }
-
-        int selectItemOffset = 0;
-        List<Object[]> data = new ArrayList<Object[]>();
-        for (int fromDataSetIndex = 0; fromDataSetIndex < fromDataSets.length; fromDataSetIndex++) {
-            DataSet fromDataSet = fromDataSets[fromDataSetIndex];
-            SelectItem[] fromSelectItems = fromDataSet.getSelectItems();
-            if (fromDataSetIndex == 0) {
-                while (fromDataSet.next()) {
-                    Object[] values = fromDataSet.getRow().getValues();
-                    Object[] row = new Object[selectItems.size()];
-                    System.arraycopy(values, 0, row, selectItemOffset, values.length);
-                    data.add(row);
-                }
-                fromDataSet.close();
-            } else {
-                List<Object[]> fromDataRows = new ArrayList<Object[]>();
-                while (fromDataSet.next()) {
-                    fromDataRows.add(fromDataSet.getRow().getValues());
-                }
-                fromDataSet.close();
-                for (int i = 0; i < data.size(); i = i + fromDataRows.size()) {
-                    Object[] originalRow = data.get(i);
-                    data.remove(i);
-                    for (int j = 0; j < fromDataRows.size(); j++) {
-                        Object[] newRow = fromDataRows.get(j);
-                        System.arraycopy(newRow, 0, originalRow, selectItemOffset, newRow.length);
-                        data.add(i + j, originalRow.clone());
-                    }
-                }
+            mapLeft.put(right, whereItem);
+            
+            Map<SelectItem,FilterItem>  mapRight = equiJoins.get(right);
+            if(mapRight==null){
+              mapRight = new HashMap<SelectItem,FilterItem>();
+              equiJoins.put(right, mapRight);
             }
-            selectItemOffset += fromSelectItems.length;
+            mapRight.put(left, whereItem);
+          }
+          
+        }
+        
+        //determine a good starting point.
+        DataSet startDataSet = null;
+        
+        // we also keep track of the select items of a dataset.
+        
+        
+        //use the follwing varaibles for selecting the best start points:
+        Set<InMemoryDataSet> inMemoryDataset = new HashSet<InMemoryDataSet>();
+        Set<DataSet> mentionedinWhere  = new HashSet<DataSet>();
+        
+        for(DataSet fromDataSet: fromDataSets){
+          if(fromDataSet instanceof InMemoryDataSet){
+            inMemoryDataset.add((InMemoryDataSet) fromDataSet);
+          }
+          for(SelectItem fromItemSelect : fromDataSet.getSelectItems()){
+            if(equiJoins.containsKey(fromItemSelect) && mentionedinWhere !=null){
+              mentionedinWhere.add(fromDataSet);
+            }
+          }
+        }
+        Set<InMemoryDataSet> intersection = new HashSet<InMemoryDataSet>(inMemoryDataset);
+        intersection.retainAll(mentionedinWhere);
+        
+        if(intersection.isEmpty()){
+          //none that is both, but prefer one that is mentioned in the where clauses.
+          
+          if(!mentionedinWhere.isEmpty()){
+            startDataSet =  mentionedinWhere.iterator().next();
+          }else{
+            //so we select one of the in memory datasets
+            if(!inMemoryDataset.isEmpty()){
+              startDataSet = inMemoryDataset.iterator().next();
+            }else{
+              // ok, so we just take any one
+              startDataSet = fromDataSets[0];
+            }
+          }
+
+        }else{
+          // we got an in-memory ds that is mentioned in the filters, take that first
+          startDataSet = intersection.iterator().next();
+        }
+        
+        
+        Set<DataSet> others = new HashSet<DataSet>();
+        Collections.addAll(others, fromDataSets);
+        others.remove(startDataSet);
+
+          
+        //selected, but is it already in memory?
+        if(!(startDataSet instanceof InMemoryDataSet)){
+          List<Row> rows = new ArrayList<Row>();
+          while(startDataSet.next()){
+            rows.add(startDataSet.getRow());
+          }
+          
+          InMemoryDataSet newStartDataSet = new InMemoryDataSet(new CachingDataSetHeader(startDataSet.getSelectItems()),  rows);
+          
+          // also update the select item Tracking table
+          selectItemDsStart.put(startDataSet, selectItemDsStart.get(startDataSet));
+          startDataSet = newStartDataSet;
+
+          
+        }
+       
+        // now we can actually perform the join.
+        // starting with the startDs, we exhaust all other datasets, while directly applying the where conditions
+        // smarter joins would also take the selectivity and the shape of the data into account.
+        
+        Set<DataSet> alreadyProcessed = new HashSet<DataSet>();
+        alreadyProcessed.add(startDataSet);
+        List<SelectItem> headerAlreadyProcessed = new ArrayList<SelectItem>();
+        headerAlreadyProcessed.addAll(Arrays.asList(startDataSet.getSelectItems()));
+
+        
+        
+        
+        List<Row> rows = new ArrayList<Row>();
+        
+
+        for(Row row: ((InMemoryDataSet)startDataSet).getRows()){
+          
+          // determine position of the select items of the dataset in the final result
+          int selItemPos  = selectItems.indexOf(startDataSet.getSelectItems()[0]);
+          Object[] rowObjects = new Object[selectItems.size()];
+          System.arraycopy(row.getValues(), 0, rowObjects, selItemPos, row.getValues().length);
+          
+          Row newRow  = new DefaultRow(resultHeader, rowObjects);
+          rows.add(newRow);
+        }
+        
+
+
+        DataSet next = null;
+        while(!others.isEmpty()){
+          next = null;
+          // select the next dataset by searching for a straight join
+          DSSELECT: for(SelectItem siProcessed: headerAlreadyProcessed){
+            Map<SelectItem,FilterItem> siProcessedJoins =  equiJoins.get(siProcessed);
+              if(siProcessedJoins!=null){
+              for(SelectItem siCandidate:  siProcessedJoins.keySet()){
+                for(DataSet dsCandidate: others){
+                  if(Arrays.asList(dsCandidate.getSelectItems()).contains(siCandidate)){
+                    next = dsCandidate;
+
+                    break DSSELECT;
+                  }
+                }
+              }
+            }
+          }
+          // no selection via filter, sojust take the next one
+          if(next == null){
+            next = others.iterator().next();
+          }
+          others.remove(next);
+
+          //now collect all filters applicable
+          List<FilterItem> filters = new ArrayList<FilterItem>();
+          
+          for(SelectItem processedSi: headerAlreadyProcessed){
+            for(SelectItem newSi : next.getSelectItems()){
+              
+              Map<SelectItem,FilterItem> newSi2filter = equiJoins.get(processedSi);
+              if(newSi2filter!=null){
+                if(newSi2filter.containsKey(newSi)){
+                  filters.add(newSi2filter.get(newSi));
+                }
+              }  
+            }
+          }
+          
+          // now exhaust the new dataset
+          
+          headerAlreadyProcessed.addAll(Arrays.asList(next.getSelectItems()));
+          List<Row> newRows = new ArrayList<Row>();
+
+          while(next.next()){
+            Row rowFromNext = next.getRow();
+            for(Row row :rows){
+              Object[] valuesRow = row.getValues();
+              Object[] valuesRowFromNext = rowFromNext.getValues();
+              Object[] newRowValues = new Object[valuesRow.length];
+              
+              int selItemPosStartDs = selectItemDsStart.get(startDataSet);
+
+              
+              System.arraycopy(valuesRow, 0, newRowValues, selItemPosStartDs, valuesRow.length);
+              // determine the insertion position
+              
+              int selItemPosNext = selectItemDsStart.get(next);
+              
+              System.arraycopy(valuesRowFromNext, 0, newRowValues, selItemPosNext, valuesRowFromNext.length);
+              
+              Row newRow  = new DefaultRow(resultHeader, newRowValues);
+             
+              
+              //filters are assumed in conjunctive form
+              boolean add = true;
+              for(FilterItem filter: filters){
+                add = add && filter.evaluate(newRow);
+              }
+              if(add){
+                newRows.add(newRow);
+              }
+            }
+          }
+          rows = newRows;
+
+        }
+        
+           
+        
+
+        if (rows.isEmpty()) {
+            return new EmptyDataSet(resultHeader);
         }
 
-        if (data.isEmpty()) {
-            return new EmptyDataSet(selectItems);
-        }
-
-        final DataSetHeader header = new CachingDataSetHeader(selectItems);
-        final List<Row> rows = new ArrayList<Row>(data.size());
-        for (Object[] objects : data) {
-            rows.add(new DefaultRow(header, objects, null));
-        }
-
-        DataSet result = new InMemoryDataSet(header, rows);
+ 
+        DataSet result = new InMemoryDataSet(resultHeader , rows);
         if (whereItems != null) {
             DataSet filteredResult = getFiltered(result, whereItems);
             result = filteredResult;
         }
         return result;
     }
+
+    
 
     public static DataSet getCarthesianProduct(DataSet[] fromDataSets, FilterItem... filterItems) {
         return getCarthesianProduct(fromDataSets, Arrays.asList(filterItems));
