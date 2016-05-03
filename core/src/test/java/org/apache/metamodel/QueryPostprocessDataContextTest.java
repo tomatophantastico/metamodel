@@ -747,15 +747,15 @@ public class QueryPostprocessDataContextTest extends MetaModelTestCase {
         q.select(table2.getColumns());
         DataSet data = dc.executeQuery(q);
         assertEquals(table1.getColumnCount() + table2.getColumnCount(), data.getSelectItems().length);
-        for (int i = 0; i < 6 * 8; i++) {
-            assertTrue(data.next());
-            if (i == 0) {
-                assertEquals("Row[values=[1, kasper, denmark, 1, 1, founder]]", data.getRow().toString());
-            } else if (i == 1) {
-                assertEquals("Row[values=[1, kasper, denmark, 1, 1, developer]]", data.getRow().toString());
-            }
+        List<String>results = new ArrayList<String>();
+        while(data.next()){
+          results.add(data.getRow().toString());
         }
-        assertFalse(data.next());
+        assertEquals(6*8, results.size());
+        
+        assertTrue(results.contains("Row[values=[1, kasper, denmark, 1, 1, founder]]"));
+        assertTrue(results.contains("Row[values=[1, kasper, denmark, 1, 1, developer]]"));
+       
     }
 
     public void testJoinAndFirstRow() throws Exception {
