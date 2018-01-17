@@ -45,6 +45,7 @@ public class MockDataContext extends QueryPostprocessDataContext {
     private final String _value;
 
     public MockDataContext(String schemaName, String tableName, String value) {
+        super(true);
         _schemaName = schemaName;
         _tableName = tableName;
         _value = value;
@@ -55,18 +56,18 @@ public class MockDataContext extends QueryPostprocessDataContext {
 
         final MutableSchema schema = new MutableSchema(_schemaName);
         final MutableTable primaryTable = new MutableTable(_tableName).setSchema(schema);
-        primaryTable.addColumn(new MutableColumn("foo").setColumnNumber(0).setType(ColumnType.VARCHAR)
-                .setTable(primaryTable));
-        primaryTable.addColumn(new MutableColumn("bar").setColumnNumber(1).setType(ColumnType.VARCHAR)
-                .setTable(primaryTable));
-        primaryTable.addColumn(new MutableColumn("baz").setColumnNumber(2).setType(ColumnType.VARCHAR)
-                .setTable(primaryTable));
+        primaryTable.addColumn(
+                new MutableColumn("foo").setColumnNumber(0).setType(ColumnType.VARCHAR).setTable(primaryTable));
+        primaryTable.addColumn(
+                new MutableColumn("bar").setColumnNumber(1).setType(ColumnType.VARCHAR).setTable(primaryTable));
+        primaryTable.addColumn(
+                new MutableColumn("baz").setColumnNumber(2).setType(ColumnType.VARCHAR).setTable(primaryTable));
 
         final MutableTable emptyTable = new MutableTable("an_empty_table").setSchema(schema);
-        emptyTable.addColumn(new MutableColumn("foo").setColumnNumber(0).setType(ColumnType.VARCHAR)
-                .setTable(emptyTable));
-        emptyTable.addColumn(new MutableColumn("bar").setColumnNumber(1).setType(ColumnType.VARCHAR)
-                .setTable(emptyTable));
+        emptyTable.addColumn(
+                new MutableColumn("foo").setColumnNumber(0).setType(ColumnType.VARCHAR).setTable(emptyTable));
+        emptyTable.addColumn(
+                new MutableColumn("bar").setColumnNumber(1).setType(ColumnType.VARCHAR).setTable(emptyTable));
 
         schema.addTable(primaryTable);
         schema.addTable(emptyTable);
@@ -82,7 +83,8 @@ public class MockDataContext extends QueryPostprocessDataContext {
     @Override
     protected DataSet materializeMainSchemaTable(Table table, List<Column> columns, int maxRows) {
         if (_tableName.equals(table.getName())) {
-            final List<SelectItem> allSelectItems = table.getColumns().stream().map(SelectItem::new).collect(Collectors.toList());
+            final List<SelectItem> allSelectItems =
+                    table.getColumns().stream().map(SelectItem::new).collect(Collectors.toList());
             final DataSetHeader header = new CachingDataSetHeader(allSelectItems);
             final List<Row> data = new ArrayList<Row>();
             data.add(new DefaultRow(header, new Object[] { "1", "hello", "world" }, null));
@@ -92,7 +94,8 @@ public class MockDataContext extends QueryPostprocessDataContext {
 
             final DataSet sourceDataSet = new InMemoryDataSet(header, data);
 
-            final List<SelectItem> columnSelectItems = columns.stream().map(SelectItem::new).collect(Collectors.toList());
+            final List<SelectItem> columnSelectItems =
+                    columns.stream().map(SelectItem::new).collect(Collectors.toList());
             final DataSet selectionDataSet = MetaModelHelper.getSelection(columnSelectItems, sourceDataSet);
             return selectionDataSet;
         } else if ("an_empty_table".equals(table.getName())) {

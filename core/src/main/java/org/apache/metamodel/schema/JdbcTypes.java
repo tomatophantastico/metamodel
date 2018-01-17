@@ -19,10 +19,9 @@
 package org.apache.metamodel.schema;
 
 /**
- * This is a copy of the content (comments removed) of Java 6.0's
- * java.sql.Types. It is backwards compatible with older versions, but have
- * additional types (confirmed by JavaTypesTest). It is being used to convert
- * JDBC types to ColumnType enumerations.
+ * This is a copy of the content (comments removed) of Java 6.0's java.sql.Types. It is backwards compatible with older
+ * versions, but have additional types (confirmed by JavaTypesTest). It is being used to convert JDBC types to
+ * ColumnType enumerations.
  */
 public final class JdbcTypes {
 

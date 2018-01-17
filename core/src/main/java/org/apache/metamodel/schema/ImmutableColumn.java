@@ -23,8 +23,7 @@ import java.io.Serializable;
 /**
  * Immutable implementation of the Column interface.
  * 
- * It is not intended to be instantiated on it's own. Rather, use the
- * constructor in ImmutableSchema.
+ * It is not intended to be instantiated on it's own. Rather, use the constructor in ImmutableSchema.
  * 
  * @see ImmutableSchema
  */
@@ -47,28 +46,17 @@ public final class ImmutableColumn extends AbstractColumn implements Serializabl
     /**
      * Constructs a new {@link ImmutableColumn}.
      * 
-     * @param name
-     *            the name of the column
-     * @param type
-     *            the type of the column
-     * @param table
-     *            the table which the constructed column will pertain to
-     * @param columnNumber
-     *            the column number of the column
-     * @param columnSize
-     *            the size of the column
-     * @param nativeType
-     *            the native type of the column
-     * @param nullable
-     *            whether the column's values are nullable
-     * @param remarks
-     *            the remarks of the column
-     * @param indexed
-     *            whether the column is indexed or not
-     * @param quote
-     *            the quote character(s) of the column
-     * @param primaryKey
-     *            whether the column is a primary key or not
+     * @param name the name of the column
+     * @param type the type of the column
+     * @param table the table which the constructed column will pertain to
+     * @param columnNumber the column number of the column
+     * @param columnSize the size of the column
+     * @param nativeType the native type of the column
+     * @param nullable whether the column's values are nullable
+     * @param remarks the remarks of the column
+     * @param indexed whether the column is indexed or not
+     * @param quote the quote character(s) of the column
+     * @param primaryKey whether the column is a primary key or not
      */
     public ImmutableColumn(String name, ColumnType type, Table table, int columnNumber, Integer columnSize,
             String nativeType, Boolean nullable, String remarks, boolean indexed, String quote, boolean primaryKey) {
@@ -86,13 +74,10 @@ public final class ImmutableColumn extends AbstractColumn implements Serializabl
     }
 
     /**
-     * Constructs an {@link ImmutableColumn} based on an existing column and a
-     * table.
+     * Constructs an {@link ImmutableColumn} based on an existing column and a table.
      * 
-     * @param column
-     *            the column to immitate
-     * @param table
-     *            the table that the constructed column will pertain to
+     * @param column the column to immitate
+     * @param table the table that the constructed column will pertain to
      */
     public ImmutableColumn(Column column, Table table) {
         this.name = column.getName();
@@ -109,8 +94,8 @@ public final class ImmutableColumn extends AbstractColumn implements Serializabl
     }
 
     protected ImmutableColumn(Column column, ImmutableTable table) {
-        this(column.getName(), column.getType(), table, column.getColumnNumber(), column.getColumnSize(), column
-                .getNativeType(), column.isNullable(), column.getRemarks(), column.isIndexed(), column.getQuote(),
+        this(column.getName(), column.getType(), table, column.getColumnNumber(), column.getColumnSize(),
+                column.getNativeType(), column.isNullable(), column.getRemarks(), column.isIndexed(), column.getQuote(),
                 column.isPrimaryKey());
     }
 

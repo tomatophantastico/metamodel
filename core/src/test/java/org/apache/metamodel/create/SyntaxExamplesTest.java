@@ -27,8 +27,7 @@ import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
 
 /**
- * Abstract test class (will not be executed) to check the builder API's
- * syntactical applicability.
+ * Abstract test class (will not be executed) to check the builder API's syntactical applicability.
  */
 public abstract class SyntaxExamplesTest extends TestCase {
 

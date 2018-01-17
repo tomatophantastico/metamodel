@@ -29,10 +29,9 @@ import org.apache.metamodel.schema.Table;
 public interface SchemaBuilder {
 
     /**
-     * Offers a {@link DocumentSourceProvider} to the {@link SchemaBuilder}. The
-     * {@link SchemaBuilder} may consume the sources to build/detect a schema
-     * based on the observed documents in the sources. It may also choose to
-     * ignore the source, if the it does not need it.
+     * Offers a {@link DocumentSourceProvider} to the {@link SchemaBuilder}. The {@link SchemaBuilder} may consume the
+     * sources to build/detect a schema based on the observed documents in the sources. It may also choose to ignore the
+     * source, if the it does not need it.
      * 
      * @param documentSourceProvider
      */

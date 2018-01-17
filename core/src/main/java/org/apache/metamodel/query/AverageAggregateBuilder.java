@@ -27,7 +27,7 @@ final class AverageAggregateBuilder extends AbstractNumberAggregateBuilder<Doubl
 
     public double _average;
     public int _numValues;
-    
+
     @Override
     protected void add(Number number) {
         double total = _average * _numValues + number.doubleValue();

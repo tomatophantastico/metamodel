@@ -20,4 +20,3 @@
  * API for schema structure
  */
 package org.apache.metamodel.schema;
-

@@ -23,11 +23,11 @@ import java.util.Map;
 import org.apache.metamodel.convert.DocumentConverter;
 
 /**
- * Represents a document, ie. an object to be turned into a {@link Row} using a
- * {@link DocumentConverter} and to be sourced by a {@link DocumentSource}.
+ * Represents a document, ie. an object to be turned into a {@link Row} using a {@link DocumentConverter} and to be
+ * sourced by a {@link DocumentSource}.
  * 
- * A document does not require any schema. A document will hold key/value pairs
- * where keys are always strings, but values may be arbitrary values.
+ * A document does not require any schema. A document will hold key/value pairs where keys are always strings, but
+ * values may be arbitrary values.
  */
 public class Document {
 
@@ -64,10 +64,9 @@ public class Document {
     }
 
     /**
-     * Gets the collection/table name as defined in the source, or a hint about
-     * a table name of this document. This method may return null if the
-     * {@link DocumentSource} does not have any knowledge about the originating
-     * collection name, or if there is no logical way to determine such a name.
+     * Gets the collection/table name as defined in the source, or a hint about a table name of this document. This
+     * method may return null if the {@link DocumentSource} does not have any knowledge about the originating collection
+     * name, or if there is no logical way to determine such a name.
      * 
      * @return
      */

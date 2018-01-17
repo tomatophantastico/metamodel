@@ -34,12 +34,10 @@ import org.apache.metamodel.schema.Column;
 import org.apache.metamodel.schema.Table;
 
 /**
- * Represents a single DELETE FROM operation to be applied to a
- * {@link UpdateableDataContext}. Instead of providing a custom implementation
- * of the {@link UpdateScript} interface, one can use this pre-built delete from
- * implementation. Some {@link DataContext}s may even optimize specifically
- * based on the knowledge that there will only be a single delete from statement
- * executed.
+ * Represents a single DELETE FROM operation to be applied to a {@link UpdateableDataContext}. Instead of providing a
+ * custom implementation of the {@link UpdateScript} interface, one can use this pre-built delete from implementation.
+ * Some {@link DataContext}s may even optimize specifically based on the knowledge that there will only be a single
+ * delete from statement executed.
  */
 public final class DeleteFrom implements UpdateScript, WhereClauseBuilder<DeleteFrom> {
 

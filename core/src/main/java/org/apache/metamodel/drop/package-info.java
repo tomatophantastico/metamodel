@@ -20,4 +20,3 @@
  * API for dropping tables
  */
 package org.apache.metamodel.drop;
-

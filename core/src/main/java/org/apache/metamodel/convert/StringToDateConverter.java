@@ -27,8 +27,7 @@ import java.util.function.Function;
 import org.apache.metamodel.util.TimeComparator;
 
 /**
- * A {@link TypeConverter} that converts String values (on the physical layer)
- * to interpreted {@link Date}s.
+ * A {@link TypeConverter} that converts String values (on the physical layer) to interpreted {@link Date}s.
  */
 public class StringToDateConverter implements TypeConverter<String, Date> {
 
@@ -36,9 +35,8 @@ public class StringToDateConverter implements TypeConverter<String, Date> {
     private final Function<String, Date> _deserializeFunc;
 
     /**
-     * Constructs a new {@link StringToDateConverter} which will use the
-     * {@link TimeComparator#toDate(Object)} method for parsing dates and the
-     * {@link DateFormat#MEDIUM} date time format for physical representation.
+     * Constructs a new {@link StringToDateConverter} which will use the {@link TimeComparator#toDate(Object)} method
+     * for parsing dates and the {@link DateFormat#MEDIUM} date time format for physical representation.
      */
     public StringToDateConverter() {
         _deserializeFunc = stringValue -> {
@@ -50,24 +48,18 @@ public class StringToDateConverter implements TypeConverter<String, Date> {
     }
 
     /**
-     * Constructs a new {@link StringToDateConverter} using a given date
-     * pattern.
+     * Constructs a new {@link StringToDateConverter} using a given date pattern.
      * 
-     * @param datePattern
-     *            a String date pattern, corresponding to the syntax of a
-     *            {@link SimpleDateFormat}.
+     * @param datePattern a String date pattern, corresponding to the syntax of a {@link SimpleDateFormat}.
      */
     public StringToDateConverter(String datePattern) {
         this(new SimpleDateFormat(datePattern));
     }
 
     /**
-     * Constructs a new {@link StringToDateConverter} using a given
-     * {@link DateFormat}.
+     * Constructs a new {@link StringToDateConverter} using a given {@link DateFormat}.
      * 
-     * @param dateFormat
-     *            the {@link DateFormat} to use for parsing and formatting
-     *            dates.
+     * @param dateFormat the {@link DateFormat} to use for parsing and formatting dates.
      */
     public StringToDateConverter(final DateFormat dateFormat) {
         if (dateFormat == null) {

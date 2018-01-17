@@ -21,9 +21,8 @@ package org.apache.metamodel.intercept;
 /**
  * Defines a high-level interface for interceptors in MetaModel.
  * 
- * An intereptor can touch, modify, enhance or do other operations on certain
- * object types as they are passed around for execution in MetaModel. There are
- * 5 types of concrete interceptors:
+ * An intereptor can touch, modify, enhance or do other operations on certain object types as they are passed around for
+ * execution in MetaModel. There are 5 types of concrete interceptors:
  * 
  * @see QueryInterceptor
  * @see DataSetInterceptor
@@ -31,20 +30,16 @@ package org.apache.metamodel.intercept;
  * @see TableCreationInterceptor
  * @see SchemaInterceptor
  * 
- * @param <E>
- *            the type of object to intercept
+ * @param <E> the type of object to intercept
  */
 public interface Interceptor<E> {
 
     /**
-     * Interception method invoked by MetaModel when the intercepted object is
-     * being activated.
+     * Interception method invoked by MetaModel when the intercepted object is being activated.
      * 
-     * @param input
-     *            the intercepted object
-     * @return the intercepted object, or a modification of this if the object
-     *         is to be replaced by the interceptor. The returned object must
-     *         not be null.
+     * @param input the intercepted object
+     * @return the intercepted object, or a modification of this if the object is to be replaced by the interceptor. The
+     *         returned object must not be null.
      */
     public E intercept(E input);
 }

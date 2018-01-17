@@ -58,7 +58,7 @@ public class ConvertedRowUpdationInterceptor implements RowUpdationInterceptor {
         logger.debug("Update statement after conversion:  {}", update);
 
         update = Converters.convertRow(update, _converters);
-        
+
         logger.debug("Update statement after conversion:  {}", update);
 
         return update;

@@ -60,8 +60,7 @@ public final class DataSetIterator implements Iterator<Row> {
 
     @Override
     public void remove() {
-        throw new UnsupportedOperationException(
-                "DataSet is read-only, remove() is not supported.");
+        throw new UnsupportedOperationException("DataSet is read-only, remove() is not supported.");
     }
 
 }

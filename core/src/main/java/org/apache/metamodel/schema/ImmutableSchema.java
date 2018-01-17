@@ -27,8 +27,7 @@ import java.util.List;
 /**
  * An immutable implementation of the {@link Schema} interface.
  */
-public final class ImmutableSchema extends AbstractSchema implements
-        Serializable {
+public final class ImmutableSchema extends AbstractSchema implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

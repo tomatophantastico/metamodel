@@ -21,21 +21,17 @@ package org.apache.metamodel.data;
 import java.io.Serializable;
 
 /**
- * A {@link Style} represents the visual presentation ('styling') attributes of
- * a value in a {@link Row}. Styling can be used to highlight special values and
- * format the cells of eg. a spreadsheet.
+ * A {@link Style} represents the visual presentation ('styling') attributes of a value in a {@link Row}. Styling can be
+ * used to highlight special values and format the cells of eg. a spreadsheet.
  * 
- * Most datastores don't support styling, but some do. Those who do not support
- * it will just omit it.
+ * Most datastores don't support styling, but some do. Those who do not support it will just omit it.
  * 
- * Creation of {@link Style} objects is handled by the {@link StyleBuilder}
- * class.
+ * Creation of {@link Style} objects is handled by the {@link StyleBuilder} class.
  */
 public interface Style extends Serializable {
 
     /**
-     * A style object used for values without styling, "unstyled" values or
-     * "neutrally styled" values.
+     * A style object used for values without styling, "unstyled" values or "neutrally styled" values.
      */
     public static final Style NO_STYLE = new StyleImpl();
 
@@ -43,14 +39,16 @@ public interface Style extends Serializable {
      * Represents the text alignment of a value.
      */
     public static enum TextAlignment {
-        LEFT, RIGHT, CENTER, JUSTIFY
+        LEFT,
+        RIGHT,
+        CENTER,
+        JUSTIFY
     }
 
     /**
      * Represents a color used for value highlighting.
      * 
-     * Creation of {@link Color} objects is handled by the static
-     * {@link StyleBuilder}.createColor(...) methods.
+     * Creation of {@link Color} objects is handled by the static {@link StyleBuilder}.createColor(...) methods.
      */
     public static interface Color extends Serializable {
 

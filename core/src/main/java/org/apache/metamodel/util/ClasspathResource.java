@@ -90,12 +90,12 @@ public class ClasspathResource extends AbstractResource implements Serializable 
         }
         return new UrlResource(url);
     }
-    
+
     @Override
     public OutputStream append() throws ResourceException {
         return getUrlResourceDelegate().append();
     }
-    
+
     @Override
     public OutputStream write() throws ResourceException {
         return getUrlResourceDelegate().write();

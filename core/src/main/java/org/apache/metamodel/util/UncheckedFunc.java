@@ -21,8 +21,8 @@ package org.apache.metamodel.util;
 import java.util.function.Function;
 
 /**
- * Represents a {@link Function} that allows for throwing checked exceptions,
- * making it more appropriate for encapsulating code blocks that may fail.
+ * Represents a {@link Function} that allows for throwing checked exceptions, making it more appropriate for
+ * encapsulating code blocks that may fail.
  * 
  * @param <I>
  * @param <O>

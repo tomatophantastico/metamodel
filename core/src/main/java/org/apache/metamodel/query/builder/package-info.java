@@ -20,4 +20,3 @@
  * API for query building
  */
 package org.apache.metamodel.query.builder;
-

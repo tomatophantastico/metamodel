@@ -30,20 +30,18 @@ public class RowPublisherDataSetTest extends TestCase {
         SelectItem[] selectItems = new SelectItem[2];
         selectItems[0] = new SelectItem(new MutableColumn("foos"));
         selectItems[1] = new SelectItem(new MutableColumn("bars"));
-        DataSet ds = new RowPublisherDataSet(selectItems, 5,
-                new Action<RowPublisher>() {
-                    @Override
-                    public void run(RowPublisher publisher) throws Exception {
+        DataSet ds = new RowPublisherDataSet(selectItems, 5, new Action<RowPublisher>() {
+            @Override
+            public void run(RowPublisher publisher) throws Exception {
 
-                        // we want to exceed the buffer size
-                        int iterations = RowPublisherImpl.BUFFER_SIZE * 2;
+                // we want to exceed the buffer size
+                int iterations = RowPublisherImpl.BUFFER_SIZE * 2;
 
-                        for (int i = 0; i < iterations; i++) {
-                            publisher.publish(new Object[] { "foo" + i,
-                                    "bar" + i });
-                        }
-                    }
-                });
+                for (int i = 0; i < iterations; i++) {
+                    publisher.publish(new Object[] { "foo" + i, "bar" + i });
+                }
+            }
+        });
 
         assertTrue(ds.next());
         assertEquals("Row[values=[foo0, bar0]]", ds.getRow().toString());
@@ -53,7 +51,7 @@ public class RowPublisherDataSetTest extends TestCase {
         assertTrue(ds.next());
         assertEquals("Row[values=[foo4, bar4]]", ds.getRow().toString());
         assertFalse(ds.next());
-        
+
         ds.close();
     }
 
@@ -61,15 +59,14 @@ public class RowPublisherDataSetTest extends TestCase {
         SelectItem[] selectItems = new SelectItem[2];
         selectItems[0] = new SelectItem(new MutableColumn("foos"));
         selectItems[1] = new SelectItem(new MutableColumn("bars"));
-        DataSet ds = new RowPublisherDataSet(selectItems, 5,
-                new Action<RowPublisher>() {
-                    @Override
-                    public void run(RowPublisher publisher) throws Exception {
-                        publisher.publish(new Object[] { "foo0", "bar0" });
-                        publisher.publish(new Object[] { "foo1", "bar1" });
-                        throw new IllegalStateException("foobar!");
-                    }
-                });
+        DataSet ds = new RowPublisherDataSet(selectItems, 5, new Action<RowPublisher>() {
+            @Override
+            public void run(RowPublisher publisher) throws Exception {
+                publisher.publish(new Object[] { "foo0", "bar0" });
+                publisher.publish(new Object[] { "foo1", "bar1" });
+                throw new IllegalStateException("foobar!");
+            }
+        });
 
         assertTrue(ds.next());
         assertEquals("Row[values=[foo0, bar0]]", ds.getRow().toString());

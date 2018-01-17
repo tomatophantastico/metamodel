@@ -20,4 +20,3 @@
  * API for data sets
  */
 package org.apache.metamodel.data;
-

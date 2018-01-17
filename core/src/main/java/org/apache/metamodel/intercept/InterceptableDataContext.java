@@ -192,15 +192,14 @@ public class InterceptableDataContext implements UpdateableDataContext {
 
     @Override
     public List<Schema> getSchemas() throws MetaModelException {
-        return _delegate.getSchemas().stream()
-                .map(schema -> {
-                    if(_schemaInterceptors.isEmpty()){
-                        return schema;
-                    }else{
-                        return _schemaInterceptors.interceptAll(schema);
-                    }
+        return _delegate.getSchemas().stream().map(schema -> {
+            if (_schemaInterceptors.isEmpty()) {
+                return schema;
+            } else {
+                return _schemaInterceptors.interceptAll(schema);
+            }
 
-                }).collect(Collectors.toList());
+        }).collect(Collectors.toList());
     }
 
     @Override
@@ -209,9 +208,7 @@ public class InterceptableDataContext implements UpdateableDataContext {
             return _delegate.getSchemaNames();
         }
 
-        return getSchemas().stream()
-                .map(schema -> schema.getName())
-                .collect(Collectors.toList());
+        return getSchemas().stream().map(schema -> schema.getName()).collect(Collectors.toList());
     }
 
     @Override
@@ -256,9 +253,9 @@ public class InterceptableDataContext implements UpdateableDataContext {
             return delegate.executeUpdate(update);
         }
 
-        final UpdateScript interceptableUpdateScript = new InterceptableUpdateScript(this, update,
-                _tableCreationInterceptors, _tableDropInterceptors, _rowInsertionInterceptors,
-                _rowUpdationInterceptors, _rowDeletionInterceptors);
+        final UpdateScript interceptableUpdateScript =
+                new InterceptableUpdateScript(this, update, _tableCreationInterceptors, _tableDropInterceptors,
+                        _rowInsertionInterceptors, _rowUpdationInterceptors, _rowDeletionInterceptors);
         return delegate.executeUpdate(interceptableUpdateScript);
     }
 

@@ -44,8 +44,7 @@ public class ToStringComparatorTest extends TestCase {
     }
 
     public void testComparable() throws Exception {
-        Comparable<Object> comparable = ToStringComparator
-                .getComparable("aaaa");
+        Comparable<Object> comparable = ToStringComparator.getComparable("aaaa");
         assertEquals(-1, comparable.compareTo("bbbb"));
     }
 }

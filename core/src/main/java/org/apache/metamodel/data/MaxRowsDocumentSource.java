@@ -19,8 +19,8 @@
 package org.apache.metamodel.data;
 
 /**
- * A {@link DocumentSource} that has a max rows condition on it, that will make
- * it stop serving documents after a certain limit.
+ * A {@link DocumentSource} that has a max rows condition on it, that will make it stop serving documents after a
+ * certain limit.
  */
 public class MaxRowsDocumentSource implements DocumentSource {
 

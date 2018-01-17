@@ -35,17 +35,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 final class FromItemParser implements QueryPartProcessor {
-    
+
     /**
-     * This field will hold start and end character for delimiter that can be
-     * used
+     * This field will hold start and end character for delimiter that can be used
      */
     private static final Map<Character, Character> delimiterMap = new HashMap<Character, Character>();
     static {
         delimiterMap.put('\"', '\"');
         delimiterMap.put('[', ']');
     }
-    
+
     private static final Logger logger = LoggerFactory.getLogger(FromItemParser.class);
 
     private final Query _query;
@@ -68,8 +67,8 @@ final class FromItemParser implements QueryPartProcessor {
             }
             final int parenthesisEnd = itemToken.indexOf(')', parenthesisStart);
             if (parenthesisEnd == -1) {
-                throw new QueryParserException("Not capable of parsing FROM token: " + itemToken
-                        + ". Expected end parenthesis.");
+                throw new QueryParserException(
+                        "Not capable of parsing FROM token: " + itemToken + ". Expected end parenthesis.");
             }
 
             final String subQueryString = itemToken.substring(parenthesisStart + 1, parenthesisEnd);
@@ -101,17 +100,16 @@ final class FromItemParser implements QueryPartProcessor {
             char endDelimiter = delimiterMap.get(startDelimiter);
             int endIndex = itemToken.trim().lastIndexOf(endDelimiter, itemToken.trim().length());
             if (endIndex <= 0) {
-                throw new QueryParserException("Not capable of parsing FROM token: " + itemToken + ". Expected end "
-                        + endDelimiter);
+                throw new QueryParserException(
+                        "Not capable of parsing FROM token: " + itemToken + ". Expected end " + endDelimiter);
             }
             tableNameToken = itemToken.trim().substring(1, endIndex).trim();
 
             if (itemToken.trim().substring(1 + endIndex).trim().equalsIgnoreCase("")) {
                 /*
-                 * As per code in FromClause Method: getItemByReference(FromItem
-                 * item, String reference) if (alias == null && table != null &&
-                 * reference.equals(table.getName())) { Either we have to change
-                 * the code to add alias.equals("") there or return null here.
+                 * As per code in FromClause Method: getItemByReference(FromItem item, String reference) if (alias ==
+                 * null && table != null && reference.equals(table.getName())) { Either we have to change the code to
+                 * add alias.equals("") there or return null here.
                  */
                 aliasToken = null;
             } else {
@@ -151,8 +149,8 @@ final class FromItemParser implements QueryPartProcessor {
             joinSplit[i + 1] = joinSplit[i + 1].trim();
             String leftPart = joinSplit[i].substring(0, joinSplit[i].lastIndexOf(" "));
             String joinType = joinSplit[i].substring(joinSplit[i].lastIndexOf(" "));
-            String rightPart = (i + 1 == joinSplit.length - 1) ? joinSplit[i + 1] : joinSplit[i + 1].substring(0,
-                    joinSplit[i + 1].lastIndexOf(" "));
+            String rightPart = (i + 1 == joinSplit.length - 1) ? joinSplit[i + 1]
+                    : joinSplit[i + 1].substring(0, joinSplit[i + 1].lastIndexOf(" "));
             joinsList.add((leftPart + " " + joinType + " JOIN " + rightPart).replaceAll(" +", " "));
             String rightTable = rightPart.substring(0, rightPart.toUpperCase().lastIndexOf(" ON "));
             String nextJoinType = joinSplit[i + 1].substring(joinSplit[i + 1].lastIndexOf(" "));

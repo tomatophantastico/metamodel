@@ -18,25 +18,25 @@
  */
 package org.apache.metamodel;
 
-import org.apache.metamodel.schema.Schema;
+import org.apache.metamodel.schema.MutableSchema;
 
 /**
- * A simple subclass of {@link QueryPostprocessDataContext} which provides less
- * implementation fuzz when custom querying features (like composite
- * datacontexts or type conversion) is needed.
+ * A simple subclass of {@link QueryPostprocessDataContext} which provides less implementation fuzz when custom querying
+ * features (like composite datacontexts or type conversion) is needed.
  */
-public abstract class QueryPostprocessDelegate extends
-        QueryPostprocessDataContext {
+public abstract class QueryPostprocessDelegate extends QueryPostprocessDataContext {
 
-    @Override
-    protected String getMainSchemaName() throws MetaModelException {
-        throw new UnsupportedOperationException(
-                "QueryPostprocessDelegate cannot perform schema exploration");
+    public QueryPostprocessDelegate() {
+        super(false);
     }
 
     @Override
-    protected Schema getMainSchema() throws MetaModelException {
-        throw new UnsupportedOperationException(
-                "QueryPostprocessDelegate cannot perform schema exploration");
+    protected String getMainSchemaName() throws MetaModelException {
+        throw new UnsupportedOperationException("QueryPostprocessDelegate cannot perform schema exploration");
+    }
+
+    @Override
+    protected MutableSchema getMainSchema() throws MetaModelException {
+        throw new UnsupportedOperationException("QueryPostprocessDelegate cannot perform schema exploration");
     }
 }

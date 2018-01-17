@@ -26,10 +26,8 @@ import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.schema.Column;
 
 /**
- * Most common implementation of {@link DataSetHeader}. This implementation is
- * 'caching' in the sense that index values of selectitems are cached in a map
- * to provide quick access when looking up by {@link SelectItem} or
- * {@link Column}.
+ * Most common implementation of {@link DataSetHeader}. This implementation is 'caching' in the sense that index values
+ * of selectitems are cached in a map to provide quick access when looking up by {@link SelectItem} or {@link Column}.
  */
 public final class CachingDataSetHeader extends SimpleDataSetHeader implements DataSetHeader {
 
@@ -44,7 +42,6 @@ public final class CachingDataSetHeader extends SimpleDataSetHeader implements D
     public CachingDataSetHeader(List<SelectItem> items) {
         super(items);
     }
-
 
     @Override
     public int indexOf(Column column) {

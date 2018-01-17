@@ -36,8 +36,7 @@ public class MutableSchemaTest {
      * Tests that the following (general) rules apply to the object:
      * 
      * <li>the hashcode is the same when run twice on an unaltered object</li>
-     * <li>if o1.equals(o2) then this condition must be true: o1.hashCode() ==
-     * 02.hashCode()
+     * <li>if o1.equals(o2) then this condition must be true: o1.hashCode() == 02.hashCode()
      */
     @Test
     public void testEqualsAndHashCode() throws Exception {

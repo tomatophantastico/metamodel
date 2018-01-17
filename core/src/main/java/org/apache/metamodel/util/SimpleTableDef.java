@@ -30,9 +30,8 @@ import org.apache.metamodel.schema.Table;
 import org.apache.metamodel.schema.TableType;
 
 /**
- * Represents a table definition to be used in scenarios where a
- * {@link DataContext} is unable to detect/discover the table structure and
- * needs some basic input around expected table structures.
+ * Represents a table definition to be used in scenarios where a {@link DataContext} is unable to detect/discover the
+ * table structure and needs some basic input around expected table structures.
  */
 public class SimpleTableDef implements Serializable, HasName {
 
@@ -61,10 +60,8 @@ public class SimpleTableDef implements Serializable, HasName {
     /**
      * Constructs a {@link SimpleTableDef}.
      * 
-     * @param name
-     *            the name of the table
-     * @param columnNames
-     *            the names of the columns to include in the table
+     * @param name the name of the table
+     * @param columnNames the names of the columns to include in the table
      */
     public SimpleTableDef(String name, String[] columnNames) {
         this(name, columnNames, null);
@@ -73,15 +70,12 @@ public class SimpleTableDef implements Serializable, HasName {
     /**
      * Constructs a {@link SimpleTableDef}.
      * 
-     * @param name
-     *            the name of table
-     * @param columnNames
-     *            the names of the columns to include in the table
-     * @param columnTypes
-     *            the column types of the columns specified.
+     * @param name the name of table
+     * @param columnNames the names of the columns to include in the table
+     * @param columnTypes the column types of the columns specified.
      */
     public SimpleTableDef(String name, String[] columnNames, ColumnType[] columnTypes) {
-        if(name == null){
+        if (name == null) {
             throw new NullPointerException("Table name cannot be null");
         }
         _name = name;
@@ -166,8 +160,8 @@ public class SimpleTableDef implements Serializable, HasName {
     }
 
     /**
-     * Creates a {@link MutableTable} based on this {@link SimpleTableDef}. Note
-     * that the created table will not have any schema set.
+     * Creates a {@link MutableTable} based on this {@link SimpleTableDef}. Note that the created table will not have
+     * any schema set.
      * 
      * @return a table representation of this table definition.
      */

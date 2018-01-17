@@ -64,8 +64,7 @@ public class InferentialColumnBuilder implements ColumnBuilder {
     }
 
     /**
-     * Gets the number of observations that this column builder is basing it's
-     * inference on.
+     * Gets the number of observations that this column builder is basing it's inference on.
      * 
      * @return
      */

@@ -37,8 +37,7 @@ public class AbstractInsertBuilderTest extends TestCase {
         table.addColumn(new MutableColumn("foo"));
         table.addColumn(new MutableColumn("bar"));
         table.addColumn(new MutableColumn("baz"));
-        RowInsertionBuilder insertBuilder = new AbstractRowInsertionBuilder<UpdateCallback>(
-                null, table) {
+        RowInsertionBuilder insertBuilder = new AbstractRowInsertionBuilder<UpdateCallback>(null, table) {
             @Override
             public void execute() throws MetaModelException {
                 assertEquals("[1, 2, 3]", Arrays.toString(getValues()));
@@ -48,27 +47,25 @@ public class AbstractInsertBuilderTest extends TestCase {
 
         assertFalse(executed.get().booleanValue());
 
-        insertBuilder.value(0, 1).value("bar", 2)
-                .value(table.getColumnByName("baz"), 3).execute();
+        insertBuilder.value(0, 1).value("bar", 2).value(table.getColumnByName("baz"), 3).execute();
 
         assertTrue(executed.get());
-        
+
         assertEquals("Row[values=[1, 2, 3]]", insertBuilder.toRow().toString());
-        
+
     }
 
     public void testIllegalArguments() throws Exception {
         final MutableTable table = new MutableTable("foo");
         table.addColumn(new MutableColumn("foo"));
-        RowInsertionBuilder insertBuilder = new AbstractRowInsertionBuilder<UpdateCallback>(
-                null, table) {
+        RowInsertionBuilder insertBuilder = new AbstractRowInsertionBuilder<UpdateCallback>(null, table) {
             @Override
             public void execute() throws MetaModelException {
             }
         };
-        
+
         try {
-            insertBuilder.value((Column)null, "foo");
+            insertBuilder.value((Column) null, "foo");
             fail("Exception expected");
         } catch (IllegalArgumentException e) {
             assertEquals("Column cannot be null", e.getMessage());
@@ -78,15 +75,16 @@ public class AbstractInsertBuilderTest extends TestCase {
             insertBuilder.value("hmm", "foo");
             fail("Exception expected");
         } catch (IllegalArgumentException e) {
-            assertEquals("No such column in table: hmm, available columns are: [Column[name=foo,columnNumber=0,type=null,nullable=null,nativeType=null,columnSize=null]]", e.getMessage());
+            assertEquals(
+                    "No such column in table: hmm, available columns are: [Column[name=foo,columnNumber=0,type=null,nullable=null,nativeType=null,columnSize=null]]",
+                    e.getMessage());
         }
 
         try {
             insertBuilder.value(4, "foo");
             fail("Exception expected");
         } catch (ArrayIndexOutOfBoundsException e) {
-            assertTrue("4".equals(e.getMessage())
-                    || "Array index out of range: 4".equals(e.getMessage()));
+            assertTrue("4".equals(e.getMessage()) || "Array index out of range: 4".equals(e.getMessage()));
         }
     }
 }

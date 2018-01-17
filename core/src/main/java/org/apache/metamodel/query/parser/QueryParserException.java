@@ -21,8 +21,7 @@ package org.apache.metamodel.query.parser;
 import org.apache.metamodel.MetaModelException;
 
 /**
- * Subtype of {@link MetaModelException} which indicate a problem in parsing a
- * query passed to the {@link QueryParser}.
+ * Subtype of {@link MetaModelException} which indicate a problem in parsing a query passed to the {@link QueryParser}.
  */
 public class QueryParserException extends MetaModelException {
 

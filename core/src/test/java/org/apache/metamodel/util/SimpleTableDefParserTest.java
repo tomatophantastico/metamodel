@@ -36,8 +36,8 @@ public class SimpleTableDefParserTest extends TestCase {
     }
 
     public void testParseTableDefWithExtraWhitespace() throws Exception {
-        SimpleTableDef tableDef = SimpleTableDefParser
-                .parseTableDef("   foo ( bar   VARCHAR   ,    baz    INTEGER    )   ");
+        SimpleTableDef tableDef =
+                SimpleTableDefParser.parseTableDef("   foo ( bar   VARCHAR   ,    baz    INTEGER    )   ");
         assertNotNull(tableDef);
         assertEquals("foo", tableDef.getName());
         assertEquals(2, tableDef.getColumnNames().length);
@@ -59,8 +59,8 @@ public class SimpleTableDefParserTest extends TestCase {
     }
 
     public void testParseTableDefs() throws Exception {
-        SimpleTableDef[] tableDefs = SimpleTableDefParser
-                .parseTableDefs("   foo ( bar   MAP   ,    baz    OTHER    )  ; \n\n\r\n\t  hello (  world   BINARY    )  ");
+        SimpleTableDef[] tableDefs = SimpleTableDefParser.parseTableDefs(
+                "   foo ( bar   MAP   ,    baz    OTHER    )  ; \n\n\r\n\t  hello (  world   BINARY    )  ");
 
         assertNotNull(tableDefs);
         assertEquals(2, tableDefs.length);

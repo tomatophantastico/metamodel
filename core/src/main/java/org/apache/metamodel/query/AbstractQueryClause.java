@@ -24,11 +24,10 @@ import java.util.List;
 import org.apache.metamodel.util.BaseObject;
 
 /**
- * Represents an abstract clause in a query. Clauses contains IQueryItems and
- * provide basic ways of adding, modifying and removing these.
+ * Represents an abstract clause in a query. Clauses contains IQueryItems and provide basic ways of adding, modifying
+ * and removing these.
  * 
- * @param <E>
- *            the type of query item this QueryClause handles
+ * @param <E> the type of query item this QueryClause handles
  * 
  * @see Query
  */

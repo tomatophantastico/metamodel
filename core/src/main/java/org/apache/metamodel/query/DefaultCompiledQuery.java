@@ -23,10 +23,9 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Represents a default implementation of the {@link CompiledQuery} interface.
- * This implementation does not actually do anything to prepare the query, but
- * allows creating a clone of the originating query with the parameters replaced
- * by values.
+ * Represents a default implementation of the {@link CompiledQuery} interface. This implementation does not actually do
+ * anything to prepare the query, but allows creating a clone of the originating query with the parameters replaced by
+ * values.
  */
 public class DefaultCompiledQuery implements CompiledQuery {
 
@@ -39,8 +38,7 @@ public class DefaultCompiledQuery implements CompiledQuery {
     }
 
     /**
-     * Clones the query while replacing query parameters with corresponding
-     * values.
+     * Clones the query while replacing query parameters with corresponding values.
      * 
      * @param values
      * @return

@@ -31,7 +31,7 @@ public final class MaxRowsDataSet extends AbstractDataSet implements WrappingDat
         _dataSet = dataSet;
         _rowsLeft = maxRows;
     }
-    
+
     @Override
     public DataSet getWrappedDataSet() {
         return _dataSet;

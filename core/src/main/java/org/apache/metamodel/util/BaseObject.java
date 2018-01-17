@@ -27,22 +27,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * A base object type with conveniently implemented base methods like hashCode()
- * and equals(). Subclasses should implement the {@link #decorateIdentity(List)}
- * method to have {@link #equals(Object)} and {@link #hashCode()} automatically
- * implemented.
+ * A base object type with conveniently implemented base methods like hashCode() and equals(). Subclasses should
+ * implement the {@link #decorateIdentity(List)} method to have {@link #equals(Object)} and {@link #hashCode()}
+ * automatically implemented.
  */
 public abstract class BaseObject {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(BaseObject.class);
+    private static final Logger logger = LoggerFactory.getLogger(BaseObject.class);
 
     @Override
     public String toString() {
         // overridden version of toString() method that uses identity hash code
         // (to prevent hashCode() recursion due to logging!)
-        return getClass().getName() + "@"
-                + Integer.toHexString(System.identityHashCode(this));
+        return getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(this));
     }
 
     /**
@@ -84,20 +81,17 @@ public abstract class BaseObject {
     }
 
     /**
-     * Override this method if the equals method should support different
-     * subtypes. For example, if different subtypes of Number should be
-     * supported, implement this method with:
+     * Override this method if the equals method should support different subtypes. For example, if different subtypes
+     * of Number should be supported, implement this method with:
      * 
      * <code>
      * obj instanceof Number
      * </code>
      * 
-     * and make sure that the decorateIdentity(...) method will always return a
-     * comparable list of identity-objects.
+     * and make sure that the decorateIdentity(...) method will always return a comparable list of identity-objects.
      * 
      * @param obj
-     * @return true if the provided object's class is accepted for equals
-     *         comparison
+     * @return true if the provided object's class is accepted for equals comparison
      */
     protected boolean classEquals(BaseObject obj) {
         return getClass() == obj.getClass();
@@ -124,10 +118,8 @@ public abstract class BaseObject {
                 that.decorateIdentity(list2);
 
                 if (list1.size() != list2.size()) {
-                    throw new IllegalStateException(
-                            "Two instances of the same class ("
-                                    + getClass().getName()
-                                    + ") returned different size decorated identity lists");
+                    throw new IllegalStateException("Two instances of the same class (" + getClass().getName()
+                            + ") returned different size decorated identity lists");
                 }
 
                 if (list1.isEmpty()) {
@@ -155,8 +147,8 @@ public abstract class BaseObject {
     }
 
     /**
-     * Subclasses should implement this method and add all fields to the list
-     * that are to be included in equals(...) and hashCode() evaluation
+     * Subclasses should implement this method and add all fields to the list that are to be included in equals(...) and
+     * hashCode() evaluation
      * 
      * @param identifiers
      */

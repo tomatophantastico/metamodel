@@ -24,7 +24,7 @@ import org.apache.metamodel.data.Style.Color;
 import org.apache.metamodel.util.BaseObject;
 
 final class ColorImpl extends BaseObject implements Color {
-    
+
     private static final long serialVersionUID = 1L;
 
     private final short _red;
@@ -42,9 +42,7 @@ final class ColorImpl extends BaseObject implements Color {
 
     private void checkRange(short rgbComponent) throws IllegalArgumentException {
         if (rgbComponent < 0 || rgbComponent > 255) {
-            throw new IllegalArgumentException(
-                    "All RGB components must be between 0 and 255. Found: "
-                            + rgbComponent);
+            throw new IllegalArgumentException("All RGB components must be between 0 and 255. Found: " + rgbComponent);
         }
     }
 

@@ -25,12 +25,10 @@ import org.apache.metamodel.insert.RowInsertable;
 import org.apache.metamodel.update.RowUpdateable;
 
 /**
- * An {@link UpdateCallback} is used by an {@link UpdateScript} to perform
- * updates on a {@link DataContext}. Multiple updates (eg. insertion of several
- * rows or creation of multiple tables) can (and should) be performed with a
- * single {@link UpdateCallback}. This pattern guarantees that connections
- * and/or file handles are handled correctly, surrounding the
- * {@link UpdateScript} that is being executed.
+ * An {@link UpdateCallback} is used by an {@link UpdateScript} to perform updates on a {@link DataContext}. Multiple
+ * updates (eg. insertion of several rows or creation of multiple tables) can (and should) be performed with a single
+ * {@link UpdateCallback}. This pattern guarantees that connections and/or file handles are handled correctly,
+ * surrounding the {@link UpdateScript} that is being executed.
  */
 public interface UpdateCallback extends TableCreatable, TableDroppable, RowInsertable, RowUpdateable, RowDeletable {
 

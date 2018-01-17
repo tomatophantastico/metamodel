@@ -29,8 +29,7 @@ import org.apache.metamodel.util.BaseObject;
  * Represents a FROM item. FROM items can take different forms:
  * <ul>
  * <li>table FROMs (eg. "FROM products p")</li>
- * <lI>join FROMs with an ON clause (eg. "FROM products p INNER JOIN orders o ON
- * p.id = o.product_id")</li>
+ * <lI>join FROMs with an ON clause (eg. "FROM products p INNER JOIN orders o ON p.id = o.product_id")</li>
  * <li>subquery FROMs (eg. "FROM (SELECT * FROM products) p")</li>
  * <li>expression FROM (any string based from item)</li>
  * </ul>
@@ -67,23 +66,19 @@ public class FromItem extends BaseObject implements QueryItem, Cloneable {
     /**
      * Constructor for sub-query FROM clauses
      * 
-     * @param subQuery
-     *            the subquery to use
+     * @param subQuery the subquery to use
      */
     public FromItem(Query subQuery) {
         _subQuery = subQuery;
     }
 
     /**
-     * Constructor for join FROM clauses that join two tables using their
-     * relationship. The primary table of the relationship will be the left side
-     * of the join and the foreign table of the relationship will be the right
-     * side of the join.
+     * Constructor for join FROM clauses that join two tables using their relationship. The primary table of the
+     * relationship will be the left side of the join and the foreign table of the relationship will be the right side
+     * of the join.
      * 
-     * @param join
-     *            the join type to use
-     * @param relationship
-     *            the relationship to use for joining the tables
+     * @param join the join type to use
+     * @param relationship the relationship to use for joining the tables
      */
     public FromItem(JoinType join, Relationship relationship) {
         _join = join;
@@ -104,16 +99,11 @@ public class FromItem extends BaseObject implements QueryItem, Cloneable {
     /**
      * Constructor for advanced join types with custom relationships
      * 
-     * @param join
-     *            the join type to use
-     * @param leftSide
-     *            the left side of the join
-     * @param rightSide
-     *            the right side of the join
-     * @param leftOn
-     *            what left-side select items to use for the ON clause
-     * @param rightOn
-     *            what right-side select items to use for the ON clause
+     * @param join the join type to use
+     * @param leftSide the left side of the join
+     * @param rightSide the right side of the join
+     * @param leftOn what left-side select items to use for the ON clause
+     * @param rightOn what right-side select items to use for the ON clause
      */
     public FromItem(JoinType join, FromItem leftSide, FromItem rightSide, SelectItem[] leftOn, SelectItem[] rightOn) {
         _join = join;
@@ -124,15 +114,13 @@ public class FromItem extends BaseObject implements QueryItem, Cloneable {
     }
 
     /**
-     * Creates a single unvalidated from item based on a expression. Expression
-     * based from items are typically NOT datastore-neutral but are available
-     * for special "hacking" needs.
+     * Creates a single unvalidated from item based on a expression. Expression based from items are typically NOT
+     * datastore-neutral but are available for special "hacking" needs.
      * 
-     * Expression based from items can only be used for JDBC based datastores
-     * since they are translated directly into SQL.
+     * Expression based from items can only be used for JDBC based datastores since they are translated directly into
+     * SQL.
      * 
-     * @param expression
-     *            An expression to use for the from item, for example "MYTABLE".
+     * @param expression An expression to use for the from item, for example "MYTABLE".
      */
     public FromItem(String expression) {
         if (expression == null) {
@@ -267,8 +255,8 @@ public class FromItem extends BaseObject implements QueryItem, Cloneable {
             sb.append(superQueryAlias);
             return;
         }
-        
-        if(_join != null && _leftSide.getJoin() != null) {
+
+        if (_join != null && _leftSide.getJoin() != null) {
             sb.append(onItem.toSql());
             return;
         }
@@ -282,11 +270,9 @@ public class FromItem extends BaseObject implements QueryItem, Cloneable {
     }
 
     /**
-     * Gets the alias of a table, if it is registered (and visible, ie. not part
-     * of a sub-query) in the FromItem
+     * Gets the alias of a table, if it is registered (and visible, ie. not part of a sub-query) in the FromItem
      * 
-     * @param table
-     *            the table to get the alias for
+     * @param table the table to get the alias for
      * @return the alias or null if none is found
      */
     public String getAlias(Table table) {

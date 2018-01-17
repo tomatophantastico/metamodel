@@ -24,11 +24,10 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * A shared {@link ExecutorService} for use on ad-hoc tasks that can be
- * optimized by running operations in parallel.
+ * A shared {@link ExecutorService} for use on ad-hoc tasks that can be optimized by running operations in parallel.
  * 
- * Note that since this {@link ExecutorService} is shared, it is not recommended
- * to use it for dedicated tasks or daemon-like long-running tasks.
+ * Note that since this {@link ExecutorService} is shared, it is not recommended to use it for dedicated tasks or
+ * daemon-like long-running tasks.
  */
 public final class SharedExecutorService {
 
@@ -43,23 +42,20 @@ public final class SharedExecutorService {
 
         public ThreadFactoryImpl() {
             SecurityManager s = System.getSecurityManager();
-            _threadGroup = (s != null) ? s.getThreadGroup() : Thread
-                    .currentThread().getThreadGroup();
+            _threadGroup = (s != null) ? s.getThreadGroup() : Thread.currentThread().getThreadGroup();
         }
 
         @Override
         public Thread newThread(Runnable r) {
-            Thread thread = new Thread(_threadGroup, r,
-                    "MetaModel.SharedExecutorService.Thread."
-                            + counter.incrementAndGet());
+            Thread thread =
+                    new Thread(_threadGroup, r, "MetaModel.SharedExecutorService.Thread." + counter.incrementAndGet());
             thread.setDaemon(true);
             thread.setPriority(Thread.NORM_PRIORITY);
             return thread;
         }
     }
 
-    private static final ExecutorService executor = Executors
-            .newCachedThreadPool(new ThreadFactoryImpl());
+    private static final ExecutorService executor = Executors.newCachedThreadPool(new ThreadFactoryImpl());
 
     private SharedExecutorService() {
         // prevent instantiation

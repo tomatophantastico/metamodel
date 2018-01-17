@@ -27,16 +27,14 @@ import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.schema.Column;
 
 /**
- * Simple implementation of {@link DataSetHeader} which does no magic to improve
- * performance.
+ * Simple implementation of {@link DataSetHeader} which does no magic to improve performance.
  * 
- * Note that except for datasets with very few records, the
- * {@link CachingDataSetHeader} is preferred.
+ * Note that except for datasets with very few records, the {@link CachingDataSetHeader} is preferred.
  */
 public class SimpleDataSetHeader implements DataSetHeader {
 
     private static final long serialVersionUID = 1L;
-    
+
     private final List<SelectItem> _items;
 
     public SimpleDataSetHeader(List<SelectItem> items) {
@@ -47,11 +45,9 @@ public class SimpleDataSetHeader implements DataSetHeader {
         this(Arrays.asList(selectItems));
     }
 
-
-    public static SimpleDataSetHeader fromColumns(List<Column> cols){
+    public static SimpleDataSetHeader fromColumns(List<Column> cols) {
         return new SimpleDataSetHeader(cols.stream().map(SelectItem::new).collect(Collectors.toList()));
     }
-
 
     @Override
     public final List<SelectItem> getSelectItems() {
@@ -67,7 +63,7 @@ public class SimpleDataSetHeader implements DataSetHeader {
     public SelectItem getSelectItem(int index) {
         return _items.get(index);
     }
-    
+
     @Override
     public int indexOf(Column column) {
         if (column == null) {
@@ -104,12 +100,6 @@ public class SimpleDataSetHeader implements DataSetHeader {
             }
             i++;
         }
-        
-        final boolean scalarFunctionQueried = item.getScalarFunction() != null;
-        if (scalarFunctionQueried) {
-            final SelectItem itemWithoutFunction = item.replaceFunction(null);
-            return indexOf(itemWithoutFunction);
-        }
 
         return -1;
     }
@@ -138,7 +128,7 @@ public class SimpleDataSetHeader implements DataSetHeader {
             return false;
         return true;
     }
-    
+
     @Override
     public String toString() {
         return "DataSetHeader" + _items.toString();

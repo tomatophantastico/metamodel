@@ -144,7 +144,7 @@ public class FileResource extends AbstractResource implements Serializable {
             }
             return lastModified;
         }
-        
+
         final long lastModified = _file.lastModified();
         if (lastModified == 0) {
             return -1;

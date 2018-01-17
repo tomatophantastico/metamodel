@@ -71,7 +71,6 @@ abstract class AbstractQueryFilterBuilder<B> extends GroupedQueryBuilderCallback
         return _filterBuilder.notIn(strings);
     }
 
-
     @Override
     public B isNull() {
         return _filterBuilder.isNull();

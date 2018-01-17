@@ -39,23 +39,17 @@ public final class CollectionUtils {
     }
 
     /**
-     * Searches a map for a given key. The key can be a regular map key, or a
-     * simple expression of the form:
+     * Searches a map for a given key. The key can be a regular map key, or a simple expression of the form:
      * 
      * <ul>
-     * <li>foo.bar (will lookup 'foo', and then 'bar' in a potential nested map)
-     * </li>
-     * <li>foo.bar[0].baz (will lookup 'foo', then 'bar' in a potential nested
-     * map, then pick the first element in case it is a list/array and then pick
-     * 'baz' from the potential map at that position).
+     * <li>foo.bar (will lookup 'foo', and then 'bar' in a potential nested map)</li>
+     * <li>foo.bar[0].baz (will lookup 'foo', then 'bar' in a potential nested map, then pick the first element in case
+     * it is a list/array and then pick 'baz' from the potential map at that position).
      * </ul>
      * 
-     * @param map
-     *            the map to search in
-     * @param key
-     *            the key to resolve
-     * @return the object in the map with the given key/expression. Or null if
-     *         it does not exist.
+     * @param map the map to search in
+     * @param key the key to resolve
+     * @return the object in the map with the given key/expression. Or null if it does not exist.
      */
     public static Object find(Map<?, ?> map, String key) {
         if (map == null || key == null) {
@@ -108,8 +102,7 @@ public final class CollectionUtils {
             }
             if (nestedObject instanceof Map) {
                 final String remainingPart = key.substring(indexOfDot + 1);
-                @SuppressWarnings("unchecked")
-                final Map<String, ?> nestedMap = (Map<String, ?>) nestedObject;
+                @SuppressWarnings("unchecked") final Map<String, ?> nestedMap = (Map<String, ?>) nestedObject;
                 return find(nestedMap, remainingPart);
             }
         }
@@ -144,8 +137,7 @@ public final class CollectionUtils {
                     }
 
                     if (valueAtIndex instanceof Map) {
-                        @SuppressWarnings("unchecked")
-                        final Map<String, ?> nestedMap = (Map<String, ?>) valueAtIndex;
+                        @SuppressWarnings("unchecked") final Map<String, ?> nestedMap = (Map<String, ?>) valueAtIndex;
                         return find(nestedMap, remainingPart);
                     } else {
                         // not traversing any further. Should we want to add
@@ -164,10 +156,8 @@ public final class CollectionUtils {
     /**
      * Concatenates two arrays
      * 
-     * @param existingArray
-     *            an existing array
-     * @param elements
-     *            the elements to add to the end of it
+     * @param existingArray an existing array
+     * @param elements the elements to add to the end of it
      * @return
      */
     @SuppressWarnings("unchecked")
@@ -175,8 +165,8 @@ public final class CollectionUtils {
         if (existingArray == null) {
             return elements;
         }
-        Object result = Array.newInstance(existingArray.getClass().getComponentType(),
-                existingArray.length + elements.length);
+        Object result =
+                Array.newInstance(existingArray.getClass().getComponentType(), existingArray.length + elements.length);
         System.arraycopy(existingArray, 0, result, 0, existingArray.length);
         System.arraycopy(elements, 0, result, existingArray.length, elements.length);
         return (E[]) result;
@@ -192,8 +182,7 @@ public final class CollectionUtils {
             result = new ArrayList<E>(firstCollection);
         }
         for (Collection<?> collection : collections) {
-            @SuppressWarnings("unchecked")
-            Collection<? extends E> elems = (Collection<? extends E>) collection;
+            @SuppressWarnings("unchecked") Collection<? extends E> elems = (Collection<? extends E>) collection;
             addElements(removeDuplicates, result, elems);
         }
         return result;
@@ -213,8 +202,7 @@ public final class CollectionUtils {
     }
 
     public static <E> E[] arrayRemove(E[] array, E elementToRemove) {
-        @SuppressWarnings("unchecked")
-        E[] result = (E[]) arrayRemoveInternal(array, elementToRemove);
+        @SuppressWarnings("unchecked") E[] result = (E[]) arrayRemoveInternal(array, elementToRemove);
         return result;
     }
 
@@ -315,16 +303,13 @@ public final class CollectionUtils {
     }
 
     /**
-     * General purpose list converter method. Will convert arrays, collections,
-     * iterables etc. into lists.
+     * General purpose list converter method. Will convert arrays, collections, iterables etc. into lists.
      * 
-     * If the argument is a single object (such as a String or a POJO) it will
-     * be wrapped in a single-element list.
+     * If the argument is a single object (such as a String or a POJO) it will be wrapped in a single-element list.
      * 
      * Null will be converted to the empty list.
      * 
-     * @param obj
-     *            any object
+     * @param obj any object
      * @return a list representation of the object
      */
     public static List<?> toList(Object obj) {
@@ -332,8 +317,7 @@ public final class CollectionUtils {
         if (obj == null) {
             result = Collections.emptyList();
         } else if (obj instanceof List) {
-            @SuppressWarnings("unchecked")
-            List<Object> list = (List<Object>) obj;
+            @SuppressWarnings("unchecked") List<Object> list = (List<Object>) obj;
             result = list;
         } else if (obj.getClass().isArray()) {
             int length = Array.getLength(obj);

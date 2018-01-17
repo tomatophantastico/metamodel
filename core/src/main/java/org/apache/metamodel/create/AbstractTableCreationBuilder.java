@@ -20,6 +20,7 @@ package org.apache.metamodel.create;
 
 import java.util.List;
 
+import org.apache.metamodel.MetaModelHelper;
 import org.apache.metamodel.UpdateCallback;
 import org.apache.metamodel.schema.Column;
 import org.apache.metamodel.schema.ColumnType;
@@ -32,9 +33,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Abstract {@link TableCreationBuilder} implementation, provided as convenience
- * for {@link TableCreatable} implementations. Handles all the building
- * operations, but not the commit operation.
+ * Abstract {@link TableCreationBuilder} implementation, provided as convenience for {@link TableCreatable}
+ * implementations. Handles all the building operations, but not the commit operation.
  */
 public abstract class AbstractTableCreationBuilder<U extends UpdateCallback> implements TableCreationBuilder {
 
@@ -46,11 +46,11 @@ public abstract class AbstractTableCreationBuilder<U extends UpdateCallback> imp
 
     public AbstractTableCreationBuilder(U updateCallback, Schema schema, String name) {
         if (schema != null && schema.getTableByName(name) != null) {
-            throw new IllegalArgumentException("A table with the name '" + name + "' already exists in schema: "
-                    + schema);
+            throw new IllegalArgumentException(
+                    "A table with the name '" + name + "' already exists in schema: " + schema);
         }
         _updateCallback = updateCallback;
-        _schema = schema;
+        _schema = MetaModelHelper.resolveUnderlyingSchema(schema);
         _table = new MutableTable(name, TableType.TABLE, schema);
     }
 
@@ -121,15 +121,14 @@ public abstract class AbstractTableCreationBuilder<U extends UpdateCallback> imp
                     sb.append(')');
                 }
             }
-            if (column.isNullable() != null
-                    && !column.isNullable().booleanValue()) {
+            if (column.isNullable() != null && !column.isNullable().booleanValue()) {
                 sb.append(" NOT NULL");
             }
         }
         boolean primaryKeyExists = false;
-        for(int i = 0 ; i < columns.size() ; i++) {
-            if(columns.get(i).isPrimaryKey()) {
-                if(!primaryKeyExists) {
+        for (int i = 0; i < columns.size(); i++) {
+            if (columns.get(i).isPrimaryKey()) {
+                if (!primaryKeyExists) {
                     sb.append(", PRIMARY KEY(");
                     sb.append(columns.get(i).getName());
                     primaryKeyExists = true;
@@ -137,9 +136,9 @@ public abstract class AbstractTableCreationBuilder<U extends UpdateCallback> imp
                     sb.append(",");
                     sb.append(columns.get(i).getName());
                 }
-            }    
+            }
         }
-        if(primaryKeyExists) {
+        if (primaryKeyExists) {
             sb.append(")");
         }
         sb.append(")");

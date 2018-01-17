@@ -19,8 +19,7 @@
 package org.apache.metamodel.schema;
 
 /**
- * Abstract {@link Column} implementation. Implements most common and trivial
- * methods.
+ * Abstract {@link Column} implementation. Implements most common and trivial methods.
  */
 public abstract class AbstractColumn implements Column {
 
@@ -80,7 +79,7 @@ public abstract class AbstractColumn implements Column {
             if (getColumnNumber() != other.getColumnNumber()) {
                 return false;
             }
-            
+
             if (!getName().equals(other.getName())) {
                 return false;
             }

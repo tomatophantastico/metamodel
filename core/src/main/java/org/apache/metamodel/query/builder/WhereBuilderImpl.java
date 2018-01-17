@@ -29,7 +29,8 @@ import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.schema.Column;
 
 final class WhereBuilderImpl extends AbstractQueryFilterBuilder<SatisfiedWhereBuilder<GroupedQueryBuilder>> implements
-        WhereBuilder<GroupedQueryBuilder>, SatisfiedWhereBuilder<GroupedQueryBuilder> {
+        WhereBuilder<GroupedQueryBuilder>,
+        SatisfiedWhereBuilder<GroupedQueryBuilder> {
 
     private final Query _query;
     private final List<FilterItem> _orFilters;
@@ -38,7 +39,7 @@ final class WhereBuilderImpl extends AbstractQueryFilterBuilder<SatisfiedWhereBu
     public WhereBuilderImpl(Column column, Query query, GroupedQueryBuilder queryBuilder) {
         this(new SelectItem(column), query, queryBuilder);
     }
-    
+
     public WhereBuilderImpl(SelectItem selectItem, Query query, GroupedQueryBuilder queryBuilder) {
         super(selectItem, queryBuilder);
         _query = query;

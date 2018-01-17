@@ -25,8 +25,7 @@ import org.apache.metamodel.schema.MutableColumn;
 /**
  * Convenience implementation of all {@link ColumnBuilder} methods
  * 
- * @param <T>
- *            the return type of the builder methods.
+ * @param <T> the return type of the builder methods.
  */
 abstract class AbstractColumnBuilder<T extends ColumnBuilder<?>> implements ColumnBuilder<T> {
 
@@ -35,7 +34,7 @@ abstract class AbstractColumnBuilder<T extends ColumnBuilder<?>> implements Colu
     public AbstractColumnBuilder(MutableColumn column) {
         _column = column;
     }
-    
+
     protected MutableColumn getColumn() {
         return _column;
     }

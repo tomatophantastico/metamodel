@@ -23,19 +23,17 @@ import org.apache.metamodel.query.builder.FilterBuilder;
 import org.apache.metamodel.schema.Column;
 
 /**
- * An interface for builder components that formulate a WHERE clause, either for
- * querying, updating, deleting or other purposes.
+ * An interface for builder components that formulate a WHERE clause, either for querying, updating, deleting or other
+ * purposes.
  * 
- * @param <T>
- *            the return type of the {@link WhereClauseBuilder}s builder methods
+ * @param <T> the return type of the {@link WhereClauseBuilder}s builder methods
  */
 public interface WhereClauseBuilder<T> {
 
     /**
      * Defines a where item to set as a criteria
      * 
-     * @param column
-     *            a column to apply a criteria for
+     * @param column a column to apply a criteria for
      * @return a builder object for further building the where item
      */
     public FilterBuilder<T> where(Column column);
@@ -43,8 +41,7 @@ public interface WhereClauseBuilder<T> {
     /**
      * Defines a where item to set as a criteria
      * 
-     * @param columnName
-     *            the name of the colum to which the criteria will be applied
+     * @param columnName the name of the colum to which the criteria will be applied
      * @return a builder object for further building the where item
      */
     public FilterBuilder<T> where(String columnName);
@@ -52,8 +49,7 @@ public interface WhereClauseBuilder<T> {
     /**
      * Applies where items to set criteria
      * 
-     * @param filterItems
-     *            the where items to set
+     * @param filterItems the where items to set
      * @return the builder object itself, for further building of the update
      */
     public T where(FilterItem... filterItems);
@@ -61,8 +57,7 @@ public interface WhereClauseBuilder<T> {
     /**
      * Applies where items to set criteria
      * 
-     * @param filterItems
-     *            the where items to set
+     * @param filterItems the where items to set
      * @return the builder object, for further building of the update
      */
     public T where(Iterable<FilterItem> filterItems);

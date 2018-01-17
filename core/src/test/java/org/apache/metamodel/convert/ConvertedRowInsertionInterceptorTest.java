@@ -35,8 +35,8 @@ public class ConvertedRowInsertionInterceptorTest extends TestCase {
         Column fooColumn = source.getColumnByQualifiedLabel("schema.table.foo");
         assertNotNull(fooColumn);
 
-        UpdateableDataContext intercepted = Converters.addTypeConverter(source,
-                fooColumn, new StringToIntegerConverter());
+        UpdateableDataContext intercepted =
+                Converters.addTypeConverter(source, fooColumn, new StringToIntegerConverter());
 
         final List<Object[]> values = source.getValues();
 
@@ -45,10 +45,8 @@ public class ConvertedRowInsertionInterceptorTest extends TestCase {
         intercepted.executeUpdate(new UpdateScript() {
             @Override
             public void run(UpdateCallback callback) {
-                callback.insertInto("schema.table").value(0, 1).value(1, "2")
-                        .execute();
-                callback.insertInto("schema.table").value(0, 3).value(1, "4")
-                        .execute();
+                callback.insertInto("schema.table").value(0, 1).value(1, "2").execute();
+                callback.insertInto("schema.table").value(0, 3).value(1, "4").execute();
             }
         });
 

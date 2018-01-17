@@ -35,8 +35,7 @@ public class ResourceUtils {
      * 
      * @param uri
      * @return
-     * @throws UnsupportedResourcePropertiesException
-     *             if the scheme or other part of the URI is unsupported.
+     * @throws UnsupportedResourcePropertiesException if the scheme or other part of the URI is unsupported.
      */
     public static Resource toResource(URI uri) throws UnsupportedResourcePropertiesException {
         return toResource(new SimpleResourceProperties(uri));
@@ -47,8 +46,7 @@ public class ResourceUtils {
      * 
      * @param uri
      * @return
-     * @throws UnsupportedResourcePropertiesException
-     *             if the scheme or other part of the string is unsupported.
+     * @throws UnsupportedResourcePropertiesException if the scheme or other part of the string is unsupported.
      */
     public static Resource toResource(String uri) throws UnsupportedResourcePropertiesException {
         return toResource(new SimpleResourceProperties(uri));
@@ -59,8 +57,7 @@ public class ResourceUtils {
      * 
      * @param resourceProperties
      * @return
-     * @throws UnsupportedResourcePropertiesException
-     *             if the provided properties cannot be handled in creation of a
+     * @throws UnsupportedResourcePropertiesException if the provided properties cannot be handled in creation of a
      *             resource.
      */
     public static Resource toResource(ResourceProperties resourceProperties)
@@ -69,8 +66,8 @@ public class ResourceUtils {
     }
 
     /**
-     * Gets the parent name of a resource. For example, if the resource's
-     * qualified path is /foo/bar/baz, this method will return "bar".
+     * Gets the parent name of a resource. For example, if the resource's qualified path is /foo/bar/baz, this method
+     * will return "bar".
      * 
      * @param resource
      * @return

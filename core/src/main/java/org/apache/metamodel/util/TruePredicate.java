@@ -33,12 +33,12 @@ public final class TruePredicate<E> implements java.util.function.Predicate<E>, 
     public boolean test(E arg) {
         return true;
     }
-    
+
     @Override
     public int hashCode() {
         return Boolean.TRUE.hashCode();
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         return obj != null && obj.getClass() == TruePredicate.class;

@@ -31,9 +31,8 @@ public interface TableDropBuilder {
     public Table getTable();
 
     /**
-     * Gets a SQL representation of this drop table operation. Note that the
-     * generated SQL is dialect agnostic, so it is not accurately the same as
-     * what will be passed to a potential backing database.
+     * Gets a SQL representation of this drop table operation. Note that the generated SQL is dialect agnostic, so it is
+     * not accurately the same as what will be passed to a potential backing database.
      * 
      * @return a SQL representation of this drop table operation.
      */
@@ -42,8 +41,7 @@ public interface TableDropBuilder {
     /**
      * Executes the drop table operation
      * 
-     * @throws MetaModelException
-     *             if the operation was rejected
+     * @throws MetaModelException if the operation was rejected
      */
     public void execute() throws MetaModelException;
 }

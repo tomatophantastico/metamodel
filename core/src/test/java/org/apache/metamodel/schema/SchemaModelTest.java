@@ -73,11 +73,11 @@ public class SchemaModelTest extends MetaModelTestCase {
         assertEquals(3, projectContributorView.getColumnCount());
         assertEquals(3, projectContributorView.getRelationshipCount());
 
-        Collection<Relationship> projectContributorToContributorRelations = projectContributorView
-                .getRelationships(contributorTable);
+        Collection<Relationship> projectContributorToContributorRelations =
+                projectContributorView.getRelationships(contributorTable);
         assertEquals(1, projectContributorToContributorRelations.size());
-        Collection<Relationship> contributorToProjectContributorRelations = contributorTable
-                .getRelationships(projectContributorView);
+        Collection<Relationship> contributorToProjectContributorRelations =
+                contributorTable.getRelationships(projectContributorView);
         assertEquals(1, contributorToProjectContributorRelations.size());
         assertTrue(projectContributorToContributorRelations.equals(contributorToProjectContributorRelations));
 

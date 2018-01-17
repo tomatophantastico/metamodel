@@ -25,8 +25,7 @@ import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.schema.Column;
 
 /**
- * An abstract row that decorates another row. Useful for virtual data that may
- * e.g. be converting physical data etc.
+ * An abstract row that decorates another row. Useful for virtual data that may e.g. be converting physical data etc.
  */
 public abstract class AbstractRow implements Cloneable, Row {
 

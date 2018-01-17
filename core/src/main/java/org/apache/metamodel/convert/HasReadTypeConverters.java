@@ -22,8 +22,8 @@ import org.apache.metamodel.data.DataSet;
 import org.apache.metamodel.schema.Column;
 
 /**
- * Defines an interface for objects that are aware of {@link TypeConverter}s,
- * and know how to apply them to read operations (Queries or {@link DataSet}s).
+ * Defines an interface for objects that are aware of {@link TypeConverter}s, and know how to apply them to read
+ * operations (Queries or {@link DataSet}s).
  */
 public interface HasReadTypeConverters {
 

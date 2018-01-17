@@ -24,14 +24,12 @@ import org.apache.metamodel.schema.Table;
 import org.apache.metamodel.update.RowUpdationBuilder;
 
 /**
- * Abstract interface for objects that build rows, either for eg. insert or
- * update purposes.
+ * Abstract interface for objects that build rows, either for eg. insert or update purposes.
  * 
  * @see RowInsertionBuilder
  * @see RowUpdationBuilder
  * 
- * @param <RB>
- *            the RowBuilder subtype, used for cascading return values
+ * @param <RB> the RowBuilder subtype, used for cascading return values
  */
 public interface RowBuilder<RB extends RowBuilder<?>> {
 
@@ -107,12 +105,10 @@ public interface RowBuilder<RB extends RowBuilder<?>> {
     public Row toRow();
 
     /**
-     * Determines if a column's value has been explicitly specified or not. This
-     * can be used to tell explicit NULL values apart from just unspecified
-     * values in a statement.
+     * Determines if a column's value has been explicitly specified or not. This can be used to tell explicit NULL
+     * values apart from just unspecified values in a statement.
      * 
-     * @param column
-     *            the column to check
+     * @param column the column to check
      * @return true if the column's value has been set, or false if not
      */
     public boolean isSet(Column column);

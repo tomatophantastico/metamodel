@@ -119,11 +119,9 @@ public final class DefaultRow extends AbstractRow implements Row {
     }
 
     /**
-     * Method invoked by the Java serialization framework while deserializing
-     * Row instances. Since previous versions of MetaModel did not use a
-     * DataSetHeader, but had a reference to a List&lt;SelectItem&gt;, this
-     * deserialization is particularly tricky. We check if the items variable is
-     * there, and if it is, we convert it to a header instead.
+     * Method invoked by the Java serialization framework while deserializing Row instances. Since previous versions of
+     * MetaModel did not use a DataSetHeader, but had a reference to a List&lt;SelectItem&gt;, this deserialization is
+     * particularly tricky. We check if the items variable is there, and if it is, we convert it to a header instead.
      * 
      * @param stream
      * @throws Exception
@@ -134,8 +132,7 @@ public final class DefaultRow extends AbstractRow implements Row {
         try {
             // backwards compatible deserialization, convert items to header
             Object items = fields.get("_items", null);
-            @SuppressWarnings("unchecked")
-            List<SelectItem> itemsList = (List<SelectItem>) items;
+            @SuppressWarnings("unchecked") List<SelectItem> itemsList = (List<SelectItem>) items;
             SimpleDataSetHeader header = new SimpleDataSetHeader(itemsList);
             Field field = getClass().getDeclaredField("_header");
             field.setAccessible(true);

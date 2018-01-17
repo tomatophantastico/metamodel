@@ -18,8 +18,7 @@
  */
 package org.apache.metamodel.query.builder;
 
-public interface CountSelectBuilder<B extends SatisfiedQueryBuilder<?>> extends
-        SatisfiedSelectBuilder<B> {
+public interface CountSelectBuilder<B extends SatisfiedQueryBuilder<?>> extends SatisfiedSelectBuilder<B> {
 
     public B as(String alias);
 }

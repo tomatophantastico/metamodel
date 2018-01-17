@@ -20,4 +20,3 @@
  * API for deleting rows
  */
 package org.apache.metamodel.delete;
-

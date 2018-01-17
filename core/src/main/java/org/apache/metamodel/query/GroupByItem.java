@@ -23,8 +23,8 @@ import java.util.List;
 import org.apache.metamodel.util.BaseObject;
 
 /**
- * Represents a GROUP BY item. GroupByItems always use a select item (that may
- * or not be a part of the query already) for grouping.
+ * Represents a GROUP BY item. GroupByItems always use a select item (that may or not be a part of the query already)
+ * for grouping.
  * 
  * @see GroupByClause
  */

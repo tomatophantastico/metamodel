@@ -163,8 +163,7 @@ public class ColumnTypeImpl implements ColumnType {
     }
 
     /**
-     * Finds the ColumnType enum corresponding to the incoming JDBC
-     * type-constant
+     * Finds the ColumnType enum corresponding to the incoming JDBC type-constant
      */
     public static ColumnType convertColumnType(int jdbcType) {
         try {

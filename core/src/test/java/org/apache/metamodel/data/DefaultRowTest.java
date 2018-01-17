@@ -37,8 +37,8 @@ import junit.framework.TestCase;
 
 public class DefaultRowTest extends TestCase {
 
-    private SelectItem[] items = new SelectItem[] { new SelectItem(new MutableColumn("foo")),
-            new SelectItem(new MutableColumn("bar")) };
+    private SelectItem[] items =
+            new SelectItem[] { new SelectItem(new MutableColumn("foo")), new SelectItem(new MutableColumn("bar")) };
     private Object[] values = new Object[] { "foo", "bar" };
 
     public void testSerializeAndDeserialize() throws Exception {
@@ -84,7 +84,7 @@ public class DefaultRowTest extends TestCase {
 
         Column column = selectItems.get(0).getColumn();
         assertNotNull(column);
-        
+
         // the columns used to create the object did not have column types assigned.
         ColumnType type = column.getType();
         assertNull(type);

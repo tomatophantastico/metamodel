@@ -25,8 +25,9 @@ import java.util.List;
  */
 public class ColumnNamingStrategies {
 
-    private static final DelegatingIntrinsicSwitchColumnNamingStrategy DEFAULT_STRATEGY = new DelegatingIntrinsicSwitchColumnNamingStrategy(
-            new UniqueColumnNamingStrategy(), new AlphabeticColumnNamingStrategy());
+    private static final DelegatingIntrinsicSwitchColumnNamingStrategy DEFAULT_STRATEGY =
+            new DelegatingIntrinsicSwitchColumnNamingStrategy(new UniqueColumnNamingStrategy(),
+                    new AlphabeticColumnNamingStrategy());
 
     private ColumnNamingStrategies() {
     }
@@ -39,7 +40,7 @@ public class ColumnNamingStrategies {
         return new CustomColumnNamingStrategy(columnNames);
     }
 
-    public static ColumnNamingStrategy customNames(String ... columnNames) {
+    public static ColumnNamingStrategy customNames(String... columnNames) {
         return new CustomColumnNamingStrategy(columnNames);
     }
 }

@@ -25,8 +25,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Represents the metadata about a table. Tables reside within a schema and
- * contains columns and relationships to other tables.
+ * Represents the metadata about a table. Tables reside within a schema and contains columns and relationships to other
+ * tables.
  * 
  * @see Schema
  * @see Column
@@ -85,16 +85,16 @@ public class MutableTable extends AbstractTable implements Serializable {
     }
 
     /**
-     * Internal getter for the columns of the table. Overwrite this method to
-     * implement column lookup, column lazy-loading or similar.
+     * Internal getter for the columns of the table. Overwrite this method to implement column lookup, column
+     * lazy-loading or similar.
      */
     protected List<Column> getColumnsInternal() {
         return _columns;
     }
 
     /**
-     * Internal getter for the relationships of the table. Overwrite this method
-     * to implement relationship lookup, relationship lazy-loading or similar.
+     * Internal getter for the relationships of the table. Overwrite this method to implement relationship lookup,
+     * relationship lazy-loading or similar.
      */
     protected List<Relationship> getRelationshipsInternal() {
         return _relationships;
@@ -159,14 +159,14 @@ public class MutableTable extends AbstractTable implements Serializable {
 
     @Override
     public List<Relationship> getRelationships() {
-        //init relationships
+        // init relationships
         getRelationshipsInternal();
         return Collections.unmodifiableList(_relationships);
     }
 
     /**
-     * Protected method for adding a relationship to this table. Should not be
-     * used. Use Relationship.createRelationship(Column[], Column[]) instead.
+     * Protected method for adding a relationship to this table. Should not be used. Use
+     * Relationship.createRelationship(Column[], Column[]) instead.
      */
     protected void addRelationship(Relationship relation) {
         for (Relationship existingRelationship : _relationships) {
@@ -179,8 +179,8 @@ public class MutableTable extends AbstractTable implements Serializable {
     }
 
     /**
-     * Protected method for removing a relationship from this table. Should not
-     * be used. Use Relationship.remove() instead.
+     * Protected method for removing a relationship from this table. Should not be used. Use Relationship.remove()
+     * instead.
      */
     protected MutableTable removeRelationship(Relationship relation) {
         _relationships.remove(relation);

@@ -20,19 +20,18 @@ package org.apache.metamodel.query.builder;
 
 import org.apache.metamodel.schema.Table;
 
-public interface TableFromBuilder extends
-        SatisfiedFromBuilder {
+public interface TableFromBuilder extends SatisfiedFromBuilder {
 
     public JoinFromBuilder innerJoin(Table table);
-    
+
     public JoinFromBuilder innerJoin(String tableName);
-    
+
     public JoinFromBuilder leftJoin(Table table);
-    
+
     public JoinFromBuilder leftJoin(String tableName);
-    
+
     public JoinFromBuilder rightJoin(Table table);
-    
+
     public JoinFromBuilder rightJoin(String tableName);
 
     public TableFromBuilder as(String alias);

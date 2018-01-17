@@ -25,8 +25,8 @@ import org.apache.metamodel.util.Resource;
 import org.apache.metamodel.util.ResourceUtils;
 
 /**
- * {@link InferentialSchemaBuilder} that produces multiple tables based on a
- * discriminator column - a column that contains the table name.
+ * {@link InferentialSchemaBuilder} that produces multiple tables based on a discriminator column - a column that
+ * contains the table name.
  */
 public class MultiTableInferentialSchemaBuilder extends InferentialSchemaBuilder {
 

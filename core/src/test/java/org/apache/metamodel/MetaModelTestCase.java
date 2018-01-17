@@ -77,11 +77,9 @@ public abstract class MetaModelTestCase extends TestCase {
      * <li>role[contributor_id,project_id,role_name] (TABLE)</li>
      * <li>project_contributor[contributor,project,role] (VIEW)</li>
      * </ul>
-     * The example schema is good for testing purposes and possess various
-     * features of the schema model:
+     * The example schema is good for testing purposes and possess various features of the schema model:
      * <ul>
-     * <li>Relations between tables: one-Contributor-to-many-Role's and
-     * many-Role's-to-one-Project</li>
+     * <li>Relations between tables: one-Contributor-to-many-Role's and many-Role's-to-one-Project</li>
      * <li>Recursive relations: A project can have a parent project</li>
      * <li>Views: The ProjectContributor view</li>
      * </ul>
@@ -97,24 +95,24 @@ public abstract class MetaModelTestCase extends TestCase {
         table1.setColumns(column1, column2, column3);
 
         MutableTable table2 = new MutableTable(TABLE_PROJECT, TableType.TABLE, schema);
-        Column column4 = new MutableColumn(COLUMN_PROJECT_PROJECT_ID, ColumnType.INTEGER, table2, 0, false)
-                .setPrimaryKey(true);
+        Column column4 =
+                new MutableColumn(COLUMN_PROJECT_PROJECT_ID, ColumnType.INTEGER, table2, 0, false).setPrimaryKey(true);
         Column column5 = new MutableColumn(COLUMN_PROJECT_NAME, ColumnType.VARCHAR, table2, 1, false);
         Column column6 = new MutableColumn(COLUMN_PROJECT_LINES_OF_CODE, ColumnType.BIGINT, table2, 2, true);
         Column column7 = new MutableColumn(COLUMN_PROJECT_PARENT_PROJECT_ID, ColumnType.INTEGER, table2, 3, true);
         table2.setColumns(column4, column5, column6, column7);
 
         MutableTable table3 = new MutableTable(TABLE_ROLE, TableType.TABLE, schema);
-        Column column8 = new MutableColumn(COLUMN_ROLE_CONTRIBUTOR_ID, ColumnType.INTEGER, table3, 0, false)
-                .setPrimaryKey(true);
-        Column column9 = new MutableColumn(COLUMN_ROLE_PROJECT_ID, ColumnType.INTEGER, table3, 1, false)
-                .setPrimaryKey(true);
+        Column column8 =
+                new MutableColumn(COLUMN_ROLE_CONTRIBUTOR_ID, ColumnType.INTEGER, table3, 0, false).setPrimaryKey(true);
+        Column column9 =
+                new MutableColumn(COLUMN_ROLE_PROJECT_ID, ColumnType.INTEGER, table3, 1, false).setPrimaryKey(true);
         Column column10 = new MutableColumn(COLUMN_ROLE_ROLE_NAME, ColumnType.VARCHAR, table3, 2, false);
         table3.setColumns(column8, column9, column10);
 
         MutableTable table4 = new MutableTable(TABLE_PROJECT_CONTRIBUTOR, TableType.VIEW, schema);
-        Column column11 = new MutableColumn(COLUMN_PROJECT_CONTRIBUTOR_CONTRIBUTOR, ColumnType.VARCHAR, table4, 0,
-                false);
+        Column column11 =
+                new MutableColumn(COLUMN_PROJECT_CONTRIBUTOR_CONTRIBUTOR, ColumnType.VARCHAR, table4, 0, false);
         Column column12 = new MutableColumn(COLUMN_PROJECT_CONTRIBUTOR_PROJECT, ColumnType.VARCHAR, table4, 1, false);
         Column column13 = new MutableColumn(COLUMN_PROJECT_CONTRIBUTOR_ROLE, ColumnType.VARCHAR, table4, 2, false);
         ArrayList<Column> columnList = new ArrayList<Column>();
@@ -124,19 +122,19 @@ public abstract class MetaModelTestCase extends TestCase {
         table4.setColumns(columnList);
 
         // one-Contributor-to-many-Role's
-        MutableRelationship.createRelationship( column1 , column8 );
+        MutableRelationship.createRelationship(column1, column8);
 
         // one-Project-to-many-Role's
-        MutableRelationship.createRelationship(column4 , column9 );
+        MutableRelationship.createRelationship(column4, column9);
 
         // view relation [contributor -> contributor_name]
-        MutableRelationship.createRelationship(column2 , column11 );
+        MutableRelationship.createRelationship(column2, column11);
 
         // view relation [project -> project_name]
-        MutableRelationship.createRelationship(column5 , column12 );
+        MutableRelationship.createRelationship(column5, column12);
 
         // view relation [role -> role_name]
-        MutableRelationship.createRelationship( column10 ,  column13 );
+        MutableRelationship.createRelationship(column10, column13);
 
         schema.setTables(table1, table2, table3, table4);
         return schema;

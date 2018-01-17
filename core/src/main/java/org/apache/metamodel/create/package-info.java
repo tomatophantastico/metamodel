@@ -20,4 +20,3 @@
  * API for creating tables
  */
 package org.apache.metamodel.create;
-

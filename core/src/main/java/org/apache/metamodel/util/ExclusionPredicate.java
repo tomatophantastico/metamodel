@@ -22,8 +22,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 /**
- * A predicate that uses an exclusion list ("black list") of elements to
- * determine whether to evaluate true or false.
+ * A predicate that uses an exclusion list ("black list") of elements to determine whether to evaluate true or false.
  * 
  * @param <E>
  */

@@ -25,12 +25,12 @@ import junit.framework.TestCase;
 public class ExclusionPredicateTest extends TestCase {
 
     public void testEval() throws Exception {
-        ExclusionPredicate<String> predicate = new ExclusionPredicate<String>(Arrays.asList("foo","bar","baz"));
-        
+        ExclusionPredicate<String> predicate = new ExclusionPredicate<String>(Arrays.asList("foo", "bar", "baz"));
+
         assertFalse(predicate.test("foo"));
         assertFalse(predicate.test("bar"));
         assertFalse(predicate.test("baz"));
-        
+
         assertTrue(predicate.test("hello world"));
     }
 }

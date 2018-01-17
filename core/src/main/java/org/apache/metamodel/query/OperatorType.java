@@ -50,9 +50,10 @@ public interface OperatorType extends Serializable {
     public static final OperatorType[] BUILT_IN_OPERATORS = new OperatorType[] { EQUALS_TO, DIFFERENT_FROM, LIKE,
             NOT_LIKE, GREATER_THAN, GREATER_THAN_OR_EQUAL, LESS_THAN, LESS_THAN_OR_EQUAL, IN, NOT_IN };
 
-/**
+    /**
      * Determines if this operator requires a space delimitor. Operators that are written using letters usually require
-     * space delimitation whereas sign-based operators such as "=" and "&lt;" can be applied even without any delimitaton.
+     * space delimitation whereas sign-based operators such as "=" and "&lt;" can be applied even without any
+     * delimitaton.
      * 
      * @return
      */

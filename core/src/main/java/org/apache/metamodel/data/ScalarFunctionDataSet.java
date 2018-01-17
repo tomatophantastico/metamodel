@@ -25,8 +25,7 @@ import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.util.CollectionUtils;
 
 /**
- * A {@link DataSet} that enhances another {@link DataSet} with
- * {@link ScalarFunction}s.
+ * A {@link DataSet} that enhances another {@link DataSet} with {@link ScalarFunction}s.
  */
 public class ScalarFunctionDataSet extends AbstractDataSet implements WrappingDataSet {
 
@@ -34,8 +33,7 @@ public class ScalarFunctionDataSet extends AbstractDataSet implements WrappingDa
     private final List<SelectItem> _scalarFunctionSelectItemsToEvaluate;
 
     public ScalarFunctionDataSet(List<SelectItem> scalarFunctionSelectItemsToEvaluate, DataSet dataSet) {
-        super(CollectionUtils.concat(false, scalarFunctionSelectItemsToEvaluate,
-                dataSet.getSelectItems()));
+        super(CollectionUtils.concat(false, scalarFunctionSelectItemsToEvaluate, dataSet.getSelectItems()));
         _scalarFunctionSelectItemsToEvaluate = scalarFunctionSelectItemsToEvaluate;
         _dataSet = dataSet;
     }
@@ -50,7 +48,7 @@ public class ScalarFunctionDataSet extends AbstractDataSet implements WrappingDa
         final Row row = _dataSet.getRow();
         return new ScalarFunctionRow(this, row);
     }
-    
+
     public List<SelectItem> getScalarFunctionSelectItemsToEvaluate() {
         return _scalarFunctionSelectItemsToEvaluate;
     }

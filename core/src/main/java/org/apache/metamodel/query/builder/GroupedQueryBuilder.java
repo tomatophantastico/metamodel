@@ -25,15 +25,13 @@ import org.apache.metamodel.schema.Column;
 /**
  * Represents a built query that has a GROUP BY clause.
  */
-public interface GroupedQueryBuilder extends
-        SatisfiedQueryBuilder<GroupedQueryBuilder> {
+public interface GroupedQueryBuilder extends SatisfiedQueryBuilder<GroupedQueryBuilder> {
 
     public HavingBuilder having(FunctionType functionType, Column column);
-    
+
     public HavingBuilder having(SelectItem selectItem);
-    
+
     public HavingBuilder having(String columnExpression);
 
-    public SatisfiedOrderByBuilder<GroupedQueryBuilder> orderBy(
-            FunctionType function, Column column);
+    public SatisfiedOrderByBuilder<GroupedQueryBuilder> orderBy(FunctionType function, Column column);
 }

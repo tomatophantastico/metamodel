@@ -27,8 +27,7 @@ import java.util.List;
 /**
  * An immutable implementation of the Table interface.
  * 
- * It is not intended to be instantiated on it's own. Rather, use the
- * constructor in ImmutableSchema.
+ * It is not intended to be instantiated on it's own. Rather, use the constructor in ImmutableSchema.
  * 
  * @see ImmutableSchema
  */
@@ -44,8 +43,7 @@ final class ImmutableTable extends AbstractTable implements Serializable {
     private final String name;
     private final String quote;
 
-    protected ImmutableTable(String name, TableType type, ImmutableSchema schema,
-            String remarks, String quote) {
+    protected ImmutableTable(String name, TableType type, ImmutableSchema schema, String remarks, String quote) {
         this.name = name;
         this.type = type;
         this.schema = schema;
@@ -54,8 +52,7 @@ final class ImmutableTable extends AbstractTable implements Serializable {
     }
 
     protected ImmutableTable(Table table, ImmutableSchema schema) {
-        this(table.getName(), table.getType(), schema, table.getRemarks(),
-                table.getQuote());
+        this(table.getName(), table.getType(), schema, table.getRemarks(), table.getQuote());
         List<Column> origColumns = table.getColumns();
         for (Column column : origColumns) {
             columns.add(new ImmutableColumn(column, this));

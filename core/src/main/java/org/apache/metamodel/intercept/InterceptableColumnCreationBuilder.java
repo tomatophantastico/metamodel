@@ -30,13 +30,12 @@ final class InterceptableColumnCreationBuilder implements ColumnCreationBuilder 
     private final ColumnCreationBuilder _columnCreationBuilder;
     private final InterceptableTableCreationBuilder _tableCreationBuilder;
 
-    public InterceptableColumnCreationBuilder(
-            ColumnCreationBuilder columnCreationBuilder,
+    public InterceptableColumnCreationBuilder(ColumnCreationBuilder columnCreationBuilder,
             InterceptableTableCreationBuilder tableCreationBuilder) {
         _columnCreationBuilder = columnCreationBuilder;
         _tableCreationBuilder = tableCreationBuilder;
     }
-    
+
     @Override
     public String toSql() {
         return _tableCreationBuilder.toSql();
@@ -68,7 +67,7 @@ final class InterceptableColumnCreationBuilder implements ColumnCreationBuilder 
         _columnCreationBuilder.like(column);
         return this;
     }
-    
+
     @Override
     public ColumnCreationBuilder asPrimaryKey() {
         _columnCreationBuilder.asPrimaryKey();

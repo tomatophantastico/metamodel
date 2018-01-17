@@ -22,8 +22,7 @@ import org.apache.metamodel.schema.ColumnType;
 import org.apache.metamodel.util.AggregateBuilder;
 
 /**
- * Interface that contains the aggregation specific methods
- * related to the AggregateBuilder.
+ * Interface that contains the aggregation specific methods related to the AggregateBuilder.
  *
  */
 public interface AggregateFunction extends FunctionType {
@@ -36,8 +35,7 @@ public interface AggregateFunction extends FunctionType {
     public AggregateBuilder<?> createAggregateBuilder();
 
     /**
-     * Shorthand for creating an aggregate builder, adding all
-     * the values and then calculating the value.
+     * Shorthand for creating an aggregate builder, adding all the values and then calculating the value.
      *
      * @param values
      * @return the aggregated value

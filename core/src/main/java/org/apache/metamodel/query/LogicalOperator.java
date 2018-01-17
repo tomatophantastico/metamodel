@@ -19,10 +19,10 @@
 package org.apache.metamodel.query;
 
 /**
- * Represents a logical operator (AND or OR) to use when defining compound
- * {@link FilterItem}s.
+ * Represents a logical operator (AND or OR) to use when defining compound {@link FilterItem}s.
  */
 public enum LogicalOperator {
 
-    AND, OR
+    AND,
+    OR
 }

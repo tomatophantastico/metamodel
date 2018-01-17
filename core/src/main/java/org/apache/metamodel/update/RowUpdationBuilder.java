@@ -38,20 +38,17 @@ public interface RowUpdationBuilder extends RowBuilder<RowUpdationBuilder>, Wher
     public Table getTable();
 
     /**
-     * Gets a SQL representation of this update operation. Note that the
-     * generated SQL is dialect agnostic, so it is not accurately the same as
-     * what will be passed to a potential backing database.
+     * Gets a SQL representation of this update operation. Note that the generated SQL is dialect agnostic, so it is not
+     * accurately the same as what will be passed to a potential backing database.
      * 
      * @return a SQL representation of this update operation.
      */
     public String toSql();
 
     /**
-     * Commits the row updation operation. This operation will overwrite rows in
-     * the {@link DataContext}.
+     * Commits the row updation operation. This operation will overwrite rows in the {@link DataContext}.
      * 
-     * @throws MetaModelException
-     *             if the operation was rejected
+     * @throws MetaModelException if the operation was rejected
      */
     public void execute() throws MetaModelException;
 }

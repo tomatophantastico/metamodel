@@ -53,6 +53,11 @@ public class MockUpdateableDataContext extends QueryPostprocessDataContext imple
     private final MutableSchema _schema;
 
     public MockUpdateableDataContext() {
+        this(true);
+    }
+
+    public MockUpdateableDataContext(boolean addDefaultTableAlias) {
+        super(addDefaultTableAlias);
         _values.add(new Object[] { "1", "hello" });
         _values.add(new Object[] { "2", "there" });
         _values.add(new Object[] { "3", "world" });
@@ -70,6 +75,9 @@ public class MockUpdateableDataContext extends QueryPostprocessDataContext imple
 
     @Override
     protected DataSet materializeMainSchemaTable(Table table, List<Column> columns, int maxRows) {
+        if (table != _table) {
+            throw new IllegalArgumentException("Unknown table: " + table);
+        }
 
         List<Row> rows = new ArrayList<Row>();
         List<SelectItem> items = columns.stream().map(SelectItem::new).collect(Collectors.toList());
@@ -110,8 +118,11 @@ public class MockUpdateableDataContext extends QueryPostprocessDataContext imple
             }
 
             @Override
-            public RowDeletionBuilder deleteFrom(Table table) throws IllegalArgumentException, IllegalStateException,
-                    UnsupportedOperationException {
+            public RowDeletionBuilder deleteFrom(Table table)
+                    throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException {
+                if (table != _table) {
+                    throw new IllegalArgumentException("Unknown table: " + table);
+                }
                 return new AbstractRowDeletionBuilder(table) {
                     @Override
                     public void execute() throws MetaModelException {
@@ -121,8 +132,11 @@ public class MockUpdateableDataContext extends QueryPostprocessDataContext imple
             }
 
             @Override
-            public RowInsertionBuilder insertInto(Table table) throws IllegalArgumentException, IllegalStateException,
-                    UnsupportedOperationException {
+            public RowInsertionBuilder insertInto(Table table)
+                    throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException {
+                if (table != _table) {
+                    throw new IllegalArgumentException("Unknown table: " + table);
+                }
                 return new AbstractRowInsertionBuilder<UpdateCallback>(this, table) {
 
                     @Override
@@ -144,25 +158,26 @@ public class MockUpdateableDataContext extends QueryPostprocessDataContext imple
             }
 
             @Override
-            public TableDropBuilder dropTable(Table table) throws IllegalArgumentException, IllegalStateException,
-                    UnsupportedOperationException {
+            public TableDropBuilder dropTable(Table table)
+                    throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException {
                 throw new UnsupportedOperationException();
             }
 
             @Override
-            public TableCreationBuilder createTable(Schema schema, String name) throws IllegalArgumentException,
-                    IllegalStateException {
+            public TableCreationBuilder createTable(Schema schema, String name)
+                    throws IllegalArgumentException, IllegalStateException {
                 throw new UnsupportedOperationException();
             }
         };
-        
+
         update.run(callback);
-        
+
         return callback.getUpdateSummary();
     }
 
     private void delete(List<FilterItem> whereItems) {
-        final List<SelectItem> selectItems = _table.getColumns().stream().map(SelectItem::new).collect(Collectors.toList());
+        final List<SelectItem> selectItems =
+                _table.getColumns().stream().map(SelectItem::new).collect(Collectors.toList());
         final CachingDataSetHeader header = new CachingDataSetHeader(selectItems);
         for (Iterator<Object[]> it = _values.iterator(); it.hasNext();) {
             Object[] values = (Object[]) it.next();

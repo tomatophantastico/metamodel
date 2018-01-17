@@ -27,9 +27,8 @@ import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.schema.Column;
 
 /**
- * Abstract implementation of {@link FilterBuilder} interface. All built filters
- * are channeled to the {@link #applyFilter(FilterItem)} method which needs to
- * be implemented by concrete implementations.
+ * Abstract implementation of {@link FilterBuilder} interface. All built filters are channeled to the
+ * {@link #applyFilter(FilterItem)} method which needs to be implemented by concrete implementations.
  */
 public abstract class AbstractFilterBuilder<B> implements FilterBuilder<B> {
 
@@ -457,7 +456,6 @@ public abstract class AbstractFilterBuilder<B> implements FilterBuilder<B> {
         }
         return applyFilter(new FilterItem(_selectItem, OperatorType.NOT_LIKE, string));
     }
-
 
     @Override
     public B gt(Column column) {

@@ -26,8 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * A {@link DataSet} wrapper/decorator which converts values using
- * {@link TypeConverter}s before returning them to the user.
+ * A {@link DataSet} wrapper/decorator which converts values using {@link TypeConverter}s before returning them to the
+ * user.
  */
 final class ConvertedDataSet extends AbstractDataSet {
 
@@ -54,8 +54,8 @@ final class ConvertedDataSet extends AbstractDataSet {
         for (int i = 0; i < values.length; i++) {
             Object value = sourceRow.getValue(i);
 
-            @SuppressWarnings("unchecked")
-            TypeConverter<Object, ?> converter = (TypeConverter<Object, ?>) _converters[i];
+            @SuppressWarnings("unchecked") TypeConverter<Object, ?> converter =
+                    (TypeConverter<Object, ?>) _converters[i];
 
             if (converter != null) {
                 Object virtualValue = converter.toVirtualValue(value);

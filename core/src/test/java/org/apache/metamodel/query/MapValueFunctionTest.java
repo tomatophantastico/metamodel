@@ -39,8 +39,8 @@ public class MapValueFunctionTest {
         innerMap.put("bar", "baz");
         value.put("foo", innerMap);
         final SelectItem operandItem = new SelectItem("foo", "f");
-        final Row row = new DefaultRow(new SimpleDataSetHeader(new SelectItem[] { operandItem }),
-                new Object[] { value });
+        final Row row =
+                new DefaultRow(new SimpleDataSetHeader(new SelectItem[] { operandItem }), new Object[] { value });
         final Object v1 = function.evaluate(row, new Object[] { "foo.bar" }, operandItem);
         assertEquals("baz", v1.toString());
     }
@@ -48,8 +48,8 @@ public class MapValueFunctionTest {
     @Test
     public void testNotAMap() throws Exception {
         final SelectItem operandItem = new SelectItem("foo", "f");
-        final Row row = new DefaultRow(new SimpleDataSetHeader(new SelectItem[] { operandItem }),
-                new Object[] { "not a map" });
+        final Row row =
+                new DefaultRow(new SimpleDataSetHeader(new SelectItem[] { operandItem }), new Object[] { "not a map" });
         final Object v1 = function.evaluate(row, new Object[] { "foo.bar" }, operandItem);
         assertEquals(null, v1);
     }

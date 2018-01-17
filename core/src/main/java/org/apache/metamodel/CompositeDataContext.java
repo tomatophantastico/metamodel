@@ -38,10 +38,9 @@ import org.apache.metamodel.schema.Table;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
- * DataContext for composite datacontexts. Composite DataContexts wrap several
- * other datacontexts and makes cross-datastore querying possible.
+ * DataContext for composite datacontexts. Composite DataContexts wrap several other datacontexts and makes
+ * cross-datastore querying possible.
  */
 public class CompositeDataContext extends AbstractDataContext {
 

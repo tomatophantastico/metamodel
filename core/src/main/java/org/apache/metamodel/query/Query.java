@@ -39,28 +39,25 @@ import org.apache.metamodel.util.FormatHelper;
 import org.apache.metamodel.util.NumberComparator;
 
 /**
- * Represents a query to retrieve data by. A query is made up of six clauses,
- * equivalent to the SQL standard:
+ * Represents a query to retrieve data by. A query is made up of six clauses, equivalent to the SQL standard:
  * <ul>
- * <li>the SELECT clause, which define the wanted columns of the resulting
- * DataSet</li>
+ * <li>the SELECT clause, which define the wanted columns of the resulting DataSet</li>
  * <li>the FROM clause, which define where to retrieve the data from</li>
  * <li>the WHERE clause, which define filters on the retrieved data</li>
- * <li>the GROUP BY clause, which define if the result should be grouped and
- * aggregated according to some columns acting as categories</li>
+ * <li>the GROUP BY clause, which define if the result should be grouped and aggregated according to some columns acting
+ * as categories</li>
  * <li>the HAVING clause, which define filters on the grouped data</li>
  * <li>the ORDER BY clause, which define sorting of the resulting dataset</li>
  * </ul>
  * 
- * In addition two properties are applied to queries to limit the resulting
- * dataset:
+ * In addition two properties are applied to queries to limit the resulting dataset:
  * <ul>
  * <li>First row: The first row (aka. offset) of the result of the query.</li>
  * <li>Max rows: The maximum amount of rows to return when executing the query.</li>
  * </ul>
  * 
- * Queries are executed using the DataContext.executeQuery method or can
- * alternatively be used directly in JDBC by using the toString() method.
+ * Queries are executed using the DataContext.executeQuery method or can alternatively be used directly in JDBC by using
+ * the toString() method.
  * 
  * @see DataContext
  */
@@ -92,7 +89,7 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
         return select(selectItem);
     }
 
-    public Query select(List<Column> columns){
+    public Query select(List<Column> columns) {
         return select(columns.toArray(new Column[columns.size()]));
     }
 
@@ -132,17 +129,15 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
     /**
      * Adds a selection to this query.
      * 
-     * @param expression
-     *            a textual representation of the select item, e.g. "MAX(foo)"
-     *            or just "foo", where "foo" is a column name.
-     * @param allowExpressionBasedSelectItem
-     *            whether or not expression-based select items are allowed or
-     *            not (see {@link SelectItem#getExpression()}.
+     * @param expression a textual representation of the select item, e.g. "MAX(foo)" or just "foo", where "foo" is a
+     *            column name.
+     * @param allowExpressionBasedSelectItem whether or not expression-based select items are allowed or not (see
+     *            {@link SelectItem#getExpression()}.
      * @return
      */
     public Query select(String expression, boolean allowExpressionBasedSelectItem) {
-        final QueryPartParser clauseParser = new QueryPartParser(new SelectItemParser(this,
-                allowExpressionBasedSelectItem), expression, ",");
+        final QueryPartParser clauseParser =
+                new QueryPartParser(new SelectItemParser(this, allowExpressionBasedSelectItem), expression, ",");
         clauseParser.parse();
         return this;
     }
@@ -153,8 +148,8 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
     }
 
     /**
-     * Select all available select items from all currently available FROM
-     * items. Equivalent of the expression "SELECT * FROM ..." in SQL.
+     * Select all available select items from all currently available FROM items. Equivalent of the expression "SELECT *
+     * FROM ..." in SQL.
      * 
      * @return
      */
@@ -482,9 +477,8 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
     }
 
     /*
-     * A string representation of this query. This representation will be SQL 99
-     * compatible and can thus be used for database queries on databases that
-     * meet SQL standards.
+     * A string representation of this query. This representation will be SQL 99 compatible and can thus be used for
+     * database queries on databases that meet SQL standards.
      */
     public String toSql() {
         return toSql(false);
@@ -526,12 +520,10 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
     }
 
     /**
-     * Sets the maximum number of rows to be queried. If the result of the query
-     * yields more rows they should be discarded.
+     * Sets the maximum number of rows to be queried. If the result of the query yields more rows they should be
+     * discarded.
      * 
-     * @param maxRows
-     *            the number of desired maximum rows. Can be null (default) for
-     *            no limits
+     * @param maxRows the number of desired maximum rows. Can be null (default) for no limits
      * @return this query
      */
     public Query setMaxRows(Integer maxRows) {
@@ -546,20 +538,17 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
     }
 
     /**
-     * @return the number of maximum rows to yield from executing this query or
-     *         null if no maximum/limit is set.
+     * @return the number of maximum rows to yield from executing this query or null if no maximum/limit is set.
      */
     public Integer getMaxRows() {
         return _maxRows;
     }
 
     /**
-     * Sets the first row (aka offset) of the query's result. The row number is
-     * 1-based, so setting a first row value of 1 is equivalent to not setting
-     * it at all..
+     * Sets the first row (aka offset) of the query's result. The row number is 1-based, so setting a first row value of
+     * 1 is equivalent to not setting it at all..
      * 
-     * @param firstRow
-     *            the first row, where 1 is the first row.
+     * @param firstRow the first row, where 1 is the first row.
      * @return this query
      */
     public Query setFirstRow(Integer firstRow) {
@@ -571,17 +560,15 @@ public final class Query extends BaseObject implements Cloneable, Serializable {
     }
 
     /**
-     * Gets the first row (aka offset) of the query's result, or null if none is
-     * specified. The row number is 1-based, so setting a first row value of 1
-     * is equivalent to not setting it at all..
+     * Gets the first row (aka offset) of the query's result, or null if none is specified. The row number is 1-based,
+     * so setting a first row value of 1 is equivalent to not setting it at all..
      * 
-     * @return the first row (aka offset) of the query's result, or null if no
-     *         offset is specified.
+     * @return the first row (aka offset) of the query's result, or null if no offset is specified.
      */
     public Integer getFirstRow() {
         return _firstRow;
     }
-    
+
     public InvokableQuery invokable(DataContext dataContext) {
         return new DefaultInvokableQuery(this, dataContext);
     }

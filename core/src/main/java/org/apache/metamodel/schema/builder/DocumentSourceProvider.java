@@ -27,16 +27,14 @@ import org.apache.metamodel.data.DocumentSource;
 public interface DocumentSourceProvider {
 
     /**
-     * Gets a {@link DocumentSource} containing documents of mixed origin and
-     * type.
+     * Gets a {@link DocumentSource} containing documents of mixed origin and type.
      * 
      * @return
      */
     public DocumentSource getMixedDocumentSourceForSampling();
 
     /**
-     * Gets a {@link DocumentSource} for a particular source collection. See
-     * {@link Document#getSourceCollectionName()}.
+     * Gets a {@link DocumentSource} for a particular source collection. See {@link Document#getSourceCollectionName()}.
      * 
      * @param sourceCollectionName
      * @return

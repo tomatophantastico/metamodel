@@ -28,11 +28,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Abstract {@link DataSet} implementation for use in scenarios where a
- * pull-oriented style of reading data is not supported. This implementation
- * instead allows a publshing action to publish rows to the dataset in a
- * blocking manner, and thereby to adapt without having to load all rows into
- * memory.
+ * Abstract {@link DataSet} implementation for use in scenarios where a pull-oriented style of reading data is not
+ * supported. This implementation instead allows a publshing action to publish rows to the dataset in a blocking manner,
+ * and thereby to adapt without having to load all rows into memory.
  */
 public final class RowPublisherDataSet extends AbstractDataSet {
 

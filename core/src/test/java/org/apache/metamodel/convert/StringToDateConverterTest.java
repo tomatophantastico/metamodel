@@ -33,8 +33,7 @@ public class StringToDateConverterTest extends TestCase {
         assertNull(conv.toVirtualValue(null));
         assertNull(conv.toVirtualValue(""));
 
-        assertEquals(DateUtils.get(2010, Month.DECEMBER, 31),
-                conv.toVirtualValue("2010-12-31"));
+        assertEquals(DateUtils.get(2010, Month.DECEMBER, 31), conv.toVirtualValue("2010-12-31"));
     }
 
     public void testToVirtualNoArgs() throws Exception {
@@ -42,8 +41,7 @@ public class StringToDateConverterTest extends TestCase {
         assertNull(conv.toVirtualValue(null));
         assertNull(conv.toVirtualValue(""));
 
-        assertEquals(DateUtils.get(2010, Month.DECEMBER, 31),
-                conv.toVirtualValue("2010-12-31"));
+        assertEquals(DateUtils.get(2010, Month.DECEMBER, 31), conv.toVirtualValue("2010-12-31"));
     }
 
     public void testToPhysicalSimpleDateFormat() throws Exception {
@@ -59,8 +57,7 @@ public class StringToDateConverterTest extends TestCase {
         assertNull(conv.toPhysicalValue(null));
         Date input = DateUtils.get(2010, Month.DECEMBER, 31);
         String physicalValue = conv.toPhysicalValue(input);
-        Date virtualValue = DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
-                DateFormat.MEDIUM).parse(physicalValue);
+        Date virtualValue = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM).parse(physicalValue);
         assertEquals(virtualValue, input);
     }
 }

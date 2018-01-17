@@ -67,8 +67,7 @@ public class DataSetIteratorTest extends TestCase {
             it.remove();
             fail("Exception expected");
         } catch (UnsupportedOperationException e) {
-            assertEquals("DataSet is read-only, remove() is not supported.",
-                    e.getMessage());
+            assertEquals("DataSet is read-only, remove() is not supported.", e.getMessage());
         }
     }
 }

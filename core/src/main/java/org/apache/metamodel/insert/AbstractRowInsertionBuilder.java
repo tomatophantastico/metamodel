@@ -28,12 +28,12 @@ import org.apache.metamodel.schema.Column;
 import org.apache.metamodel.schema.Table;
 
 /**
- * Abstract implementation of the {@link RowInsertionBuilder} interface,
- * provided as a convenience to {@link RowInsertable} implementations. Handles
- * all the building operations, but not the commit operation.
+ * Abstract implementation of the {@link RowInsertionBuilder} interface, provided as a convenience to
+ * {@link RowInsertable} implementations. Handles all the building operations, but not the commit operation.
  */
-public abstract class AbstractRowInsertionBuilder<U extends UpdateCallback> extends
-        AbstractRowBuilder<RowInsertionBuilder> implements RowInsertionBuilder {
+public abstract class AbstractRowInsertionBuilder<U extends UpdateCallback>
+        extends AbstractRowBuilder<RowInsertionBuilder> implements
+        RowInsertionBuilder {
 
     private final U _updateCallback;
     private final Table _table;

@@ -31,14 +31,10 @@ public interface ScalarFunction extends FunctionType {
     /**
      * Applies and evaluates the function on a particular row of data.
      * 
-     * @param row
-     *            the row containing data
-     * @param parameters
-     *            any parameters associated with the function call
-     * @param operandItem
-     *            the select item which is the argument to this function. If a
-     *            function takes multiple select items, this will be the primary
-     *            one.
+     * @param row the row containing data
+     * @param parameters any parameters associated with the function call
+     * @param operandItem the select item which is the argument to this function. If a function takes multiple select
+     *            items, this will be the primary one.
      * @return
      */
     public Object evaluate(Row row, Object[] parameters, SelectItem operandItem);

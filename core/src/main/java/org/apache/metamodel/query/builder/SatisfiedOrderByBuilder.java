@@ -20,8 +20,7 @@ package org.apache.metamodel.query.builder;
 
 import org.apache.metamodel.schema.Column;
 
-public interface SatisfiedOrderByBuilder<B extends SatisfiedQueryBuilder<?>>
-        extends SatisfiedQueryBuilder<B> {
+public interface SatisfiedOrderByBuilder<B extends SatisfiedQueryBuilder<?>> extends SatisfiedQueryBuilder<B> {
 
     public B asc();
 

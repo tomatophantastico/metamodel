@@ -21,8 +21,8 @@ package org.apache.metamodel.util;
 import java.util.function.Supplier;
 
 /**
- * Represents an abstract reference. This interface enables use of both regular,
- * hard references, soft references and deferred/lazy references.
+ * Represents an abstract reference. This interface enables use of both regular, hard references, soft references and
+ * deferred/lazy references.
  * 
  * @param <E>
  * 
@@ -31,7 +31,7 @@ import java.util.function.Supplier;
 @Deprecated
 @FunctionalInterface
 public interface Ref<E> extends Supplier<E> {
-    
+
     @Override
     public E get();
 }

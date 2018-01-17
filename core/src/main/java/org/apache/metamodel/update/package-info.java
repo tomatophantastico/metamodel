@@ -20,4 +20,3 @@
  * API for updating rows
  */
 package org.apache.metamodel.update;
-

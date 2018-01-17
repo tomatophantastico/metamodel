@@ -22,7 +22,7 @@ import org.apache.metamodel.schema.ColumnType;
 import org.apache.metamodel.util.AggregateBuilder;
 
 public class CountAggregateFunction extends DefaultAggregateFunction<Long> {
-    
+
     private static final long serialVersionUID = 1L;
 
     public String getFunctionName() {

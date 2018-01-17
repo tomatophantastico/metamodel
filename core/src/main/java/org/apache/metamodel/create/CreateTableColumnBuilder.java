@@ -25,7 +25,9 @@ import org.apache.metamodel.schema.MutableColumn;
 /**
  * Column builder for {@link CreateTable}.
  */
-public final class CreateTableColumnBuilder extends AbstractColumnBuilder<CreateTableColumnBuilder> implements ColumnBuilder<CreateTableColumnBuilder>, UpdateScript {
+public final class CreateTableColumnBuilder extends AbstractColumnBuilder<CreateTableColumnBuilder> implements
+        ColumnBuilder<CreateTableColumnBuilder>,
+        UpdateScript {
 
     private final CreateTable _createTable;
 

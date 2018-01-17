@@ -28,11 +28,9 @@ public class DefaultUpdateSummary implements UpdateSummary {
     private static final UpdateSummary UNKNOWN_UPDATES = new DefaultUpdateSummary(null, null, null, null);
 
     /**
-     * Gets an {@link UpdateSummary} object to return when the extent of the
-     * updates are unknown.
+     * Gets an {@link UpdateSummary} object to return when the extent of the updates are unknown.
      * 
-     * @return a {@link UpdateSummary} object without any knowledge of updates
-     *         performed.
+     * @return a {@link UpdateSummary} object without any knowledge of updates performed.
      */
     public static UpdateSummary unknownUpdates() {
         return UNKNOWN_UPDATES;

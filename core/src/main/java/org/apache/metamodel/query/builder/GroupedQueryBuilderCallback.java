@@ -101,12 +101,12 @@ abstract class GroupedQueryBuilderCallback extends BaseObject implements Grouped
     public WhereBuilder<GroupedQueryBuilder> where(Column column) {
         return getQueryBuilder().where(column);
     }
-    
+
     @Override
     public WhereBuilder<GroupedQueryBuilder> where(ScalarFunction function, Column column) {
         return getQueryBuilder().where(function, column);
     }
-    
+
     @Override
     public WhereBuilder<GroupedQueryBuilder> where(ScalarFunction function, String columnName) {
         return getQueryBuilder().where(function, columnName);
@@ -146,7 +146,7 @@ abstract class GroupedQueryBuilderCallback extends BaseObject implements Grouped
     public HavingBuilder having(String columnExpression) {
         return getQueryBuilder().having(columnExpression);
     }
-    
+
     @Override
     public HavingBuilder having(SelectItem selectItem) {
         return getQueryBuilder().having(selectItem);

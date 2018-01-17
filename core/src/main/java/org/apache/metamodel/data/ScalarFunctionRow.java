@@ -24,9 +24,8 @@ import org.apache.metamodel.query.ScalarFunction;
 import org.apache.metamodel.query.SelectItem;
 
 /**
- * A {@link Row} implementation that applies {@link ScalarFunction}s when
- * requested. This class closely interacts with the
- * {@link ScalarFunctionDataSet}.
+ * A {@link Row} implementation that applies {@link ScalarFunction}s when requested. This class closely interacts with
+ * the {@link ScalarFunctionDataSet}.
  */
 final class ScalarFunctionRow extends AbstractRow {
 
@@ -42,21 +41,22 @@ final class ScalarFunctionRow extends AbstractRow {
 
     @Override
     public Object getValue(int index) throws IndexOutOfBoundsException {
-        final List<SelectItem> scalarFunctionSelectItems = _scalarFunctionDataSet
-                .getScalarFunctionSelectItemsToEvaluate();
+        final List<SelectItem> scalarFunctionSelectItems =
+                _scalarFunctionDataSet.getScalarFunctionSelectItemsToEvaluate();
         final int scalarFunctionCount = scalarFunctionSelectItems.size();
         if (index >= scalarFunctionCount) {
             return _row.getValue(index - scalarFunctionCount);
         }
         final SelectItem selectItem = scalarFunctionSelectItems.get(index);
         final SelectItem selectItemWithoutFunction = selectItem.replaceFunction(null);
-        return selectItem.getScalarFunction().evaluate(_row, selectItem.getFunctionParameters(), selectItemWithoutFunction);
+        return selectItem.getScalarFunction().evaluate(_row, selectItem.getFunctionParameters(),
+                selectItemWithoutFunction);
     }
 
     @Override
     public Style getStyle(int index) throws IndexOutOfBoundsException {
-        final List<SelectItem> scalarFunctionSelectItems = _scalarFunctionDataSet
-                .getScalarFunctionSelectItemsToEvaluate();
+        final List<SelectItem> scalarFunctionSelectItems =
+                _scalarFunctionDataSet.getScalarFunctionSelectItemsToEvaluate();
         final int scalarFunctionCount = scalarFunctionSelectItems.size();
         if (index >= scalarFunctionCount) {
             _row.getStyle(index - scalarFunctionCount);

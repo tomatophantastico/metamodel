@@ -19,19 +19,16 @@
 package org.apache.metamodel;
 
 /**
- * Represents any updating operation or update script that can be executed on a
- * {@link UpdateableDataContext}. Users of MetaModel should implement their own
- * {@link UpdateScript} and submit them to the
- * {@link UpdateableDataContext#executeUpdate(UpdateScript)} method for
- * execution.
+ * Represents any updating operation or update script that can be executed on a {@link UpdateableDataContext}. Users of
+ * MetaModel should implement their own {@link UpdateScript} and submit them to the
+ * {@link UpdateableDataContext#executeUpdate(UpdateScript)} method for execution.
  */
 @FunctionalInterface
 public interface UpdateScript {
 
     /**
-     * Invoked by MetaModel when the update script should be run. User should
-     * implement this method and invoke update operations on the
-     * {@link UpdateCallback}.
+     * Invoked by MetaModel when the update script should be run. User should implement this method and invoke update
+     * operations on the {@link UpdateCallback}.
      */
     public void run(UpdateCallback callback);
 }

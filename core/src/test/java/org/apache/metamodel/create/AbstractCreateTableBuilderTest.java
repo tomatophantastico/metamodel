@@ -36,14 +36,14 @@ public class AbstractCreateTableBuilderTest extends TestCase {
         final MutableRef<Boolean> executed = new MutableRef<Boolean>(false);
 
         Schema schema = new MutableSchema("schema");
-        AbstractTableCreationBuilder<UpdateCallback> builder = new AbstractTableCreationBuilder<UpdateCallback>(null,
-                schema, "tablename") {
-            @Override
-            public Table execute() throws MetaModelException {
-                executed.set(true);
-                return getTable();
-            }
-        };
+        AbstractTableCreationBuilder<UpdateCallback> builder =
+                new AbstractTableCreationBuilder<UpdateCallback>(null, schema, "tablename") {
+                    @Override
+                    public Table execute() throws MetaModelException {
+                        executed.set(true);
+                        return getTable();
+                    }
+                };
 
         assertFalse(executed.get().booleanValue());
 
@@ -64,27 +64,29 @@ public class AbstractCreateTableBuilderTest extends TestCase {
                 table.getColumn(2).toString());
 
         System.out.println(builder.toSql());
-        assertEquals("CREATE TABLE schema.tablename (foo VARCHAR(1234),bar,baz NOT NULL, PRIMARY KEY(foo))", builder.toSql());
+        assertEquals("CREATE TABLE schema.tablename (foo VARCHAR(1234),bar,baz NOT NULL, PRIMARY KEY(foo))",
+                builder.toSql());
     }
 
     public void testLike() throws Exception {
         final MutableRef<Boolean> executed = new MutableRef<Boolean>(false);
 
         Schema schema = new MutableSchema("schema");
-        AbstractTableCreationBuilder<UpdateCallback> builder = new AbstractTableCreationBuilder<UpdateCallback>(null,
-                schema, "tablename") {
-            @Override
-            public Table execute() throws MetaModelException {
-                executed.set(true);
-                return toTable();
-            }
-        };
+        AbstractTableCreationBuilder<UpdateCallback> builder =
+                new AbstractTableCreationBuilder<UpdateCallback>(null, schema, "tablename") {
+                    @Override
+                    public Table execute() throws MetaModelException {
+                        executed.set(true);
+                        return toTable();
+                    }
+                };
 
         assertFalse(executed.get().booleanValue());
 
         MutableTable likeTable = new MutableTable("blablablabla");
-        likeTable.addColumn(new MutableColumn("foo", ColumnType.VARCHAR, likeTable, 0, 1234, "vch", true, null, false,
-                null).setPrimaryKey(true));
+        likeTable.addColumn(
+                new MutableColumn("foo", ColumnType.VARCHAR, likeTable, 0, 1234, "vch", true, null, false, null)
+                        .setPrimaryKey(true));
         likeTable.addColumn(new MutableColumn("bar"));
         likeTable.addColumn(new MutableColumn("baz"));
 

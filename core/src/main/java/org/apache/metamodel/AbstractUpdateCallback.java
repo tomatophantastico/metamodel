@@ -29,8 +29,7 @@ import org.apache.metamodel.schema.Table;
 import org.apache.metamodel.update.RowUpdationBuilder;
 
 /**
- * Abstract implementation of the {@link UpdateCallback} interface. Implements
- * only the data store agnostic methods.
+ * Abstract implementation of the {@link UpdateCallback} interface. Implements only the data store agnostic methods.
  */
 public abstract class AbstractUpdateCallback implements UpdateCallback {
 
@@ -41,22 +40,22 @@ public abstract class AbstractUpdateCallback implements UpdateCallback {
     }
 
     @Override
-    public TableCreationBuilder createTable(String schemaName, String tableName) throws IllegalArgumentException,
-            IllegalStateException {
+    public TableCreationBuilder createTable(String schemaName, String tableName)
+            throws IllegalArgumentException, IllegalStateException {
         final Schema schema = getSchema(schemaName);
         return createTable(schema, tableName);
     }
 
     @Override
-    public final TableDropBuilder dropTable(String schemaName, String tableName) throws IllegalArgumentException,
-            IllegalStateException, UnsupportedOperationException {
+    public final TableDropBuilder dropTable(String schemaName, String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException {
         final Table table = getTable(schemaName, tableName);
         return dropTable(table);
     }
 
     @Override
-    public final TableDropBuilder dropTable(Schema schema, String tableName) throws IllegalArgumentException,
-            IllegalStateException, UnsupportedOperationException {
+    public final TableDropBuilder dropTable(Schema schema, String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException {
         final Table table = schema.getTableByName(tableName);
         if (table == null) {
             throw new IllegalArgumentException("Nu such table '" + tableName + "' found in schema: " + schema
@@ -66,14 +65,14 @@ public abstract class AbstractUpdateCallback implements UpdateCallback {
     }
 
     @Override
-    public final RowInsertionBuilder insertInto(String tableName) throws IllegalArgumentException,
-            IllegalStateException {
+    public final RowInsertionBuilder insertInto(String tableName)
+            throws IllegalArgumentException, IllegalStateException {
         return insertInto(getTable(tableName));
     }
 
     @Override
-    public final RowInsertionBuilder insertInto(String schemaName, String tableName) throws IllegalArgumentException,
-            IllegalStateException, UnsupportedOperationException {
+    public final RowInsertionBuilder insertInto(String schemaName, String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException {
         return insertInto(getTable(schemaName, tableName));
     }
 
@@ -101,8 +100,8 @@ public abstract class AbstractUpdateCallback implements UpdateCallback {
     }
 
     @Override
-    public final RowDeletionBuilder deleteFrom(String schemaName, String tableName) throws IllegalArgumentException,
-            IllegalStateException, UnsupportedOperationException {
+    public final RowDeletionBuilder deleteFrom(String schemaName, String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException {
         final Table table = getTable(schemaName, tableName);
         return deleteFrom(table);
     }
@@ -148,18 +147,18 @@ public abstract class AbstractUpdateCallback implements UpdateCallback {
     }
 
     @Override
-    public final RowUpdationBuilder update(String schemaName, String tableName) throws IllegalArgumentException,
-            IllegalStateException, UnsupportedOperationException {
+    public final RowUpdationBuilder update(String schemaName, String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException {
         final Table table = getTable(schemaName, tableName);
         return update(table);
     }
 
     @Override
-    public RowUpdationBuilder update(Table table) throws IllegalArgumentException, IllegalStateException,
-            UnsupportedOperationException {
+    public RowUpdationBuilder update(Table table)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException {
         return new DeleteAndInsertBuilder(this, table);
     }
-    
+
     public UpdateSummary getUpdateSummary() {
         return DefaultUpdateSummary.unknownUpdates();
     }

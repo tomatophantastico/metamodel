@@ -35,37 +35,27 @@ public interface TableCreatable {
     /**
      * Initiates the building of a table creation operation.
      * 
-     * @param schema
-     *            the schema to create the table in
-     * @param name
-     *            the name of the new table
-     * @return a builder object on which the details of the table can be
-     *         specified and committed.
-     * @throws IllegalArgumentException
-     *             if the table argument is null or invalid.
-     * @throws IllegalStateException
-     *             if the connection to the DataContext is read-only or another
-     *             access restriction is preventing the operation.
+     * @param schema the schema to create the table in
+     * @param name the name of the new table
+     * @return a builder object on which the details of the table can be specified and committed.
+     * @throws IllegalArgumentException if the table argument is null or invalid.
+     * @throws IllegalStateException if the connection to the DataContext is read-only or another access restriction is
+     *             preventing the operation.
      */
-    public TableCreationBuilder createTable(Schema schema, String name) throws IllegalArgumentException,
-            IllegalStateException;
+    public TableCreationBuilder createTable(Schema schema, String name)
+            throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Initiates the building of a table creation operation.
      * 
-     * @param schemaName
-     *            the name of the schema to create the table in
-     * @param tableName
-     *            the name of the new table
-     * @return a builder object on which the details of the table can be
-     *         specified and committed.
-     * @throws IllegalArgumentException
-     *             if the table argument is null or invalid.
-     * @throws IllegalStateException
-     *             if the connection to the DataContext is read-only or another
-     *             access restriction is preventing the operation.
+     * @param schemaName the name of the schema to create the table in
+     * @param tableName the name of the new table
+     * @return a builder object on which the details of the table can be specified and committed.
+     * @throws IllegalArgumentException if the table argument is null or invalid.
+     * @throws IllegalStateException if the connection to the DataContext is read-only or another access restriction is
+     *             preventing the operation.
      */
-    public TableCreationBuilder createTable(String schemaName, String tableName) throws IllegalArgumentException,
-            IllegalStateException;
+    public TableCreationBuilder createTable(String schemaName, String tableName)
+            throws IllegalArgumentException, IllegalStateException;
 
 }

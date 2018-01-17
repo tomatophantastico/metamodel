@@ -29,10 +29,8 @@ public final class FirstRowDataSet extends AbstractDataSet implements WrappingDa
     /**
      * Constructs a {@link FirstRowDataSet}.
      * 
-     * @param dataSet
-     *            the dataset to wrap
-     * @param firstRow
-     *            the first row number (1-based).
+     * @param dataSet the dataset to wrap
+     * @param firstRow the first row number (1-based).
      */
     public FirstRowDataSet(DataSet dataSet, int firstRow) {
         super(dataSet);
@@ -52,7 +50,7 @@ public final class FirstRowDataSet extends AbstractDataSet implements WrappingDa
     public Row getRow() {
         return _dataSet.getRow();
     }
-    
+
     @Override
     public DataSet getWrappedDataSet() {
         return _dataSet;

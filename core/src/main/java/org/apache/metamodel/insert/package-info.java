@@ -20,4 +20,3 @@
  * API for inserting rows
  */
 package org.apache.metamodel.insert;
-

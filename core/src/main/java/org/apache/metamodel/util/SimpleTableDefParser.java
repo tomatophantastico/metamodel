@@ -81,8 +81,8 @@ public class SimpleTableDefParser {
 
         String tableName = tableDefinitionText.substring(0, startColumnSection).trim();
         if (tableName.isEmpty()) {
-            throw new IllegalArgumentException("Failed to parse table definition: " + tableDefinitionText
-                    + ". No table name found.");
+            throw new IllegalArgumentException(
+                    "Failed to parse table definition: " + tableDefinitionText + ". No table name found.");
         }
 
         String columnSection = tableDefinitionText.substring(startColumnSection + 1, endColumnSection);

@@ -28,11 +28,10 @@ import org.apache.metamodel.data.Row;
 import org.apache.metamodel.util.CollectionUtils;
 
 /**
- * Converter that assumes that keys in the documents are represented as columns
- * in a table.
+ * Converter that assumes that keys in the documents are represented as columns in a table.
  */
 public class ColumnNameAsKeysRowConverter implements DocumentConverter {
-    
+
     @Override
     public Row convert(Document document, DataSetHeader header) {
         final Object[] values = new Object[header.size()];

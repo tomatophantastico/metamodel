@@ -22,17 +22,13 @@ import org.apache.metamodel.data.DataSet;
 import org.apache.metamodel.data.Row;
 
 /**
- * Abstract exception type that represents exceptions that occur when reading a
- * data format which contain formatting errors or inconsistencies in on or more
- * rows.
+ * Abstract exception type that represents exceptions that occur when reading a data format which contain formatting
+ * errors or inconsistencies in on or more rows.
  * 
- * Typically {@link InconsistentRowFormatException}s are thrown when calling
- * {@link DataSet#next()}.
+ * Typically {@link InconsistentRowFormatException}s are thrown when calling {@link DataSet#next()}.
  * 
- * All {@link InconsistentRowFormatException}s are optional, meaning that you
- * can turn them on and off. When turned off the result of
- * {@link #getProposedRow()} will be used transparently instead of throwing the
- * exception.
+ * All {@link InconsistentRowFormatException}s are optional, meaning that you can turn them on and off. When turned off
+ * the result of {@link #getProposedRow()} will be used transparently instead of throwing the exception.
  */
 public abstract class InconsistentRowFormatException extends MetaModelException {
 
@@ -47,8 +43,7 @@ public abstract class InconsistentRowFormatException extends MetaModelException 
         _rowNumber = rowNumber;
     }
 
-    public InconsistentRowFormatException(Row proposedRow, int rowNumber,
-            Exception cause) {
+    public InconsistentRowFormatException(Row proposedRow, int rowNumber, Exception cause) {
         super(cause);
         _proposedRow = proposedRow;
         _rowNumber = rowNumber;
@@ -57,8 +52,7 @@ public abstract class InconsistentRowFormatException extends MetaModelException 
     /**
      * Gets the row as MetaModel would gracefully interpret it.
      * 
-     * @return a row object which represents the {@link Row} as MetaModel would
-     *         gracefully interpret it.
+     * @return a row object which represents the {@link Row} as MetaModel would gracefully interpret it.
      */
     public Row getProposedRow() {
         return _proposedRow;

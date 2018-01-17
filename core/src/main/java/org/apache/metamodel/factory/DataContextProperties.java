@@ -28,8 +28,7 @@ import org.apache.metamodel.schema.TableType;
 import org.apache.metamodel.util.SimpleTableDef;
 
 /**
- * Represents the {@link Serializable} properties used to fully describe and
- * construct a {@link DataContext}.
+ * Represents the {@link Serializable} properties used to fully describe and construct a {@link DataContext}.
  */
 public interface DataContextProperties extends Serializable {
 
@@ -41,8 +40,8 @@ public interface DataContextProperties extends Serializable {
     String getDataContextType();
 
     /**
-     * Gets all the properties represented as a {@link Map}. Note that any
-     * unstandardized properties may also be exposed via this map.
+     * Gets all the properties represented as a {@link Map}. Note that any unstandardized properties may also be exposed
+     * via this map.
      * 
      * @return
      */

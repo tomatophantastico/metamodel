@@ -84,7 +84,7 @@ public class FileResourceTest {
         Assert.assertEquals(contentString, str1);
 
         final String str2 = res1.read(in -> {
-                return FileHelper.readInputStreamAsString(in, "UTF8");
+            return FileHelper.readInputStreamAsString(in, "UTF8");
         });
         Assert.assertEquals(str1, str2);
     }

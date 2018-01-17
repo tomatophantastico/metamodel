@@ -42,9 +42,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class consists of static methods for decorating {@link DataContext}s
- * with {@link TypeConverter}s, which allows for automatic conversion of values
- * on data read and write operations.
+ * This class consists of static methods for decorating {@link DataContext}s with {@link TypeConverter}s, which allows
+ * for automatic conversion of values on data read and write operations.
  */
 public final class Converters {
 
@@ -57,14 +56,10 @@ public final class Converters {
     /**
      * Adds a type converter to a specific column in the {@link DataContext}.
      * 
-     * @param dataContext
-     *            the DataContext to decorate
-     * @param column
-     *            the column which holds values to convert
-     * @param converter
-     *            the converter to use on the specified column
-     * @return a decorated DataContext, which should be used for successive
-     *         operations on the data.
+     * @param dataContext the DataContext to decorate
+     * @param column the column which holds values to convert
+     * @param converter the converter to use on the specified column
+     * @return a decorated DataContext, which should be used for successive operations on the data.
      */
     public static UpdateableDataContext addTypeConverter(UpdateableDataContext dataContext, Column column,
             TypeConverter<?, ?> converter) {
@@ -74,29 +69,21 @@ public final class Converters {
     /**
      * Adds a type converter to a specific column in the {@link DataContext}.
      * 
-     * @param dataContext
-     *            the DataContext to decorate
-     * @param column
-     *            the column which holds values to convert
-     * @param converter
-     *            the converter to use on the specified column
-     * @return a decorated DataContext, which should be used for successive
-     *         operations on the data.
+     * @param dataContext the DataContext to decorate
+     * @param column the column which holds values to convert
+     * @param converter the converter to use on the specified column
+     * @return a decorated DataContext, which should be used for successive operations on the data.
      */
     public static DataContext addTypeConverter(DataContext dataContext, Column column, TypeConverter<?, ?> converter) {
         return addTypeConverterInternally(dataContext, column, converter);
     }
 
     /**
-     * Adds a collection of type converters to specific columns in the
-     * {@link DataContext}
+     * Adds a collection of type converters to specific columns in the {@link DataContext}
      * 
-     * @param dataContext
-     *            the DataContext to decorate
-     * @param converters
-     *            a map containing columns and mapped type converters.
-     * @return a decorated DataContext, which should be used for successive
-     *         operations on the data.
+     * @param dataContext the DataContext to decorate
+     * @param converters a map containing columns and mapped type converters.
+     * @return a decorated DataContext, which should be used for successive operations on the data.
      */
     public static UpdateableDataContext addTypeConverters(UpdateableDataContext dataContext,
             Map<Column, TypeConverter<?, ?>> converters) {
@@ -104,75 +91,57 @@ public final class Converters {
     }
 
     /**
-     * Adds a collection of type converters to specific columns in the
-     * {@link DataContext}
+     * Adds a collection of type converters to specific columns in the {@link DataContext}
      * 
-     * @param dataContext
-     *            the DataContext to decorate
-     * @param converters
-     *            a map containing columns and mapped type converters.
-     * @return a decorated DataContext, which should be used for successive
-     *         operations on the data.
+     * @param dataContext the DataContext to decorate
+     * @param converters a map containing columns and mapped type converters.
+     * @return a decorated DataContext, which should be used for successive operations on the data.
      */
     public static DataContext addTypeConverters(DataContext dataContext, Map<Column, TypeConverter<?, ?>> converters) {
         return addTypeConvertersInternally(dataContext, converters);
     }
 
     /**
-     * Auto-detects / guesses the type converters to be applied on set of
-     * columns. This method will query the String columns in order to assert
-     * which columns are likely candidates for conversion.
+     * Auto-detects / guesses the type converters to be applied on set of columns. This method will query the String
+     * columns in order to assert which columns are likely candidates for conversion.
      * 
-     * As such this method is not guaranteed to pick the correct converters,
-     * since data can change over time or other conversions can be requested.
+     * As such this method is not guaranteed to pick the correct converters, since data can change over time or other
+     * conversions can be requested.
      * 
-     * @param dataContext
-     *            the DataContext that holds the data.
-     * @param columns
-     *            the columns to inspect to find type conversion candidates.
-     * @param sampleSize
-     *            the max amount of rows to query for doing auto-detection. Use
-     *            {@link Integer#MAX_VALUE} if no constraint should be put on
-     *            the number of records to sample.
-     * @return a map of {@link Column}s and {@link TypeConverter}s which can be
-     *         used (eg. with the {@link #addTypeConverters(DataContext, Map)}
-     *         method) to decorate the DataContext with type converters.
+     * @param dataContext the DataContext that holds the data.
+     * @param columns the columns to inspect to find type conversion candidates.
+     * @param sampleSize the max amount of rows to query for doing auto-detection. Use {@link Integer#MAX_VALUE} if no
+     *            constraint should be put on the number of records to sample.
+     * @return a map of {@link Column}s and {@link TypeConverter}s which can be used (eg. with the
+     *         {@link #addTypeConverters(DataContext, Map)} method) to decorate the DataContext with type converters.
      */
-    public static Map<Column, TypeConverter<?, ?>> autoDetectConverters(DataContext dataContext, final List<Column> columns,
-            int sampleSize) {
+    public static Map<Column, TypeConverter<?, ?>> autoDetectConverters(DataContext dataContext,
+            final List<Column> columns, int sampleSize) {
         final Map<Column, TypeConverter<?, ?>> result = new HashMap<Column, TypeConverter<?, ?>>();
-        columns.stream()
-                .filter(col -> col.getType() != null)
+        columns.stream().filter(col -> col.getType() != null)
                 .filter(col -> col.getType().getSuperType().equals(SuperColumnType.LITERAL_TYPE))
                 // group by table
-                .collect(Collectors.toMap(Column::getTable,Arrays::asList))
-                //and detect it
-                .forEach((tab, cols) ->
-                    autoDetectConvertersInternally(dataContext,tab,cols,sampleSize,result));
+                .collect(Collectors.toMap(Column::getTable, Arrays::asList))
+                // and detect it
+                .forEach((tab, cols) -> autoDetectConvertersInternally(dataContext, tab, cols, sampleSize, result));
 
         return result;
     }
 
     /**
-     * Auto-detects / guesses the type converters to be applied on a table. This
-     * method will query the String columns of a table in order to assert which
-     * columns are likely candidates for conversion.
+     * Auto-detects / guesses the type converters to be applied on a table. This method will query the String columns of
+     * a table in order to assert which columns are likely candidates for conversion.
      * 
-     * As such this method is not guaranteed to pick the correct converters,
-     * since data can change over time or other conversions can be requested.
+     * As such this method is not guaranteed to pick the correct converters, since data can change over time or other
+     * conversions can be requested.
      * 
-     * @param dataContext
-     *            the DataContext that holds the data.
-     * @param table
-     *            the table to inspect to find type conversion candidates. This
-     *            table will hold all columns of the result.
-     * @param sampleSize
-     *            the max amount of rows to query for doing auto-detection. Use
-     *            {@link Integer#MAX_VALUE} if no constraint should be put on
-     *            the number of records to sample.
-     * @return a map of {@link Column}s and {@link TypeConverter}s which can be
-     *         used (eg. with the {@link #addTypeConverters(DataContext, Map)}
-     *         method) to decorate the DataContext with type converters.
+     * @param dataContext the DataContext that holds the data.
+     * @param table the table to inspect to find type conversion candidates. This table will hold all columns of the
+     *            result.
+     * @param sampleSize the max amount of rows to query for doing auto-detection. Use {@link Integer#MAX_VALUE} if no
+     *            constraint should be put on the number of records to sample.
+     * @return a map of {@link Column}s and {@link TypeConverter}s which can be used (eg. with the
+     *         {@link #addTypeConverters(DataContext, Map)} method) to decorate the DataContext with type converters.
      */
     public static Map<Column, TypeConverter<?, ?>> autoDetectConverters(DataContext dataContext, Table table,
             int sampleSize) {
@@ -265,8 +234,8 @@ public final class Converters {
             TypeConverter<?, ?> converter, boolean interceptDataSets) {
         // intercept datasets (reads)
         if (interceptDataSets) {
-            ConvertedDataSetInterceptor interceptor = interceptable.getDataSetInterceptors().getInterceptorOfType(
-                    ConvertedDataSetInterceptor.class);
+            ConvertedDataSetInterceptor interceptor =
+                    interceptable.getDataSetInterceptors().getInterceptorOfType(ConvertedDataSetInterceptor.class);
             if (interceptor == null) {
                 interceptor = new ConvertedDataSetInterceptor();
                 interceptable.addDataSetInterceptor(interceptor);
@@ -309,13 +278,14 @@ public final class Converters {
      * @param converters
      * @return
      */
-    protected static <RB extends RowBuilder<?>> RB convertRow(RB rowBuilder, Map<Column, TypeConverter<?, ?>> converters) {
+    protected static <RB extends RowBuilder<?>> RB convertRow(RB rowBuilder,
+            Map<Column, TypeConverter<?, ?>> converters) {
         Table table = rowBuilder.getTable();
         List<Column> columns = table.getColumns();
         Row row = rowBuilder.toRow();
         for (Column column : columns) {
-            @SuppressWarnings("unchecked")
-            TypeConverter<?, Object> converter = (TypeConverter<?, Object>) converters.get(column);
+            @SuppressWarnings("unchecked") TypeConverter<?, Object> converter =
+                    (TypeConverter<?, Object>) converters.get(column);
             if (converter != null) {
                 final int indexInRow = row.indexOf(column);
                 final Object value = row.getValue(indexInRow);

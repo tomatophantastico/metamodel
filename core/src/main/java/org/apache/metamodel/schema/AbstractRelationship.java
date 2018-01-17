@@ -22,17 +22,14 @@ import java.util.List;
 
 import org.apache.metamodel.util.BaseObject;
 
-public abstract class AbstractRelationship extends BaseObject implements
-        Relationship {
-    
+public abstract class AbstractRelationship extends BaseObject implements Relationship {
+
     private static final long serialVersionUID = 1L;
 
     protected static Table checkSameTable(List<Column> columns) {
         if (columns == null || columns.size() == 0) {
-            throw new IllegalArgumentException(
-                    "At least one key-column must exist on both "
-                            + "primary and foreign side for "
-                            + "a relation to exist.");
+            throw new IllegalArgumentException("At least one key-column must exist on both "
+                    + "primary and foreign side for " + "a relation to exist.");
         }
         Table table = null;
         for (int i = 0; i < columns.size(); i++) {
@@ -41,8 +38,7 @@ public abstract class AbstractRelationship extends BaseObject implements
                 table = column.getTable();
             } else {
                 if (table != column.getTable()) {
-                    throw new IllegalArgumentException(
-                            "Key-columns did not have same table");
+                    throw new IllegalArgumentException("Key-columns did not have same table");
                 }
             }
         }
@@ -108,8 +104,7 @@ public abstract class AbstractRelationship extends BaseObject implements
             List<Column> primaryColumns = getPrimaryColumns();
             List<Column> foreignColumns = getForeignColumns();
             for (int i = 0; i < primaryColumns.size(); i++) {
-                if (pkColumn.equals(primaryColumns.get(i))
-                        && fkColumn.equals(foreignColumns.get(i))) {
+                if (pkColumn.equals(primaryColumns.get(i)) && fkColumn.equals(foreignColumns.get(i))) {
                     return true;
                 }
             }

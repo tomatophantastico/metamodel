@@ -21,10 +21,9 @@ package org.apache.metamodel.intercept;
 import org.apache.metamodel.create.TableCreationBuilder;
 
 /**
- * An {@link Interceptor} for {@link TableCreationBuilder}s, which allows for
- * intercepting "create table" operations before they are executed.
+ * An {@link Interceptor} for {@link TableCreationBuilder}s, which allows for intercepting "create table" operations
+ * before they are executed.
  */
-public interface TableCreationInterceptor extends
-        Interceptor<TableCreationBuilder> {
+public interface TableCreationInterceptor extends Interceptor<TableCreationBuilder> {
 
 }

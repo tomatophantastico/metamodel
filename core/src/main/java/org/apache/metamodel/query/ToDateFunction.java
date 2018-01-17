@@ -25,7 +25,7 @@ import org.apache.metamodel.schema.ColumnType;
 import org.apache.metamodel.util.TimeComparator;
 
 public class ToDateFunction extends DefaultScalarFunction {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Override

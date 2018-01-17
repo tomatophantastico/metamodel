@@ -20,14 +20,13 @@ package org.apache.metamodel.query.builder;
 
 import org.apache.metamodel.schema.Column;
 
-public interface SatisfiedWhereBuilder<B extends SatisfiedQueryBuilder<?>>
-        extends SatisfiedQueryBuilder<B> {
-    
+public interface SatisfiedWhereBuilder<B extends SatisfiedQueryBuilder<?>> extends SatisfiedQueryBuilder<B> {
+
     public WhereBuilder<B> or(String columnName);
 
     public WhereBuilder<B> or(Column column);
-    
+
     public WhereBuilder<B> and(String columnName);
-    
+
     public WhereBuilder<B> and(Column column);
 }

@@ -24,8 +24,7 @@ import java.util.List;
 /**
  * Represents a list of interceptors
  * 
- * @param <E>
- *            the thing to intercept
+ * @param <E> the thing to intercept
  * 
  * @see Interceptor
  */
@@ -47,12 +46,10 @@ public final class InterceptorList<E> {
      * @param interceptorClazz
      * @return
      */
-    public <I extends Interceptor<E>> I getInterceptorOfType(
-            Class<I> interceptorClazz) {
+    public <I extends Interceptor<E>> I getInterceptorOfType(Class<I> interceptorClazz) {
         for (Interceptor<?> interceptor : _interceptors) {
             if (interceptorClazz.isAssignableFrom(interceptor.getClass())) {
-                @SuppressWarnings("unchecked")
-                I result = (I) interceptor;
+                @SuppressWarnings("unchecked") I result = (I) interceptor;
                 return result;
             }
         }

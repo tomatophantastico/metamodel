@@ -19,11 +19,9 @@
 package org.apache.metamodel.util;
 
 /**
- * Interface for aggregate builders which allows for an iterative approach to
- * evaluating aggregates.
+ * Interface for aggregate builders which allows for an iterative approach to evaluating aggregates.
  * 
- * @param <E>
- *            the aggregate result type
+ * @param <E> the aggregate result type
  */
 public interface AggregateBuilder<E> {
 

@@ -40,8 +40,7 @@ public class ConvertersTest extends TestCase {
         final Table table = decoratedDataContext.getDefaultSchema().getTables().get(0);
         Map<Column, TypeConverter<?, ?>> converters = Converters.autoDetectConverters(decoratedDataContext, table, 2);
         assertEquals(1, converters.size());
-        assertEquals(
-                "[Column[name=foo,columnNumber=0,type=VARCHAR,nullable=null,nativeType=null,columnSize=null]]",
+        assertEquals("[Column[name=foo,columnNumber=0,type=VARCHAR,nullable=null,nativeType=null,columnSize=null]]",
                 converters.keySet().toString());
         assertEquals(StringToIntegerConverter.class, converters.values().iterator().next().getClass());
 
@@ -125,12 +124,12 @@ public class ConvertersTest extends TestCase {
         assertTrue(ds.next());
         assertEquals(4, ds.getRow().getValue(0));
         assertFalse(ds.next());
-        
+
         assertEquals(4, physicalValuesList.size());
         for (Object[] physicalValues : physicalValuesList) {
             assertEquals("foo is expected to be string", String.class, physicalValues[0].getClass());
         }
-        
+
         dc.executeUpdate(new UpdateScript() {
             @Override
             public void run(UpdateCallback callback) {
@@ -138,7 +137,7 @@ public class ConvertersTest extends TestCase {
                 callback.update(table).where("foo").lessThan(3).value("foo", 100).execute();
             }
         });
-        
+
         ds = dc.executeQuery(q);
         assertTrue(ds.next());
         assertEquals(3, ds.getRow().getValue(0));
@@ -151,7 +150,7 @@ public class ConvertersTest extends TestCase {
         assertTrue(ds.next());
         assertEquals(100, ds.getRow().getValue(0));
         assertFalse(ds.next());
-        
+
         assertEquals(5, physicalValuesList.size());
         for (Object[] physicalValues : physicalValuesList) {
             assertEquals("foo is expected to be string", String.class, physicalValues[0].getClass());

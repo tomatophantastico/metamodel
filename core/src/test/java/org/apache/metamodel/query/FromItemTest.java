@@ -40,15 +40,13 @@ public class FromItemTest extends MetaModelTestCase {
         fromItem.setAlias("f");
         assertEquals("foobar f", fromItem.toString());
 
-        assertEquals("SELECT COUNT(*) FROM foobar", new Query().selectCount().from(
-                "foobar").toString());
+        assertEquals("SELECT COUNT(*) FROM foobar", new Query().selectCount().from("foobar").toString());
     }
 
     public void testRelationJoinToString() throws Exception {
         Table contributorTable = _schema.getTableByName(TABLE_CONTRIBUTOR);
         Table roleTable = _schema.getTableByName(TABLE_ROLE);
-        Collection<Relationship> relationships = roleTable
-                .getRelationships(contributorTable);
+        Collection<Relationship> relationships = roleTable.getRelationships(contributorTable);
         FromItem from = new FromItem(JoinType.INNER, relationships.iterator().next());
         assertEquals(
                 "MetaModelSchema.contributor INNER JOIN MetaModelSchema.role ON contributor.contributor_id = role.contributor_id",
@@ -69,8 +67,7 @@ public class FromItemTest extends MetaModelTestCase {
         Table projectTable = _schema.getTableByName(TABLE_PROJECT);
         Table roleTable = _schema.getTableByName(TABLE_ROLE);
 
-        Column projectIdColumn = projectTable
-                .getColumnByName(COLUMN_PROJECT_PROJECT_ID);
+        Column projectIdColumn = projectTable.getColumnByName(COLUMN_PROJECT_PROJECT_ID);
 
         FromItem leftSide = new FromItem(projectTable);
         leftSide.setAlias("a");
@@ -82,13 +79,11 @@ public class FromItemTest extends MetaModelTestCase {
         FromItem subQueryFrom = new FromItem(roleTable);
         subQuery.from(subQueryFrom);
         subQuery.select(columns);
-        SelectItem subQuerySelectItem = subQuery.getSelectClause().getItems()
-                .get(1);
+        SelectItem subQuerySelectItem = subQuery.getSelectClause().getItems().get(1);
         FromItem rightSide = new FromItem(subQuery);
         rightSide.setAlias("b");
         SelectItem[] rightOn = new SelectItem[] { subQuerySelectItem };
-        FromItem from = new FromItem(JoinType.LEFT, leftSide, rightSide,
-                leftOn, rightOn);
+        FromItem from = new FromItem(JoinType.LEFT, leftSide, rightSide, leftOn, rightOn);
 
         assertEquals(
                 "MetaModelSchema.project a LEFT JOIN (SELECT role.contributor_id, role.project_id, role.name FROM MetaModelSchema.role) b ON a.project_id = b.project_id",
@@ -104,10 +99,10 @@ public class FromItemTest extends MetaModelTestCase {
                 "MetaModelSchema.project a LEFT JOIN (SELECT c.contributor_id, c.project_id AS foobar, c.name FROM MetaModelSchema.role c) b ON a.project_id = b.foobar",
                 from.toString());
     }
-    
+
     public void testCompoundJoin() {
         final Schema schema = getExampleSchema();
-   
+
         final QueryPostprocessDataContext dc = new QueryPostprocessDataContext() {
             @Override
             protected DataSet materializeMainSchemaTable(Table table, List<Column> columns, int maxRows) {
@@ -124,8 +119,11 @@ public class FromItemTest extends MetaModelTestCase {
                 return schema;
             }
         };
- 
-        Query query = dc.parseQuery("SELECT c.contributor_id,p.project_id from contributor c INNER JOIN role r ON c.contributor_id=r.contributor_id INNER JOIN project p ON p.project_id=r.project_id");
-        assertEquals("SELECT c.contributor_id, p.project_id FROM MetaModelSchema.contributor c INNER JOIN MetaModelSchema.role r ON c.contributor_id = r.contributor_id INNER JOIN MetaModelSchema.project p ON p.project_id = r.project_id", query.toSql());
+
+        Query query = dc.parseQuery(
+                "SELECT c.contributor_id,p.project_id from contributor c INNER JOIN role r ON c.contributor_id=r.contributor_id INNER JOIN project p ON p.project_id=r.project_id");
+        assertEquals(
+                "SELECT c.contributor_id, p.project_id FROM MetaModelSchema.contributor c INNER JOIN MetaModelSchema.role r ON c.contributor_id = r.contributor_id INNER JOIN MetaModelSchema.project p ON p.project_id = r.project_id",
+                query.toSql());
     }
 }

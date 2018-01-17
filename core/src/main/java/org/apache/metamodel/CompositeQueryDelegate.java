@@ -30,14 +30,12 @@ final class CompositeQueryDelegate extends QueryPostprocessDelegate {
 
     private final Function<Table, DataContext> _dataContextRetrievalFunction;
 
-    public CompositeQueryDelegate(
-            Function<Table, DataContext> dataContextRetrievalFunction) {
+    public CompositeQueryDelegate(Function<Table, DataContext> dataContextRetrievalFunction) {
         _dataContextRetrievalFunction = dataContextRetrievalFunction;
     }
 
     @Override
-    protected DataSet materializeMainSchemaTable(Table table, List<Column> columns,
-            int maxRows) {
+    protected DataSet materializeMainSchemaTable(Table table, List<Column> columns, int maxRows) {
         // find the appropriate datacontext to execute a simple
         // table materialization query
         final DataContext dc = _dataContextRetrievalFunction.apply(table);

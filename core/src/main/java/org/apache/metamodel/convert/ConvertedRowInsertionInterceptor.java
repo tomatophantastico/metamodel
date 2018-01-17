@@ -28,9 +28,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * A {@link RowInsertionInterceptor} used for intercepting values in
- * {@link RowInsertionBuilder}s that need to be converted, according to a set of
- * {@link TypeConverter}s.
+ * A {@link RowInsertionInterceptor} used for intercepting values in {@link RowInsertionBuilder}s that need to be
+ * converted, according to a set of {@link TypeConverter}s.
  * 
  * @see TypeConverter
  * @see Converters

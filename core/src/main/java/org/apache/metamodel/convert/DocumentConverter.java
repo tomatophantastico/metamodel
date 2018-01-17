@@ -27,14 +27,13 @@ import org.apache.metamodel.data.Row;
 import org.apache.metamodel.schema.builder.SchemaBuilder;
 
 /**
- * Object responsible for converting a document ( {@link Map}) into a
- * {@link Row} for a {@link DataSet} that is based on a {@link SchemaBuilder}.
+ * Object responsible for converting a document ( {@link Map}) into a {@link Row} for a {@link DataSet} that is based on
+ * a {@link SchemaBuilder}.
  */
 public interface DocumentConverter {
 
     /**
-     * Converts a {@link Document} into a row with the given
-     * {@link DataSetHeader}.
+     * Converts a {@link Document} into a row with the given {@link DataSetHeader}.
      * 
      * @param document
      * @param header

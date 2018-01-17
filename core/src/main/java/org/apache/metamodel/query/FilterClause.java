@@ -24,12 +24,11 @@ import org.apache.metamodel.MetaModelHelper;
 import org.apache.metamodel.schema.Column;
 
 /**
- * Represents a clause of filters in the query. This type of clause is used for
- * the WHERE and HAVING parts of an SQL query.
+ * Represents a clause of filters in the query. This type of clause is used for the WHERE and HAVING parts of an SQL
+ * query.
  * 
- * Each provided FilterItem will be evaluated with the logical AND operator,
- * which requires that all filters are applied. Alternatively, if you wan't to
- * use an OR operator, then use the appropriate constructor of FilterItem to
+ * Each provided FilterItem will be evaluated with the logical AND operator, which requires that all filters are
+ * applied. Alternatively, if you wan't to use an OR operator, then use the appropriate constructor of FilterItem to
  * create a composite filter.
  * 
  * @see FilterItem
@@ -48,8 +47,7 @@ public class FilterClause extends AbstractQueryClause<FilterItem> {
     }
 
     /**
-     * Traverses the items and evaluates whether or not the given column is
-     * referenced in either of them.
+     * Traverses the items and evaluates whether or not the given column is referenced in either of them.
      * 
      * @param column
      * @return true if the column is referenced in the clause or false if not

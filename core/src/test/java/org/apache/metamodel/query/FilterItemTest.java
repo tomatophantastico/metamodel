@@ -18,8 +18,11 @@
  */
 package org.apache.metamodel.query;
 
-import com.google.common.collect.Lists;
-import junit.framework.TestCase;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.metamodel.DataContext;
 import org.apache.metamodel.MetaModelException;
@@ -36,15 +39,12 @@ import org.apache.metamodel.schema.ColumnType;
 import org.apache.metamodel.schema.MutableColumn;
 import org.apache.metamodel.schema.MutableSchema;
 import org.apache.metamodel.schema.MutableTable;
-import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
 import org.apache.metamodel.schema.TableType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.google.common.collect.Lists;
+
+import junit.framework.TestCase;
 
 public class FilterItemTest extends TestCase {
 
@@ -62,8 +62,8 @@ public class FilterItemTest extends TestCase {
         Column col1 = new MutableColumn("Col1", ColumnType.VARCHAR);
         assertEquals("SELECT Col1 WHERE foobar", new Query().select(col1).where(filterItem).toString());
 
-        assertEquals("SELECT Col1 WHERE YEAR(Col1) = 2008", new Query().select(col1).where("YEAR(Col1) = 2008")
-                .toString());
+        assertEquals("SELECT Col1 WHERE YEAR(Col1) = 2008",
+                new Query().select(col1).where("YEAR(Col1) = 2008").toString());
     }
 
     public void testToSqlWhereItem() throws Exception {
@@ -120,8 +120,8 @@ public class FilterItemTest extends TestCase {
 
     public void testToStringTimeStamp() throws Exception {
         Column timestampColumn = new MutableColumn("TimestampCol", ColumnType.TIMESTAMP);
-        FilterItem c = new FilterItem(new SelectItem(timestampColumn), OperatorType.LESS_THAN,
-                "2000-12-31 02:30:05.007");
+        FilterItem c =
+                new FilterItem(new SelectItem(timestampColumn), OperatorType.LESS_THAN, "2000-12-31 02:30:05.007");
         assertEquals("TimestampCol < TIMESTAMP '2000-12-31 02:30:05'", c.toString());
 
         c = new FilterItem(new SelectItem(timestampColumn), OperatorType.LESS_THAN, "2000-12-31 02:30:05");
@@ -170,7 +170,7 @@ public class FilterItemTest extends TestCase {
         Column col2 = new MutableColumn("Col2", ColumnType.DECIMAL);
         SelectItem s1 = new SelectItem(col1);
         SelectItem s2 = new SelectItem(col2);
-        List<SelectItem> selectItems = Lists.newArrayList( s1, s2 );
+        List<SelectItem> selectItems = Lists.newArrayList(s1, s2);
         CachingDataSetHeader header = new CachingDataSetHeader(selectItems);
 
         FilterItem c = new FilterItem(s1, OperatorType.EQUALS_TO, null);
@@ -280,8 +280,7 @@ public class FilterItemTest extends TestCase {
      * Tests that the following (general) rules apply to the object:
      * <p/>
      * <li>the hashcode is the same when run twice on an unaltered object</li>
-     * <li>if o1.equals(o2) then this condition must be true: o1.hashCode() ==
-     * 02.hashCode()
+     * <li>if o1.equals(o2) then this condition must be true: o1.hashCode() == 02.hashCode()
      */
     public void testEqualsAndHashCode() throws Exception {
         Column col1 = new MutableColumn("Col1", ColumnType.BIT);
@@ -374,15 +373,15 @@ public class FilterItemTest extends TestCase {
 
             @Override
             public DataSet materializeMainSchemaTable(Table table, List<Column> columns, int maxRows) {
-                // we expect 3 columns to be materialized because the query has column references in both SELECT and WHERE clause
+                // we expect 3 columns to be materialized because the query has column references in both SELECT and
+                // WHERE clause
                 assertEquals(3, columns.size());
                 assertEquals("column_number", columns.get(0).getName());
                 assertEquals("name", columns.get(1).getName());
                 assertEquals("role", columns.get(2).getName());
 
                 DataSetHeader header = new CachingDataSetHeader(Lists.newArrayList(col1, col2, col3).stream()
-                        .map(SelectItem::new)
-                        .collect(Collectors.toList()));
+                        .map(SelectItem::new).collect(Collectors.toList()));
                 List<Row> rows = new LinkedList<Row>();
                 rows.add(new DefaultRow(header, new Object[] { "foo", "bar", 1 }));
                 rows.add(new DefaultRow(header, new Object[] { "kasper", "developer", 2 }));
@@ -400,7 +399,7 @@ public class FilterItemTest extends TestCase {
             }
 
             @Override
-            protected Schema getMainSchema() throws MetaModelException {
+            protected MutableSchema getMainSchema() throws MetaModelException {
                 return schema;
             }
         };
@@ -414,8 +413,8 @@ public class FilterItemTest extends TestCase {
     }
 
     public void testInOperandSql() throws Exception {
-        SelectItem selectItem = new SelectItem(new MutableColumn("foo", ColumnType.VARCHAR, null, 1, null, null, true,
-                null, false, null));
+        SelectItem selectItem = new SelectItem(
+                new MutableColumn("foo", ColumnType.VARCHAR, null, 1, null, null, true, null, false, null));
         Object operand = new String[] { "foo", "bar" };
         assertEquals("foo IN ('foo' , 'bar')", new FilterItem(selectItem, OperatorType.IN, operand).toSql());
 
@@ -435,7 +434,8 @@ public class FilterItemTest extends TestCase {
         assertEquals("foo NOT IN ('foo' , 'bar')", new FilterItem(selectItem, OperatorType.NOT_IN, operand).toSql());
 
         operand = Arrays.asList("foo", "bar", "baz");
-        assertEquals("foo NOT IN ('foo' , 'bar' , 'baz')", new FilterItem(selectItem, OperatorType.NOT_IN, operand).toSql());
+        assertEquals("foo NOT IN ('foo' , 'bar' , 'baz')",
+                new FilterItem(selectItem, OperatorType.NOT_IN, operand).toSql());
 
         operand = "foo";
         assertEquals("foo NOT IN ('foo')", new FilterItem(selectItem, OperatorType.NOT_IN, operand).toSql());
@@ -458,8 +458,8 @@ public class FilterItemTest extends TestCase {
     }
 
     public void testInOperandEvaluate() throws Exception {
-        SelectItem selectItem = new SelectItem(new MutableColumn("foo", ColumnType.VARCHAR, null, 1, null, null, true,
-                null, false, null));
+        SelectItem selectItem = new SelectItem(
+                new MutableColumn("foo", ColumnType.VARCHAR, null, 1, null, null, true, null, false, null));
         Object operand = new String[] { "foo", "bar" };
 
         FilterItem filterItem = new FilterItem(selectItem, OperatorType.IN, operand);

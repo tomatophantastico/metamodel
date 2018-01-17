@@ -21,8 +21,7 @@ package org.apache.metamodel.util;
 import java.util.Calendar;
 
 /**
- * Provides a handy and type-safe enum around the months otherwise defined as
- * int constants in java.util.Calendar.
+ * Provides a handy and type-safe enum around the months otherwise defined as int constants in java.util.Calendar.
  */
 public enum Month implements HasName {
 

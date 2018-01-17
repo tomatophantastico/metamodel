@@ -65,8 +65,7 @@ public abstract class LazyRef<E> implements Supplier<E> {
     /**
      * Gets whether the lazy loaded reference has been loaded or not.
      * 
-     * @return a boolean indicating whether or not the reference has been loaded
-     *         or not
+     * @return a boolean indicating whether or not the reference has been loaded or not
      */
     public boolean isFetched() {
         return _fetched.get();
@@ -82,13 +81,10 @@ public abstract class LazyRef<E> implements Supplier<E> {
     }
 
     /**
-     * Requests an asynchronous load of the lazy reference. If not already
-     * loaded, this will cause another thread to load the reference, typically
-     * to make it immediately available for later evaluation.
+     * Requests an asynchronous load of the lazy reference. If not already loaded, this will cause another thread to
+     * load the reference, typically to make it immediately available for later evaluation.
      * 
-     * @param errorAction
-     *            an optional error action to invoke if an exception is thrown
-     *            during loading of the reference.
+     * @param errorAction an optional error action to invoke if an exception is thrown during loading of the reference.
      */
     public void requestLoad(final Action<Throwable> errorAction) {
         if (!isFetched()) {
@@ -115,9 +111,8 @@ public abstract class LazyRef<E> implements Supplier<E> {
     }
 
     /**
-     * Requests an asynchronous load of the lazy reference. If not already
-     * loaded, this will cause another thread to load the reference, typically
-     * to make it immediately available for later evaluation.
+     * Requests an asynchronous load of the lazy reference. If not already loaded, this will cause another thread to
+     * load the reference, typically to make it immediately available for later evaluation.
      */
     public void requestLoad() {
         requestLoad(null);

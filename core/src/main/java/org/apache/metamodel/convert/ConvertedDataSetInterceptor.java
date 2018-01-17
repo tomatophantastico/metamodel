@@ -28,8 +28,8 @@ import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.schema.Column;
 
 /**
- * A {@link DataSetInterceptor} used for intercepting values in {@link DataSet}s
- * that need to be converted, according to a set of {@link TypeConverter}s.
+ * A {@link DataSetInterceptor} used for intercepting values in {@link DataSet}s that need to be converted, according to
+ * a set of {@link TypeConverter}s.
  * 
  * @see TypeConverter
  * @see Converters
@@ -42,8 +42,7 @@ public class ConvertedDataSetInterceptor implements DataSetInterceptor, HasReadT
         this(new HashMap<Column, TypeConverter<?, ?>>());
     }
 
-    public ConvertedDataSetInterceptor(
-            Map<Column, TypeConverter<?, ?>> converters) {
+    public ConvertedDataSetInterceptor(Map<Column, TypeConverter<?, ?>> converters) {
         _converters = converters;
     }
 
@@ -55,7 +54,7 @@ public class ConvertedDataSetInterceptor implements DataSetInterceptor, HasReadT
             _converters.put(column, converter);
         }
     }
-    
+
     protected Map<Column, TypeConverter<?, ?>> getConverters(DataSet dataSet) {
         return _converters;
     }

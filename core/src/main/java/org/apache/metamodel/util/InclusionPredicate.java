@@ -22,8 +22,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 /**
- * A predicate that uses an inclusion list ("white list") of elements to
- * determine whether to evaluate true or false.
+ * A predicate that uses an inclusion list ("white list") of elements to determine whether to evaluate true or false.
  * 
  * @param <E>
  */
@@ -42,7 +41,7 @@ public class InclusionPredicate<E> implements java.util.function.Predicate<E> {
         }
         return false;
     }
-    
+
     public Collection<E> getInclusionList() {
         return Collections.unmodifiableCollection(_inclusionList);
     }

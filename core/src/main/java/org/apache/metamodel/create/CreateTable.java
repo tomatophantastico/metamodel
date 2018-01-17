@@ -29,12 +29,10 @@ import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.TableType;
 
 /**
- * Represents a single CREATE TABLE operation to be applied to a
- * {@link UpdateableDataContext}. Instead of providing a custom implementation
- * of the {@link UpdateScript} interface, one can use this pre-built create
- * table implementation. Some {@link DataContext}s may even optimize
- * specifically based on the knowledge that there will only be a single table
- * created.
+ * Represents a single CREATE TABLE operation to be applied to a {@link UpdateableDataContext}. Instead of providing a
+ * custom implementation of the {@link UpdateScript} interface, one can use this pre-built create table implementation.
+ * Some {@link DataContext}s may even optimize specifically based on the knowledge that there will only be a single
+ * table created.
  */
 public final class CreateTable implements UpdateScript {
 

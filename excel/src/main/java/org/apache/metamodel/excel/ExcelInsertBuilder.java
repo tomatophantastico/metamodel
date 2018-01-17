@@ -31,14 +31,15 @@ import org.apache.metamodel.schema.Table;
 import org.apache.metamodel.util.LazyRef;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 
 /**
  * {@link RowInsertionBuilder} for excel spreadsheets.
  */
-final class ExcelInsertBuilder extends
-        AbstractRowInsertionBuilder<ExcelUpdateCallback> {
+final class ExcelInsertBuilder extends AbstractRowInsertionBuilder<ExcelUpdateCallback> {
 
     public ExcelInsertBuilder(ExcelUpdateCallback updateCallback, Table table) {
         super(updateCallback, table);
@@ -84,10 +85,9 @@ final class ExcelInsertBuilder extends
                         protected Font fetch() {
                             return getUpdateCallback().createFont();
                         }
-
                     };
                     if (style.isBold()) {
-                        font.get().setBoldweight(Font.BOLDWEIGHT_BOLD);
+                        font.get().setBold(true);
                     }
                     if (style.isItalic()) {
                         font.get().setItalic(true);
@@ -105,32 +105,26 @@ final class ExcelInsertBuilder extends
                     }
                     Color foregroundColor = style.getForegroundColor();
                     if (foregroundColor != null) {
-                        short index = getUpdateCallback().getColorIndex(
-                                foregroundColor);
+                        short index = getUpdateCallback().getColorIndex(foregroundColor);
                         font.get().setColor(index);
                     }
                     if (font.isFetched()) {
                         cellStyle.get().setFont(font.get());
                     }
                     if (style.getAlignment() != null) {
-                        cellStyle.get().setAlignment(
-                                getAlignment(style.getAlignment()));
+                        cellStyle.get().setAlignment(getAlignment(style.getAlignment()));
                     }
 
                     final Color backgroundColor = style.getBackgroundColor();
                     if (backgroundColor != null) {
-                        cellStyle.get().setFillPattern(
-                                CellStyle.SOLID_FOREGROUND);
-                        cellStyle.get().setFillForegroundColor(
-                                getUpdateCallback().getColorIndex(
-                                        backgroundColor));
+                        cellStyle.get().setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                        cellStyle.get().setFillForegroundColor(getUpdateCallback().getColorIndex(backgroundColor));
                     }
                 }
 
                 if (value instanceof Date) {
                     if (cellStyle.isFetched()) {
-                        cellStyle.get().setDataFormat(
-                                getUpdateCallback().getDateCellFormat());
+                        cellStyle.get().setDataFormat(getUpdateCallback().getDateCellFormat());
                     } else {
                         cellStyle = new LazyRef<CellStyle>() {
                             @Override
@@ -161,19 +155,18 @@ final class ExcelInsertBuilder extends
         return d.intValue();
     }
 
-    private short getAlignment(TextAlignment alignment) {
+    private HorizontalAlignment getAlignment(TextAlignment alignment) {
         switch (alignment) {
         case LEFT:
-            return CellStyle.ALIGN_LEFT;
+            return HorizontalAlignment.LEFT;
         case RIGHT:
-            return CellStyle.ALIGN_RIGHT;
+            return HorizontalAlignment.RIGHT;
         case CENTER:
-            return CellStyle.ALIGN_CENTER;
+            return HorizontalAlignment.CENTER;
         case JUSTIFY:
-            return CellStyle.ALIGN_JUSTIFY;
+            return HorizontalAlignment.JUSTIFY;
         default:
-            throw new IllegalArgumentException("Unknown alignment type: "
-                    + alignment);
+            throw new IllegalArgumentException("Unknown alignment type: " + alignment);
         }
     }
 }

@@ -19,8 +19,8 @@
 package org.apache.metamodel;
 
 /**
- * Specialized {@link MetaModelException} thrown to indicate that establishing
- * the connection to the underlying data store of an {@link DataContext} failed.
+ * Specialized {@link MetaModelException} thrown to indicate that establishing the connection to the underlying data
+ * store of an {@link DataContext} failed.
  */
 public class ConnectionException extends MetaModelException {
 

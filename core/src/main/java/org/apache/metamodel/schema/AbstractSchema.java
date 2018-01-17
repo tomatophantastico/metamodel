@@ -29,8 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Abstract implementation of the {@link Schema} interface. Implements most
- * common and trivial methods.
+ * Abstract implementation of the {@link Schema} interface. Implements most common and trivial methods.
  */
 public abstract class AbstractSchema implements Schema {
 
@@ -49,8 +48,7 @@ public abstract class AbstractSchema implements Schema {
 
     @Override
     public Collection<Relationship> getRelationships() {
-        return getTables().stream()
-                .flatMap(tab -> tab.getRelationships().stream())
+        return getTables().stream().flatMap(tab -> tab.getRelationships().stream())
                 .collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
@@ -81,9 +79,7 @@ public abstract class AbstractSchema implements Schema {
 
     @Override
     public final List<Table> getTables(final TableType type) {
-        return  getTables().stream()
-                .filter(table -> table.getType().equals(type))
-                .collect(Collectors.toList());
+        return getTables().stream().filter(table -> table.getType().equals(type)).collect(Collectors.toList());
     }
 
     @Override
@@ -124,9 +120,7 @@ public abstract class AbstractSchema implements Schema {
 
     @Override
     public final List<String> getTableNames() {
-        return getTables().stream()
-                .map(table -> table.getName())
-                .collect(Collectors.toList());
+        return getTables().stream().map(table -> table.getName()).collect(Collectors.toList());
     }
 
     @Override

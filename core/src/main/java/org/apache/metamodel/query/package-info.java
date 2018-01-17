@@ -20,4 +20,3 @@
  * API for querying
  */
 package org.apache.metamodel.query;
-

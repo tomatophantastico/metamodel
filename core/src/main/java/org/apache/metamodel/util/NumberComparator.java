@@ -28,8 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Comparator that can compare numbers of various kinds (short, integer, float,
- * double etc)
+ * Comparator that can compare numbers of various kinds (short, integer, float, double etc)
  */
 public final class NumberComparator implements Comparator<Object> {
 
@@ -95,12 +94,11 @@ public final class NumberComparator implements Comparator<Object> {
     }
 
     /**
-     * Determines if a particular number is an integer-type number such as
-     * {@link Byte}, {@link Short}, {@link Integer}, {@link Long},
-     * {@link AtomicInteger} or {@link AtomicLong}.
+     * Determines if a particular number is an integer-type number such as {@link Byte}, {@link Short}, {@link Integer},
+     * {@link Long}, {@link AtomicInteger} or {@link AtomicLong}.
      * 
-     * Note that {@link BigInteger} is not included in this set of number
-     * classes since treatment of {@link BigInteger} requires different logic.
+     * Note that {@link BigInteger} is not included in this set of number classes since treatment of {@link BigInteger}
+     * requires different logic.
      * 
      * @param n
      * @return

@@ -21,10 +21,9 @@ package org.apache.metamodel.intercept;
 import org.apache.metamodel.drop.TableDropBuilder;
 
 /**
- * An {@link Interceptor} for {@link TableDropBuilder}s, which allows for
- * intercepting "drop table" operations before they are executed.
+ * An {@link Interceptor} for {@link TableDropBuilder}s, which allows for intercepting "drop table" operations before
+ * they are executed.
  */
-public interface TableDropInterceptor extends
-        Interceptor<TableDropBuilder> {
+public interface TableDropInterceptor extends Interceptor<TableDropBuilder> {
 
 }

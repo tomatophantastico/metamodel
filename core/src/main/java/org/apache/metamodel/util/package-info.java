@@ -20,4 +20,3 @@
  * Utilities and convenient classes
  */
 package org.apache.metamodel.util;
-

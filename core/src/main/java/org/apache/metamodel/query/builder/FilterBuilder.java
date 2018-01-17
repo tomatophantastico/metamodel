@@ -26,8 +26,7 @@ import org.apache.metamodel.schema.Column;
 /**
  * Interface for builder callbacks that "respond" to filter condition building.
  *
- * @param <B>
- *            the builder type to return once filter has been created.
+ * @param <B> the builder type to return once filter has been created.
  */
 public interface FilterBuilder<B> {
 

@@ -20,4 +20,3 @@
  * Root package for MetaModel
  */
 package org.apache.metamodel;
-

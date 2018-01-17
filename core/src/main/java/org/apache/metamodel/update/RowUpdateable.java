@@ -38,8 +38,8 @@ public interface RowUpdateable {
      * @throws IllegalStateException
      * @throws UnsupportedOperationException
      */
-    public RowUpdationBuilder update(Table table) throws IllegalArgumentException, IllegalStateException,
-            UnsupportedOperationException;
+    public RowUpdationBuilder update(Table table)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 
     /**
      * Initiates a row updation builder.
@@ -50,8 +50,8 @@ public interface RowUpdateable {
      * @throws IllegalStateException
      * @throws UnsupportedOperationException
      */
-    public RowUpdationBuilder update(String tableName) throws IllegalArgumentException, IllegalStateException,
-            UnsupportedOperationException;
+    public RowUpdationBuilder update(String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 
     /**
      * Initiates a row updation builder.
@@ -63,6 +63,6 @@ public interface RowUpdateable {
      * @throws IllegalStateException
      * @throws UnsupportedOperationException
      */
-    public RowUpdationBuilder update(String schemaName, String tableName) throws IllegalArgumentException,
-            IllegalStateException, UnsupportedOperationException;
+    public RowUpdationBuilder update(String schemaName, String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 }

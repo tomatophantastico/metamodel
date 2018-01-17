@@ -26,8 +26,7 @@ import org.apache.metamodel.query.ScalarFunction;
 import org.apache.metamodel.schema.Column;
 
 /**
- * Represents a built query that is satisfied and ready for querying or further
- * building.
+ * Represents a built query that is satisfied and ready for querying or further building.
  * 
  * @param <B>
  */
@@ -38,14 +37,11 @@ public interface SatisfiedQueryBuilder<B extends SatisfiedQueryBuilder<?>> exten
     public SatisfiedSelectBuilder<B> select(Column... columns);
 
     /**
-     * Sets the offset (number of rows to skip) of the query that is being
-     * built.
+     * Sets the offset (number of rows to skip) of the query that is being built.
      * 
-     * Note that this number is a 0-based variant of invoking
-     * {@link #firstRow(int)}.
+     * Note that this number is a 0-based variant of invoking {@link #firstRow(int)}.
      * 
-     * @param offset
-     *            the number of rows to skip
+     * @param offset the number of rows to skip
      * @return
      */
     public SatisfiedQueryBuilder<B> offset(int offset);
@@ -87,9 +83,9 @@ public interface SatisfiedQueryBuilder<B extends SatisfiedQueryBuilder<?>> exten
     public WhereBuilder<B> where(Column column);
 
     public WhereBuilder<B> where(String columnName);
-    
+
     public WhereBuilder<B> where(ScalarFunction function, Column column);
-    
+
     public WhereBuilder<B> where(ScalarFunction function, String columnName);
 
     public SatisfiedQueryBuilder<B> where(FilterItem... filters);
@@ -101,17 +97,16 @@ public interface SatisfiedQueryBuilder<B extends SatisfiedQueryBuilder<?>> exten
     public SatisfiedOrderByBuilder<B> orderBy(Column column);
 
     public GroupedQueryBuilder groupBy(String columnName);
-    
-    public GroupedQueryBuilder groupBy(String ... columnNames);
+
+    public GroupedQueryBuilder groupBy(String... columnNames);
 
     public GroupedQueryBuilder groupBy(Column column);
 
     public GroupedQueryBuilder groupBy(Column... columns);
 
     /**
-     * Gets the built query as a {@link Query} object. Typically the returned
-     * query will be a clone of the built query to prevent conflicting
-     * mutations.
+     * Gets the built query as a {@link Query} object. Typically the returned query will be a clone of the built query
+     * to prevent conflicting mutations.
      * 
      * @return a {@link Query} object representing the built query.
      */

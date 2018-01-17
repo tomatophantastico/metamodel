@@ -25,12 +25,12 @@ public class MonthTest extends TestCase {
     public void testGetName() throws Exception {
         assertEquals("December", Month.DECEMBER.getName());
     }
-    
+
     public void testNext() throws Exception {
         assertEquals(Month.APRIL, Month.MARCH.next());
         assertEquals(Month.JANUARY, Month.DECEMBER.next());
     }
-    
+
     public void testPrevious() throws Exception {
         assertEquals(Month.FEBRUARY, Month.MARCH.previous());
         assertEquals(Month.DECEMBER, Month.JANUARY.previous());

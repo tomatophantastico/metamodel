@@ -21,8 +21,7 @@ package org.apache.metamodel.util;
 /**
  * Abstract {@link AggregateBuilder} that works on numbers.
  * 
- * This will skip nulls and empty strings, but otherwise try to convert to
- * numbers.
+ * This will skip nulls and empty strings, but otherwise try to convert to numbers.
  *
  * @param <N>
  */

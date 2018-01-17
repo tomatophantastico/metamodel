@@ -209,11 +209,13 @@ public class AbstractDataContextTest extends TestCase {
     public void testGetSchemas() throws Exception {
         MyDataContext dc = new MyDataContext();
         List<Schema> schemas = dc.getSchemas();
-        assertEquals("[Schema[name=barfoo], Schema[name=foo.bar], Schema[name=foobar]]", Arrays.toString(schemas.toArray()));
+        assertEquals("[Schema[name=barfoo], Schema[name=foo.bar], Schema[name=foobar]]",
+                Arrays.toString(schemas.toArray()));
 
         dc.refreshSchemas();
         schemas = dc.getSchemas();
-        assertEquals("[Schema[name=barfoo], Schema[name=foo.bar], Schema[name=foobar]]", Arrays.toString(schemas.toArray()));
+        assertEquals("[Schema[name=barfoo], Schema[name=foo.bar], Schema[name=foobar]]",
+                Arrays.toString(schemas.toArray()));
     }
 
     public void testGetColumnByQualifiedLabelWithNameOverlaps() throws Exception {
@@ -226,7 +228,7 @@ public class AbstractDataContextTest extends TestCase {
 
             @Override
             protected List<String> getSchemaNamesInternal() {
-                return Lists.newArrayList( "sch" );
+                return Lists.newArrayList("sch");
             }
 
             @Override
