@@ -26,8 +26,7 @@ public class MutableColumnTest extends TestCase {
      * Tests that the following (general) rules apply to the object:
      * 
      * <li>the hashcode is the same when run twice on an unaltered object</li>
-     * <li>if o1.equals(o2) then this condition must be true: o1.hashCode() ==
-     * 02.hashCode()
+     * <li>if o1.equals(o2) then this condition must be true: o1.hashCode() == 02.hashCode()
      */
     public void testEqualsAndHashCode() throws Exception {
         Column column1 = new MutableColumn("foo");
@@ -60,7 +59,6 @@ public class MutableColumnTest extends TestCase {
         assertEquals("FOO_SCHEMA.FOO_TABLE.FOO_COLUMN", c.getQualifiedLabel());
 
         s.setName("new_schema_name");
-        assertEquals("new_schema_name.FOO_TABLE.FOO_COLUMN",
-                c.getQualifiedLabel());
+        assertEquals("new_schema_name.FOO_TABLE.FOO_COLUMN", c.getQualifiedLabel());
     }
 }

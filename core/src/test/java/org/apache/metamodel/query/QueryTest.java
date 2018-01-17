@@ -95,8 +95,8 @@ public class QueryTest extends MetaModelTestCase {
         fromContributor.setAlias("a");
 
         Query q = new Query();
-        q.select(nameColumn, countryColumn).from(fromContributor).orderBy(nameColumn)
-                .orderBy(countryColumn, Direction.DESC);
+        q.select(nameColumn, countryColumn).from(fromContributor).orderBy(nameColumn).orderBy(countryColumn,
+                Direction.DESC);
         assertEquals(2, q.getOrderByClause().getItems().size());
         assertEquals("SELECT a.name, a.country FROM MetaModelSchema.contributor a ORDER BY a.name ASC, a.country DESC",
                 q.toString());
@@ -106,7 +106,8 @@ public class QueryTest extends MetaModelTestCase {
         Query q1 = new Query();
         Table contributorTable = _schema.getTableByName(TABLE_CONTRIBUTOR);
         Table roleTable = _schema.getTableByName(TABLE_ROLE);
-        FromItem fromItem = new FromItem(JoinType.INNER, contributorTable.getRelationships(roleTable).iterator().next());
+        FromItem fromItem =
+                new FromItem(JoinType.INNER, contributorTable.getRelationships(roleTable).iterator().next());
         q1.from(fromItem);
 
         Column nameColumn = contributorTable.getColumnByName(COLUMN_CONTRIBUTOR_NAME);
@@ -233,7 +234,9 @@ public class QueryTest extends MetaModelTestCase {
         q.having(FunctionType.COUNT, nameColumn, OperatorType.LESS_THAN, 100);
         q.orderBy(ageColumn);
 
-        assertEquals("SELECT sch.tab.age, COUNT(*) FROM sch.tab WHERE sch.tab.age > 18 "
-                + "GROUP BY sch.tab.age HAVING COUNT(sch.tab.name) < 100 ORDER BY sch.tab.age ASC", q.toSql(true));
+        assertEquals(
+                "SELECT sch.tab.age, COUNT(*) FROM sch.tab WHERE sch.tab.age > 18 "
+                        + "GROUP BY sch.tab.age HAVING COUNT(sch.tab.name) < 100 ORDER BY sch.tab.age ASC",
+                q.toSql(true));
     }
 }

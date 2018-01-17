@@ -63,8 +63,7 @@ public class InferentialTableBuilder implements TableBuilder {
     }
 
     /**
-     * Gets the number of observations that this table builder is basing it's
-     * inference on.
+     * Gets the number of observations that this table builder is basing it's inference on.
      * 
      * @return
      */

@@ -19,9 +19,6 @@
 package org.apache.metamodel.intercept;
 
 import java.io.File;
-import java.util.Arrays;
-
-import junit.framework.TestCase;
 
 import org.apache.metamodel.UpdateCallback;
 import org.apache.metamodel.UpdateScript;
@@ -32,11 +29,12 @@ import org.apache.metamodel.data.DataSet;
 import org.apache.metamodel.insert.RowInsertionBuilder;
 import org.apache.metamodel.schema.Table;
 
+import junit.framework.TestCase;
+
 public class InterceptionCsvIntegrationTest extends TestCase {
 
     public void testScenario() throws Exception {
-        final UpdateableDataContext source = new CsvDataContext(new File(
-                "target/test_interception_scenario.txt"));
+        final UpdateableDataContext source = new CsvDataContext(new File("target/test_interception_scenario.txt"));
         final InterceptableDataContext dc = Interceptors.intercept(source);
 
         dc.addTableCreationInterceptor(new TableCreationInterceptor() {
@@ -56,28 +54,21 @@ public class InterceptionCsvIntegrationTest extends TestCase {
         dc.executeUpdate(new UpdateScript() {
             @Override
             public void run(UpdateCallback callback) {
-                Table table = callback
-                        .createTable(dc.getDefaultSchema(), "table")
-                        .withColumn("col1").withColumn("col2").execute();
+                Table table = callback.createTable(dc.getDefaultSchema(), "table").withColumn("col1").withColumn("col2")
+                        .execute();
 
-                callback.insertInto(table).value("col1", "hello")
-                        .value("col2", "world").execute();
-                callback.insertInto(table).value("col1", "123")
-                        .value("col2", "567").execute();
+                callback.insertInto(table).value("col1", "hello").value("col2", "world").execute();
+                callback.insertInto(table).value("col1", "123").value("col2", "567").execute();
             }
         });
 
-        assertEquals("[table]",
-                Arrays.toString(dc.getDefaultSchema().getTableNames().toArray()));
+        assertEquals("[table, default_table]", dc.getDefaultSchema().getTableNames().toString());
         Table table = dc.getDefaultSchema().getTables().get(0);
-        assertEquals("[col1, col2, foobar]",
-                Arrays.toString(table.getColumnNames().toArray()));
+        assertEquals("[col1, col2, foobar]", table.getColumnNames().toString());
 
-        DataSet ds = dc.query().from(table).select(table.getColumns())
-                .execute();
+        DataSet ds = dc.query().from(table).select(table.getColumns()).execute();
         assertTrue(ds.next());
-        assertEquals("Row[values=[hello, world, elite!]]", ds.getRow()
-                .toString());
+        assertEquals("Row[values=[hello, world, elite!]]", ds.getRow().toString());
         assertTrue(ds.next());
         assertEquals("Row[values=[123, 567, elite!]]", ds.getRow().toString());
         assertFalse(ds.next());

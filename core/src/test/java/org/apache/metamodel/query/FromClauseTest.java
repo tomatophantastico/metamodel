@@ -33,14 +33,14 @@ public class FromClauseTest extends MetaModelTestCase {
 
         assertNull(query.getFromClause().getItemByReference("foob"));
         assertNull(query.getFromClause().getItemByReference(TABLE_CONTRIBUTOR));
-        assertEquals("MetaModelSchema.contributor foobar", query
-                .getFromClause().getItemByReference("foobar").toString());
+        assertEquals("MetaModelSchema.contributor foobar",
+                query.getFromClause().getItemByReference("foobar").toString());
 
         query = new Query();
         query.from(table);
         assertNull(query.getFromClause().getItemByReference("foob"));
-        assertEquals("MetaModelSchema.contributor", query.getFromClause()
-                .getItemByReference(TABLE_CONTRIBUTOR).toString());
+        assertEquals("MetaModelSchema.contributor",
+                query.getFromClause().getItemByReference(TABLE_CONTRIBUTOR).toString());
         assertNull(query.getFromClause().getItemByReference("foobar"));
     }
 }

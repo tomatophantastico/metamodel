@@ -19,8 +19,7 @@
 package org.apache.metamodel.util;
 
 /**
- * A predicate is a special type of {@link Func}, used typically for
- * inclusion/exclusion criteria.
+ * A predicate is a special type of {@link Func}, used typically for inclusion/exclusion criteria.
  * 
  * @param <E>
  * 

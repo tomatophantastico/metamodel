@@ -26,7 +26,6 @@ import java.util.function.Function;
  * Abstract implementation of many methods in {@link Resource}
  */
 public abstract class AbstractResource implements Resource {
-    
 
     @Override
     public final void read(Action<InputStream> readCallback) {
@@ -39,7 +38,7 @@ public abstract class AbstractResource implements Resource {
             FileHelper.safeClose(in);
         }
     }
-    
+
     @Override
     public <E> E read(Function<InputStream, E> readCallback) throws ResourceException {
         final InputStream in = read();

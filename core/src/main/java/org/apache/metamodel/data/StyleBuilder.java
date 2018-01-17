@@ -46,31 +46,26 @@ public final class StyleBuilder {
     private final Color _defaultBackgroundColor;
 
     /**
-     * Constructs a new {@link StyleBuilder} with the default foreground and
-     * background colors.
+     * Constructs a new {@link StyleBuilder} with the default foreground and background colors.
      */
     public StyleBuilder() {
-        this(createColor((short) 0, (short) 0, (short) 0), createColor(
-                (short) 255, (short) 255, (short) 255));
+        this(createColor((short) 0, (short) 0, (short) 0), createColor((short) 255, (short) 255, (short) 255));
     }
 
     /**
-     * Constructs a new {@link StyleBuilder} with a specified default foreground
-     * and background colors. These colors will be disregarded, if posted to the
-     * foreground and background methods.
+     * Constructs a new {@link StyleBuilder} with a specified default foreground and background colors. These colors
+     * will be disregarded, if posted to the foreground and background methods.
      * 
      * @param defaultForegroundColor
      * @param defaultBackgroundColor
      */
-    public StyleBuilder(Color defaultForegroundColor,
-            Color defaultBackgroundColor) {
+    public StyleBuilder(Color defaultForegroundColor, Color defaultBackgroundColor) {
         _defaultForegroundColor = defaultForegroundColor;
         _defaultBackgroundColor = defaultBackgroundColor;
     }
 
     /**
-     * Resets the state of the built style, which will conceptually match it
-     * with {@link Style#NO_STYLE}.
+     * Resets the state of the built style, which will conceptually match it with {@link Style#NO_STYLE}.
      */
     public void reset() {
         _bold = false;
@@ -89,8 +84,8 @@ public final class StyleBuilder {
      * @return a {@link Style} object based on the build characteristics.
      */
     public Style create() {
-        StyleImpl style = new StyleImpl(_bold, _italic, _underline, _fontSize,
-                _fontSizeUnit, _alignment, _backgroundColor, _foregroundColor);
+        StyleImpl style = new StyleImpl(_bold, _italic, _underline, _fontSize, _fontSizeUnit, _alignment,
+                _backgroundColor, _foregroundColor);
         if (Style.NO_STYLE.equals(style)) {
             return Style.NO_STYLE;
         }
@@ -128,11 +123,9 @@ public final class StyleBuilder {
     }
 
     /**
-     * Creates a Color based on a 6-letter RGB hex color code string, eg.
-     * "000000" for black and "FFFFFF" for white.
+     * Creates a Color based on a 6-letter RGB hex color code string, eg. "000000" for black and "FFFFFF" for white.
      * 
-     * @param rgbColorCode
-     *            a 6-letter RGB hex color code string
+     * @param rgbColorCode a 6-letter RGB hex color code string
      * @return a color representing this color code
      */
     public static Color createColor(String rgbColorCode) {
@@ -140,8 +133,7 @@ public final class StyleBuilder {
         String redParth = rgbColorCode.substring(0, 2);
         String greenParth = rgbColorCode.substring(2, 4);
         String blueParth = rgbColorCode.substring(4, 6);
-        return createColor(Integer.parseInt(redParth, 16),
-                Integer.parseInt(greenParth, 16),
+        return createColor(Integer.parseInt(redParth, 16), Integer.parseInt(greenParth, 16),
                 Integer.parseInt(blueParth, 16));
     }
 
@@ -154,8 +146,7 @@ public final class StyleBuilder {
      * @return a color representing the RGB code
      */
     public static Color createColor(int r, int g, int b) {
-        return createColor(toRgbComponent(r), toRgbComponent(g),
-                toRgbComponent(b));
+        return createColor(toRgbComponent(r), toRgbComponent(g), toRgbComponent(b));
     }
 
     /**
@@ -182,8 +173,7 @@ public final class StyleBuilder {
             r = (256 + r);
         }
         if (r > 255) {
-            throw new IllegalArgumentException(
-                    "RGB component cannot be higher than 255");
+            throw new IllegalArgumentException("RGB component cannot be higher than 255");
         }
         return (short) r;
     }
@@ -191,8 +181,7 @@ public final class StyleBuilder {
     /**
      * Sets the foreground (text) color of the style
      * 
-     * @param rgbColorCode
-     *            a 6-letter hex RGB color code, such as FF0000 (red).
+     * @param rgbColorCode a 6-letter hex RGB color code, such as FF0000 (red).
      * @return the {@link StyleBuilder} self (for cascading method calls)
      */
     public StyleBuilder foreground(String rgbColorCode) {
@@ -202,8 +191,7 @@ public final class StyleBuilder {
     /**
      * Sets the foreground (text) color of the style
      * 
-     * @param rgb
-     *            a triplet array of shorts
+     * @param rgb a triplet array of shorts
      * @return the {@link StyleBuilder} self (for cascading method calls)
      */
     public StyleBuilder foreground(short[] rgb) {
@@ -214,12 +202,9 @@ public final class StyleBuilder {
     /**
      * Sets the foreground (text) color of the style
      * 
-     * @param r
-     *            red amount (0-255)
-     * @param g
-     *            green amount (0-255)
-     * @param b
-     *            blue amount (0-255)
+     * @param r red amount (0-255)
+     * @param g green amount (0-255)
+     * @param b blue amount (0-255)
      * @return the {@link StyleBuilder} self (for cascading method calls)
      */
     public StyleBuilder foreground(int r, int g, int b) {
@@ -229,8 +214,7 @@ public final class StyleBuilder {
     /**
      * Sets the foreground (text) color of the style
      * 
-     * @param color
-     *            the color to use
+     * @param color the color to use
      * @return the {@link StyleBuilder} self (for cascading method calls)
      */
     public StyleBuilder foreground(Color color) {
@@ -245,8 +229,7 @@ public final class StyleBuilder {
     /**
      * Sets the background (fill) color of the style
      * 
-     * @param rgbColorCode
-     *            a 6-letter hex RGB color code, such as FF0000 (red).
+     * @param rgbColorCode a 6-letter hex RGB color code, such as FF0000 (red).
      * @return the {@link StyleBuilder} self (for cascading method calls)
      */
     public StyleBuilder background(String rgbColorCode) {
@@ -256,8 +239,7 @@ public final class StyleBuilder {
     /**
      * Sets the background (fill) color of the style
      * 
-     * @param rgb
-     *            a triplet array of shorts
+     * @param rgb a triplet array of shorts
      * @return the {@link StyleBuilder} self (for cascading method calls)
      */
     public StyleBuilder background(short[] rgb) {
@@ -268,12 +250,9 @@ public final class StyleBuilder {
     /**
      * Sets the background (fill) color of the style
      * 
-     * @param r
-     *            red amount (0-255)
-     * @param g
-     *            green amount (0-255)
-     * @param b
-     *            blue amount (0-255)
+     * @param r red amount (0-255)
+     * @param g green amount (0-255)
+     * @param b blue amount (0-255)
      * @return the {@link StyleBuilder} self (for cascading method calls)
      */
     public StyleBuilder background(int r, int g, int b) {
@@ -283,8 +262,7 @@ public final class StyleBuilder {
     /**
      * Sets the background (fill) color of the style
      * 
-     * @param color
-     *            the color to use
+     * @param color the color to use
      * @return the {@link StyleBuilder} self (for cascading method calls)
      */
     public StyleBuilder background(Color color) {
@@ -299,10 +277,8 @@ public final class StyleBuilder {
     /**
      * Sets the font size of the style
      * 
-     * @param fontSize
-     *            the font size
-     * @param sizeUnit
-     *            the font size unit
+     * @param fontSize the font size
+     * @param sizeUnit the font size unit
      * @return the {@link StyleBuilder} self (for cascading method calls)
      */
     public StyleBuilder fontSize(int fontSize, SizeUnit sizeUnit) {

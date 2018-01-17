@@ -25,7 +25,7 @@ import org.junit.Test;
 public class DelegatingIntrinsicSwitchColumnNamingStrategyTest {
 
     private final ColumnNamingStrategy namingStrategy = ColumnNamingStrategies.defaultStrategy();
-    
+
     @Test
     public void testItIsTheDefaultStrategy() throws Exception {
         assertTrue(namingStrategy instanceof DelegatingIntrinsicSwitchColumnNamingStrategy);

@@ -35,43 +35,33 @@ public final class ImmutableRelationship extends AbstractRelationship implements
     private final List<Column> primaryColumns;
     private final List<Column> foreignColumns;
 
-    public static void create(Relationship origRelationship,
-            ImmutableSchema schema) {
-        ImmutableTable primaryTable = getSimilarTable(
-                origRelationship.getPrimaryTable(), schema);
+    public static void create(Relationship origRelationship, ImmutableSchema schema) {
+        ImmutableTable primaryTable = getSimilarTable(origRelationship.getPrimaryTable(), schema);
         assert primaryTable != null;
-        List<Column> primaryColumns = getSimilarColumns(
-                origRelationship.getPrimaryColumns(), primaryTable);
+        List<Column> primaryColumns = getSimilarColumns(origRelationship.getPrimaryColumns(), primaryTable);
         checkSameTable(primaryColumns);
 
-        ImmutableTable foreignTable = getSimilarTable(
-                origRelationship.getForeignTable(), schema);
+        ImmutableTable foreignTable = getSimilarTable(origRelationship.getForeignTable(), schema);
         assert foreignTable != null;
-        List<Column> foreignColumns = getSimilarColumns(
-                origRelationship.getForeignColumns(), foreignTable);
+        List<Column> foreignColumns = getSimilarColumns(origRelationship.getForeignColumns(), foreignTable);
         checkSameTable(foreignColumns);
 
-        ImmutableRelationship relationship = new ImmutableRelationship(
-                primaryColumns, foreignColumns);
+        ImmutableRelationship relationship = new ImmutableRelationship(primaryColumns, foreignColumns);
         primaryTable.addRelationship(relationship);
         foreignTable.addRelationship(relationship);
     }
 
     private static List<Column> getSimilarColumns(List<Column> columns, Table table) {
-        return columns.stream()
-                .map( col -> table.getColumnByName(col.getName()))
-                .collect(Collectors.toList());
+        return columns.stream().map(col -> table.getColumnByName(col.getName())).collect(Collectors.toList());
 
     }
 
-    private static ImmutableTable getSimilarTable(Table table,
-            ImmutableSchema schema) {
+    private static ImmutableTable getSimilarTable(Table table, ImmutableSchema schema) {
         String name = table.getName();
         return (ImmutableTable) schema.getTableByName(name);
     }
 
-    private ImmutableRelationship(List<Column> primaryColumns,
-            List<Column> foreignColumns) {
+    private ImmutableRelationship(List<Column> primaryColumns, List<Column> foreignColumns) {
         this.primaryColumns = primaryColumns;
         this.foreignColumns = foreignColumns;
     }

@@ -21,13 +21,11 @@ package org.apache.metamodel.util;
 import java.util.function.Consumer;
 
 /**
- * Represents an abstract action, which is an executable piece of functionality
- * that takes an argument. An action is very similar to a {@link Consumer},
- * except that it allows for throwing exceptions, making it more appropriate for
+ * Represents an abstract action, which is an executable piece of functionality that takes an argument. An action is
+ * very similar to a {@link Consumer}, except that it allows for throwing exceptions, making it more appropriate for
  * encapsulating code blocks that may fail.
  * 
- * @param <E>
- *            the argument type of the action
+ * @param <E> the argument type of the action
  */
 @FunctionalInterface
 public interface Action<E> extends Consumer<E> {

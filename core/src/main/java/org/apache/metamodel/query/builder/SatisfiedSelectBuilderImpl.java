@@ -45,8 +45,7 @@ class SatisfiedSelectBuilderImpl extends GroupedQueryBuilderCallback implements
     }
 
     @Override
-    public FunctionSelectBuilder<GroupedQueryBuilder> and(
-            FunctionType functionType, Column column) {
+    public FunctionSelectBuilder<GroupedQueryBuilder> and(FunctionType functionType, Column column) {
         if (functionType == null) {
             throw new IllegalArgumentException("functionType cannot be null");
         }

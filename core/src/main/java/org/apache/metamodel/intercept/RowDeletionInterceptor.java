@@ -21,8 +21,8 @@ package org.apache.metamodel.intercept;
 import org.apache.metamodel.delete.RowDeletionBuilder;
 
 /**
- * An {@link Interceptor} for {@link RowDeletionBuilder}, allowing for
- * interception of "delete from table" operations before they are executed.
+ * An {@link Interceptor} for {@link RowDeletionBuilder}, allowing for interception of "delete from table" operations
+ * before they are executed.
  */
 public interface RowDeletionInterceptor extends Interceptor<RowDeletionBuilder> {
 

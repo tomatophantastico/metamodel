@@ -21,15 +21,12 @@ package org.apache.metamodel;
 import java.util.Optional;
 
 /**
- * Represents a summary of changes made in a given
- * {@link UpdateableDataContext#executeUpdate(UpdateScript)} call.
+ * Represents a summary of changes made in a given {@link UpdateableDataContext#executeUpdate(UpdateScript)} call.
  * 
- * The amount of information available from an update varies a lot between
- * different implementations of {@link UpdateableDataContext}. This interface
- * represents the most common elements of interest, but not all elements may be
- * available for a given update. For this reason any method call on this
- * interface should be considered not guaranteed to return a value (so expect
- * nulls to represent "not known/available").
+ * The amount of information available from an update varies a lot between different implementations of
+ * {@link UpdateableDataContext}. This interface represents the most common elements of interest, but not all elements
+ * may be available for a given update. For this reason any method call on this interface should be considered not
+ * guaranteed to return a value (so expect nulls to represent "not known/available").
  */
 public interface UpdateSummary {
 
@@ -55,9 +52,8 @@ public interface UpdateSummary {
     public Optional<Integer> getDeletedRows();
 
     /**
-     * Gets a collection of keys that was generated as part of the update -
-     * typically because INSERTs where executed on an underlying database which
-     * generated record IDs for each insert.
+     * Gets a collection of keys that was generated as part of the update - typically because INSERTs where executed on
+     * an underlying database which generated record IDs for each insert.
      * 
      * @return an optional collection of generated keys.
      */

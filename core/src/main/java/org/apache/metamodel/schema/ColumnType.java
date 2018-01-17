@@ -130,8 +130,7 @@ public interface ColumnType extends HasName, Serializable {
     public boolean isLargeObject();
 
     /**
-     * @return a java class that is appropriate for handling column values of
-     *         this column type
+     * @return a java class that is appropriate for handling column values of this column type
      */
     public Class<?> getJavaEquivalentClass();
 
@@ -140,10 +139,8 @@ public interface ColumnType extends HasName, Serializable {
     /**
      * Gets the JDBC type as per the {@link Types} class.
      * 
-     * @return an int representing one of the constants in the {@link Types}
-     *         class.
-     * @throws IllegalStateException
-     *             in case getting the JDBC type was unsuccesful.
+     * @return an int representing one of the constants in the {@link Types} class.
+     * @throws IllegalStateException in case getting the JDBC type was unsuccesful.
      */
     public int getJdbcType() throws IllegalStateException;
 }

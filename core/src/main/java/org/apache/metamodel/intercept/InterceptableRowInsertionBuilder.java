@@ -30,13 +30,12 @@ final class InterceptableRowInsertionBuilder implements RowInsertionBuilder {
     private final RowInsertionBuilder _rowInsertionBuilder;
     private final InterceptorList<RowInsertionBuilder> _rowInsertionInterceptors;
 
-    public InterceptableRowInsertionBuilder(
-            RowInsertionBuilder rowInsertionBuilder,
+    public InterceptableRowInsertionBuilder(RowInsertionBuilder rowInsertionBuilder,
             InterceptorList<RowInsertionBuilder> rowInsertionInterceptors) {
         _rowInsertionBuilder = rowInsertionBuilder;
         _rowInsertionInterceptors = rowInsertionInterceptors;
     }
-    
+
     @Override
     public String toSql() {
         return _rowInsertionBuilder.toSql();
@@ -71,7 +70,7 @@ final class InterceptableRowInsertionBuilder implements RowInsertionBuilder {
         _rowInsertionBuilder.value(columnName, value);
         return this;
     }
-    
+
     @Override
     public RowInsertionBuilder like(Row row) {
         _rowInsertionBuilder.like(row);
@@ -79,8 +78,7 @@ final class InterceptableRowInsertionBuilder implements RowInsertionBuilder {
     }
 
     @Override
-    public RowInsertionBuilder value(String columnName, Object value,
-            Style style) {
+    public RowInsertionBuilder value(String columnName, Object value, Style style) {
         _rowInsertionBuilder.value(columnName, value, style);
         return this;
     }
@@ -88,8 +86,7 @@ final class InterceptableRowInsertionBuilder implements RowInsertionBuilder {
     @Override
     public void execute() throws MetaModelException {
         RowInsertionBuilder rowInsertionBuilder = _rowInsertionBuilder;
-        rowInsertionBuilder = _rowInsertionInterceptors
-                .interceptAll(rowInsertionBuilder);
+        rowInsertionBuilder = _rowInsertionInterceptors.interceptAll(rowInsertionBuilder);
         rowInsertionBuilder.execute();
     }
 

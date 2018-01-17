@@ -92,8 +92,7 @@ public abstract class AbstractRowDeletionBuilder implements RowDeletionBuilder {
     }
 
     /**
-     * Determines if a row should be deleted or not (can be used by subclasses
-     * as a convenient determinator).
+     * Determines if a row should be deleted or not (can be used by subclasses as a convenient determinator).
      * 
      * @param row
      * @return true if the row should be deleted.
@@ -111,10 +110,9 @@ public abstract class AbstractRowDeletionBuilder implements RowDeletionBuilder {
     }
 
     /**
-     * Convenience method to tell subclasses if the delete operation represents
-     * a full table truncate operation. Usually such operations can be optimized
-     * by simply removing the table (and maybe restoring similar headers in a
-     * new table).
+     * Convenience method to tell subclasses if the delete operation represents a full table truncate operation. Usually
+     * such operations can be optimized by simply removing the table (and maybe restoring similar headers in a new
+     * table).
      * 
      * @return
      */

@@ -24,7 +24,7 @@ import java.util.Objects;
  * Simple implementation of {@link OperatorType}
  */
 public class OperatorTypeImpl implements OperatorType {
-    
+
     private static final long serialVersionUID = 1L;
 
     private final String _sql;
@@ -64,9 +64,9 @@ public class OperatorTypeImpl implements OperatorType {
         return false;
     }
 
-/**
-     * Converts from SQL string literals to an OperatorType. Valid SQL values are "=", "&lt;&gt;", "LIKE", "&gt;", "&gt;=", "&lt;" and
-     * "&lt;=".
+    /**
+     * Converts from SQL string literals to an OperatorType. Valid SQL values are "=", "&lt;&gt;", "LIKE", "&gt;",
+     * "&gt;=", "&lt;" and "&lt;=".
      *
      * @param sqlType
      * @return a OperatorType object representing the specified SQL type
@@ -75,46 +75,46 @@ public class OperatorTypeImpl implements OperatorType {
         if (sqlType != null) {
             sqlType = sqlType.trim().toUpperCase();
             switch (sqlType) {
-                case "=":
-                case "==":
-                case "EQ":
-                case "EQUALS_TO":
-                    return OperatorType.EQUALS_TO;
-                case "<>":
-                case "!=":
-                case "NE":
-                case "NOT_EQUAL":
-                case "NOT_EQUAL_TO":
-                case "NOT_EQUALS":
-                case "NOT_EQUALS_TO":
-                case "DIFFERENT_FROM":
-                    return OperatorType.DIFFERENT_FROM;
-                case ">":
-                case "GT":
-                case "GREATER_THAN":
-                    return OperatorType.GREATER_THAN;
-                case ">=":
-                case "=>":
-                case "GREATER_THAN_OR_EQUAL":
-                    return OperatorType.GREATER_THAN_OR_EQUAL;
-                case "NOT_IN":
-                case "NOT IN":
-                    return OperatorType.NOT_IN;
-                case "IN":
-                    return OperatorType.IN;
-                case "<":
-                case "LT":
-                case "LESS_THAN":
-                    return OperatorType.LESS_THAN;
-                case "<=":
-                case "=<":
-                case "LESS_THAN_OR_EQUAL":
-                    return OperatorType.LESS_THAN_OR_EQUAL;
-                case "LIKE":
-                    return OperatorType.LIKE;
-                case "NOT_LIKE":
-                case "NOT LIKE":
-                    return OperatorType.NOT_LIKE;
+            case "=":
+            case "==":
+            case "EQ":
+            case "EQUALS_TO":
+                return OperatorType.EQUALS_TO;
+            case "<>":
+            case "!=":
+            case "NE":
+            case "NOT_EQUAL":
+            case "NOT_EQUAL_TO":
+            case "NOT_EQUALS":
+            case "NOT_EQUALS_TO":
+            case "DIFFERENT_FROM":
+                return OperatorType.DIFFERENT_FROM;
+            case ">":
+            case "GT":
+            case "GREATER_THAN":
+                return OperatorType.GREATER_THAN;
+            case ">=":
+            case "=>":
+            case "GREATER_THAN_OR_EQUAL":
+                return OperatorType.GREATER_THAN_OR_EQUAL;
+            case "NOT_IN":
+            case "NOT IN":
+                return OperatorType.NOT_IN;
+            case "IN":
+                return OperatorType.IN;
+            case "<":
+            case "LT":
+            case "LESS_THAN":
+                return OperatorType.LESS_THAN;
+            case "<=":
+            case "=<":
+            case "LESS_THAN_OR_EQUAL":
+                return OperatorType.LESS_THAN_OR_EQUAL;
+            case "LIKE":
+                return OperatorType.LIKE;
+            case "NOT_LIKE":
+            case "NOT LIKE":
+                return OperatorType.NOT_LIKE;
             }
         }
         return null;

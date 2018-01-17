@@ -21,8 +21,7 @@ package org.apache.metamodel.schema.naming;
 import org.apache.metamodel.schema.Table;
 
 /**
- * Defines the context for naming a single column in a
- * {@link ColumnNamingStrategy} session.
+ * Defines the context for naming a single column in a {@link ColumnNamingStrategy} session.
  */
 public interface ColumnNamingContext {
 
@@ -34,18 +33,17 @@ public interface ColumnNamingContext {
     public int getColumnIndex();
 
     /**
-     * Gets the {@link Table} that the column is to pertain to. If the table is
-     * not yet available then this may return null.
+     * Gets the {@link Table} that the column is to pertain to. If the table is not yet available then this may return
+     * null.
      * 
      * @return
      */
     public Table getTable();
 
     /**
-     * Gets the intrinsic column name, if this is defined in the datastore
-     * itself. This may be in the form of a header or such. Sometimes intrinsic
-     * column names exist only for some columns and sometimes there may be
-     * duplicate names or other anomalies which are often discouraged.
+     * Gets the intrinsic column name, if this is defined in the datastore itself. This may be in the form of a header
+     * or such. Sometimes intrinsic column names exist only for some columns and sometimes there may be duplicate names
+     * or other anomalies which are often discouraged.
      * 
      * @return
      */

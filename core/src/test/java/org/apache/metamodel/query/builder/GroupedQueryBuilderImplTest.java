@@ -50,8 +50,7 @@ public class GroupedQueryBuilderImplTest extends TestCase {
         table2.addColumn(new MutableColumn("col3").setTable(table2));
 
         Query query = new Query().from(table1, "f").from(table2, "b");
-        GroupedQueryBuilderImpl gqbi = new GroupedQueryBuilderImpl(dataContext,
-                query);
+        GroupedQueryBuilderImpl gqbi = new GroupedQueryBuilderImpl(dataContext, query);
 
         Column col = gqbi.findColumn("b.col2");
         assertEquals("bar.col2", col.getQualifiedLabel());
@@ -99,9 +98,8 @@ public class GroupedQueryBuilderImplTest extends TestCase {
         Column colB = new MutableColumn("colB", null, tableAB, 1, true);
         Column colC = new MutableColumn("colC", null, tableC, 0, true);
 
-        Query q = dc.query().from(tableAB).leftJoin(tableC).on(colB, colC)
-                .select(colA).as("a").select(colB).as("b").select(colC).as("c")
-                .toQuery();
+        Query q = dc.query().from(tableAB).leftJoin(tableC).on(colB, colC).select(colA).as("a").select(colB).as("b")
+                .select(colC).as("c").toQuery();
 
         assertEquals(
                 "SELECT tableAB.colA AS a, tableAB.colB AS b, tableC.colC AS c FROM tableAB LEFT JOIN tableC ON tableAB.colB = tableC.colC",

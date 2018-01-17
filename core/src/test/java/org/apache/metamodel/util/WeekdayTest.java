@@ -25,12 +25,12 @@ public class WeekdayTest extends TestCase {
     public void testGetName() throws Exception {
         assertEquals("Monday", Weekday.MONDAY.getName());
     }
-    
+
     public void testNext() throws Exception {
         assertEquals(Weekday.TUESDAY, Weekday.MONDAY.next());
         assertEquals(Weekday.MONDAY, Weekday.SUNDAY.next());
     }
-    
+
     public void testPrevious() throws Exception {
         assertEquals(Weekday.SUNDAY, Weekday.MONDAY.previous());
         assertEquals(Weekday.SATURDAY, Weekday.SUNDAY.previous());

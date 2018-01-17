@@ -52,6 +52,6 @@ public class DataSetTableModelTest extends TestCase {
 
         // Take a small sample from the data
         assertEquals("Taylor", tableModel.getValueAt(1, 2).toString());
-        
+
     }
 }

@@ -30,8 +30,8 @@ final class FunctionSelectBuilderImpl extends SatisfiedSelectBuilderImpl impleme
 
     private SelectItem selectItem;
 
-    public FunctionSelectBuilderImpl(FunctionType functionType, Column column, Object[] functionParameters,
-            Query query, GroupedQueryBuilder queryBuilder) {
+    public FunctionSelectBuilderImpl(FunctionType functionType, Column column, Object[] functionParameters, Query query,
+            GroupedQueryBuilder queryBuilder) {
         super(queryBuilder);
 
         this.selectItem = new SelectItem(functionType, functionParameters, column);

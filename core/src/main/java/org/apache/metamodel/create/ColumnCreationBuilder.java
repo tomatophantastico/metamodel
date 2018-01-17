@@ -21,9 +21,8 @@ package org.apache.metamodel.create;
 import org.apache.metamodel.schema.Column;
 
 /**
- * Builder object for creating {@link Column}s. This class also extendsthe
- * {@link TableCreationBuilder} (allowing to step immediately out of the column
- * building and back to the table building immediately).
+ * Builder object for creating {@link Column}s. This class also extendsthe {@link TableCreationBuilder} (allowing to
+ * step immediately out of the column building and back to the table building immediately).
  */
 public interface ColumnCreationBuilder extends ColumnBuilder<ColumnCreationBuilder>, TableCreationBuilder {
 

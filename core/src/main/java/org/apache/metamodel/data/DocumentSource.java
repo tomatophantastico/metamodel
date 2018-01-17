@@ -20,15 +20,13 @@ package org.apache.metamodel.data;
 
 import java.io.Closeable;
 
-
 /**
  * A source of documents to be used for building/detecting a schema or table.
  */
 public interface DocumentSource extends Closeable {
 
     /**
-     * Gets the next sample from the source, or returns null if there are no
-     * more documents available.
+     * Gets the next sample from the source, or returns null if there are no more documents available.
      * 
      * @return
      */

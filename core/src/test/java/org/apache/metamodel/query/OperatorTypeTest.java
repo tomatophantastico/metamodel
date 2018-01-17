@@ -31,7 +31,7 @@ public class OperatorTypeTest extends TestCase {
         assertEquals(OperatorType.IN, OperatorTypeImpl.convertOperatorType("IN"));
         assertEquals(null, OperatorTypeImpl.convertOperatorType("foo"));
     }
-    
+
     public void testConvertOperatorTypeAliases() throws Exception {
         assertEquals(OperatorType.EQUALS_TO, OperatorTypeImpl.convertOperatorType("eq"));
         assertEquals(OperatorType.EQUALS_TO, OperatorTypeImpl.convertOperatorType("EQ"));
@@ -56,7 +56,7 @@ public class OperatorTypeTest extends TestCase {
         assertEquals(OperatorType.LESS_THAN_OR_EQUAL, OperatorTypeImpl.convertOperatorType("LESS_THAN_OR_EQUAL"));
         assertEquals(OperatorType.LIKE, OperatorTypeImpl.convertOperatorType("like"));
     }
-    
+
     public void testConvertOperatorTypeTrimmed() throws Exception {
         assertEquals(OperatorType.EQUALS_TO, OperatorTypeImpl.convertOperatorType("  =   "));
     }

@@ -38,8 +38,8 @@ public interface RowDeletable {
      * @throws IllegalStateException
      * @throws UnsupportedOperationException
      */
-    public RowDeletionBuilder deleteFrom(Table table) throws IllegalArgumentException, IllegalStateException,
-            UnsupportedOperationException;
+    public RowDeletionBuilder deleteFrom(Table table)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 
     /**
      * Initiates a row deletion builder.
@@ -50,8 +50,8 @@ public interface RowDeletable {
      * @throws IllegalStateException
      * @throws UnsupportedOperationException
      */
-    public RowDeletionBuilder deleteFrom(String tableName) throws IllegalArgumentException, IllegalStateException,
-            UnsupportedOperationException;
+    public RowDeletionBuilder deleteFrom(String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 
     /**
      * Initiates a row deletion builder.
@@ -63,6 +63,6 @@ public interface RowDeletable {
      * @throws IllegalStateException
      * @throws UnsupportedOperationException
      */
-    public RowDeletionBuilder deleteFrom(String schemaName, String tableName) throws IllegalArgumentException,
-            IllegalStateException, UnsupportedOperationException;
+    public RowDeletionBuilder deleteFrom(String schemaName, String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 }

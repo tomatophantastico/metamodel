@@ -25,7 +25,7 @@ public class UrlResourceTest extends TestCase {
     public void testGetName() throws Exception {
         UrlResource resource = new UrlResource("http://metamodel.apache.org/robots.txt");
         assertEquals("robots.txt", resource.getName());
-        
+
         resource = new UrlResource("http://metamodel.apache.org/");
         assertEquals("http://metamodel.apache.org/", resource.getName());
     }

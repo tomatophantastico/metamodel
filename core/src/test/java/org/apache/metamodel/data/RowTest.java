@@ -45,7 +45,7 @@ public class RowTest extends MetaModelTestCase {
         Table projectTable = schema.getTableByName(TABLE_PROJECT);
         SelectItem item1 = new SelectItem(projectTable.getColumn(0));
         SelectItem item2 = new SelectItem(projectTable.getColumn(0));
-        DataSetHeader header = new CachingDataSetHeader(Lists.newArrayList(item1,item2));
+        DataSetHeader header = new CachingDataSetHeader(Lists.newArrayList(item1, item2));
         Object[] values = { "foo", "bar" };
         Row row = new DefaultRow(header, values);
         row = row.getSubSelection(new SimpleDataSetHeader(new SelectItem[] { item1 }));

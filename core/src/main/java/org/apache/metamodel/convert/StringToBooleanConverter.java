@@ -21,8 +21,7 @@ package org.apache.metamodel.convert;
 import org.apache.metamodel.util.BooleanComparator;
 
 /**
- * A {@link TypeConverter} that converts String values (on the physical layer)
- * to interpreted Booleans.
+ * A {@link TypeConverter} that converts String values (on the physical layer) to interpreted Booleans.
  */
 public class StringToBooleanConverter implements TypeConverter<String, Boolean> {
 

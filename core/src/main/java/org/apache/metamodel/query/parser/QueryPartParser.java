@@ -19,9 +19,8 @@
 package org.apache.metamodel.query.parser;
 
 /**
- * Parser of query parts. This parser is aware of parenthesis symbols '(' and
- * ')' and only yields tokens that have balanced parentheses. Delimitors are
- * configurable.
+ * Parser of query parts. This parser is aware of parenthesis symbols '(' and ')' and only yields tokens that have
+ * balanced parentheses. Delimitors are configurable.
  */
 public final class QueryPartParser {
 

@@ -62,16 +62,14 @@ public class CompositeSchema extends AbstractSchema {
 
     @Override
     public List<Relationship> getRelationships() {
-        return delegates.stream()
-                .flatMap(delegate -> delegate.getRelationships().stream())
+        return delegates.stream().flatMap(delegate -> delegate.getRelationships().stream())
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Table> getTables() {
-        return delegates.stream()
-                .flatMap(delegate -> delegate.getTables().stream())
-                .collect(Collectors.toList());
+        return delegates.stream().flatMap(delegate -> delegate.getTables().stream())
+                .filter(table -> table.getType() != TableType.ALIAS).collect(Collectors.toList());
     }
 
     @Override

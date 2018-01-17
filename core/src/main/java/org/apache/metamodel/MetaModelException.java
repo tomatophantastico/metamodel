@@ -21,9 +21,8 @@ package org.apache.metamodel;
 /**
  * Unchecked exception used to signal errors occuring in MetaModel.
  * 
- * All MetaModelExceptions represent errors discovered withing the MetaModel
- * framework. Typically these will occur if you have put together a query that
- * is not meaningful or if there is a structural problem in a schema.
+ * All MetaModelExceptions represent errors discovered withing the MetaModel framework. Typically these will occur if
+ * you have put together a query that is not meaningful or if there is a structural problem in a schema.
  */
 public class MetaModelException extends RuntimeException {
 

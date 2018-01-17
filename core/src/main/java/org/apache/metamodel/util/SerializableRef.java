@@ -22,9 +22,8 @@ import java.io.Serializable;
 import java.util.function.Supplier;
 
 /**
- * A serializable reference to an object which may or may not be serializable.
- * Using this reference there is safety that if the object IS serializable, it
- * will be serialized, or otherwise it will be gracefully ignored.
+ * A serializable reference to an object which may or may not be serializable. Using this reference there is safety that
+ * if the object IS serializable, it will be serialized, or otherwise it will be gracefully ignored.
  * 
  * @param <E>
  */
@@ -52,7 +51,7 @@ public final class SerializableRef<E> implements Supplier<E>, Serializable {
         }
         return _serializableObj;
     }
-    
+
     public boolean isSerializing() {
         return _serializableObj != null;
     }

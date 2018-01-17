@@ -197,8 +197,8 @@ final class GroupedQueryBuilderImpl extends BaseObject implements GroupedQueryBu
             for (FromItem fromItem : fromItems) {
                 final Table table = fromItem.getTable();
                 if (table != null) {
-                    logger.debug("Table available in FROM item: {}. Column names: {}", table, Arrays.toString(table
-                            .getColumnNames().toArray()));
+                    logger.debug("Table available in FROM item: {}. Column names: {}", table,
+                            Arrays.toString(table.getColumnNames().toArray()));
                 }
             }
         }
@@ -297,7 +297,7 @@ final class GroupedQueryBuilderImpl extends BaseObject implements GroupedQueryBu
         final SelectItem selectItem = parser.findSelectItem(columnExpression);
         return having(selectItem);
     }
-    
+
     @Override
     public HavingBuilder having(SelectItem selectItem) {
         if (selectItem == null) {

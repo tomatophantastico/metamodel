@@ -25,9 +25,8 @@ import java.util.List;
 import org.apache.metamodel.query.SelectItem;
 
 /**
- * Represents a tabular DataSet where values are bound to columns and rows. A
- * DataSet works similarly to a slightly modularized ResultSet when you traverse
- * it - use the next() method to loop through the rows of the DataSet and use
+ * Represents a tabular DataSet where values are bound to columns and rows. A DataSet works similarly to a slightly
+ * modularized ResultSet when you traverse it - use the next() method to loop through the rows of the DataSet and use
  * the getRow() method to get the current row.
  */
 public interface DataSet extends Closeable, Iterable<Row> {
@@ -41,8 +40,7 @@ public interface DataSet extends Closeable, Iterable<Row> {
      * Finds the index of a given SelectItem
      * 
      * @param item
-     * @return the index (0-based) of the SelectItem or -1 if the SelectItem
-     *         doesn't exist in this DataSet.
+     * @return the index (0-based) of the SelectItem or -1 if the SelectItem doesn't exist in this DataSet.
      */
     public int indexOf(SelectItem item);
 
@@ -65,8 +63,7 @@ public interface DataSet extends Closeable, Iterable<Row> {
     public void close();
 
     /**
-     * Converts the DataSet into a list of object arrays (will load all values
-     * into memory)
+     * Converts the DataSet into a list of object arrays (will load all values into memory)
      */
     public List<Object[]> toObjectArrays();
 
@@ -76,10 +73,8 @@ public interface DataSet extends Closeable, Iterable<Row> {
     public List<Row> toRows();
 
     /**
-     * Converts the DataSet into an Iterator. Note that unlike many
-     * {@link Iterable} objects, {@link DataSet}s are unlikely to allow creation
-     * of multiple iterators without risking loss of data in each individual
-     * iteration loop.
+     * Converts the DataSet into an Iterator. Note that unlike many {@link Iterable} objects, {@link DataSet}s are
+     * unlikely to allow creation of multiple iterators without risking loss of data in each individual iteration loop.
      */
     @Override
     public Iterator<Row> iterator();

@@ -28,8 +28,8 @@ import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.util.BaseObject;
 
 /**
- * Abstract DataSet implementation. Provides convenient implementations of
- * trivial method and reusable parts of non-trivial methods of a DataSet.
+ * Abstract DataSet implementation. Provides convenient implementations of trivial method and reusable parts of
+ * non-trivial methods of a DataSet.
  */
 public abstract class AbstractDataSet extends BaseObject implements DataSet {
 
@@ -44,9 +44,8 @@ public abstract class AbstractDataSet extends BaseObject implements DataSet {
     }
 
     /**
-     * Constructor appropriate for dataset implementations that wrap other
-     * datasets, such as the {@link MaxRowsDataSet}, {@link FilteredDataSet} and
-     * more.
+     * Constructor appropriate for dataset implementations that wrap other datasets, such as the {@link MaxRowsDataSet},
+     * {@link FilteredDataSet} and more.
      * 
      * @param dataSet
      */
@@ -61,7 +60,6 @@ public abstract class AbstractDataSet extends BaseObject implements DataSet {
     public AbstractDataSet(DataSetHeader header) {
         _header = Objects.requireNonNull(header);
     }
-
 
     /**
      * {@inheritDoc}

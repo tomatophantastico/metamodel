@@ -29,7 +29,7 @@ import org.apache.metamodel.schema.Table;
 import org.apache.metamodel.update.RowUpdationBuilder;
 
 /**
- * {@link UpdateCallback} wrapper that allows adding interceptors for certain operations. 
+ * {@link UpdateCallback} wrapper that allows adding interceptors for certain operations.
  */
 final class InterceptableUpdateCallback extends AbstractUpdateCallback implements UpdateCallback {
 
@@ -56,8 +56,8 @@ final class InterceptableUpdateCallback extends AbstractUpdateCallback implement
     }
 
     @Override
-    public TableCreationBuilder createTable(Schema schema, String name) throws IllegalArgumentException,
-            IllegalStateException {
+    public TableCreationBuilder createTable(Schema schema, String name)
+            throws IllegalArgumentException, IllegalStateException {
         TableCreationBuilder tabelCreationBuilder = _updateCallback.createTable(schema, name);
         if (_tableCreationInterceptors.isEmpty()) {
             return tabelCreationBuilder;

@@ -28,19 +28,19 @@ import junit.framework.TestCase;
 public class LegacyDeserializationObjectInputStreamTest extends TestCase {
 
     /**
-     * Method used to generate the input file (requires org.eobjects.metamodel
-     * available)
+     * Method used to generate the input file (requires org.eobjects.metamodel available)
      * 
      * <pre>
-     * final org.apache.metamodel.schema.MutableSchema schema = new org.apache.metamodel.schema.MutableSchema(&quot;myschema&quot;);
+     * final org.apache.metamodel.schema.MutableSchema schema =
+     *         new org.apache.metamodel.schema.MutableSchema(&quot;myschema&quot;);
      * final org.apache.metamodel.schema.MutableTable table = new org.apache.metamodel.schema.MutableTable(&quot;mytable&quot;,
      *         org.apache.metamodel.schema.TableType.TABLE, schema);
      * schema.addTable(table);
      * 
-     * table.addColumn(new org.apache.metamodel.schema.MutableColumn(&quot;mycol1&quot;, org.apache.metamodel.schema.ColumnType.INTEGER,
-     *         table, 0, 16, &quot;int&quot;, false, &quot;my remark 1&quot;, false, &quot;\&quot;&quot;));
-     * table.addColumn(new org.apache.metamodel.schema.MutableColumn(&quot;mycol1&quot;, org.apache.metamodel.schema.ColumnType.VARCHAR,
-     *         table, 1, 255, &quot;text&quot;, true, &quot;my remark 2&quot;, true, null));
+     * table.addColumn(new org.apache.metamodel.schema.MutableColumn(&quot;mycol1&quot;,
+     *         org.apache.metamodel.schema.ColumnType.INTEGER, table, 0, 16, &quot;int&quot;, false, &quot;my remark 1&quot;, false, &quot;\&quot;&quot;));
+     * table.addColumn(new org.apache.metamodel.schema.MutableColumn(&quot;mycol1&quot;,
+     *         org.apache.metamodel.schema.ColumnType.VARCHAR, table, 1, 255, &quot;text&quot;, true, &quot;my remark 2&quot;, true, null));
      * 
      * final org.apache.metamodel.query.Query q = new org.apache.metamodel.query.Query();
      * q.from(table);

@@ -36,20 +36,17 @@ public interface RowDeletionBuilder extends WhereClauseBuilder<RowDeletionBuilde
     public Table getTable();
 
     /**
-     * Gets a SQL representation of this delete operation. Note that the
-     * generated SQL is dialect agnostic, so it is not accurately the same as
-     * what will be passed to a potential backing database.
+     * Gets a SQL representation of this delete operation. Note that the generated SQL is dialect agnostic, so it is not
+     * accurately the same as what will be passed to a potential backing database.
      * 
      * @return a SQL representation of this delete operation.
      */
     public String toSql();
 
     /**
-     * Commits the row deletion operation. This operation will delete rows in
-     * the {@link DataContext}.
+     * Commits the row deletion operation. This operation will delete rows in the {@link DataContext}.
      * 
-     * @throws MetaModelException
-     *             if the operation was rejected
+     * @throws MetaModelException if the operation was rejected
      */
     public void execute() throws MetaModelException;
 }

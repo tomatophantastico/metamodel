@@ -23,10 +23,16 @@ package org.apache.metamodel.schema;
  */
 public enum TableType {
 
-    TABLE, VIEW, SYSTEM_TABLE, GLOBAL_TEMPORARY, LOCAL_TEMPORARY, ALIAS, SYNONYM, OTHER;
+    TABLE,
+    VIEW,
+    SYSTEM_TABLE,
+    GLOBAL_TEMPORARY,
+    LOCAL_TEMPORARY,
+    ALIAS,
+    SYNONYM,
+    OTHER;
 
-    public static final TableType[] DEFAULT_TABLE_TYPES = new TableType[] {
-            TableType.TABLE, TableType.VIEW };
+    public static final TableType[] DEFAULT_TABLE_TYPES = new TableType[] { TableType.TABLE, TableType.VIEW };
 
     public boolean isMaterialized() {
         switch (this) {
@@ -39,8 +45,8 @@ public enum TableType {
     }
 
     /**
-     * Tries to resolve a TableType based on an incoming string/literal. If no
-     * fitting TableType is found, OTHER will be returned.
+     * Tries to resolve a TableType based on an incoming string/literal. If no fitting TableType is found, OTHER will be
+     * returned.
      */
     public static TableType getTableType(String literalType) {
         literalType = literalType.toUpperCase();

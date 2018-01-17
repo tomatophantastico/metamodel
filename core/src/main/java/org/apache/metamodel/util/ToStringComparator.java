@@ -37,7 +37,7 @@ public final class ToStringComparator implements Comparator<Object> {
     public static Comparable<Object> getComparable(final Object o) {
         final String s = o.toString();
         return new Comparable<Object>() {
-            
+
             @Override
             public boolean equals(Object obj) {
                 return _instance.equals(obj);

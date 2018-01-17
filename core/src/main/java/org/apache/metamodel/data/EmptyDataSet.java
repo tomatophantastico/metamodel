@@ -28,16 +28,16 @@ import org.apache.metamodel.schema.Column;
  * An empty data set.
  */
 public final class EmptyDataSet extends AbstractDataSet {
-    
+
     public EmptyDataSet(DataSetHeader header) {
         super(header);
     }
 
     public EmptyDataSet(List<SelectItem> selectItems) {
-       this(new SimpleDataSetHeader(selectItems));
+        this(new SimpleDataSetHeader(selectItems));
     }
 
-    public static EmptyDataSet fromColumns(List<Column> cols){
+    public static EmptyDataSet fromColumns(List<Column> cols) {
         return new EmptyDataSet(cols.stream().map(SelectItem::new).collect(Collectors.toList()));
     }
 

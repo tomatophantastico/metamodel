@@ -24,14 +24,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * General purpose comparator to use for objects of various kinds. Prevents
- * NullPointerExceptions and tries to use comparable interface if available and
- * appropriate on incoming objects.
+ * General purpose comparator to use for objects of various kinds. Prevents NullPointerExceptions and tries to use
+ * comparable interface if available and appropriate on incoming objects.
  */
 public final class ObjectComparator implements Comparator<Object> {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(ObjectComparator.class);
+    private static final Logger logger = LoggerFactory.getLogger(ObjectComparator.class);
 
     private static final Comparator<Object> _instance = new ObjectComparator();
 
@@ -83,10 +81,8 @@ public final class ObjectComparator implements Comparator<Object> {
             return BooleanComparator.getComparator().compare(o1, o2);
         }
         if (o1 instanceof Comparable && o2 instanceof Comparable) {
-            @SuppressWarnings("rawtypes")
-            Comparable c1 = (Comparable) o1;
-            @SuppressWarnings("rawtypes")
-            Comparable c2 = (Comparable) o2;
+            @SuppressWarnings("rawtypes") Comparable c1 = (Comparable) o1;
+            @SuppressWarnings("rawtypes") Comparable c2 = (Comparable) o2;
             // We can only count on using the comparable interface if o1 and o2
             // are within of the same class or if one is a subclass of the other
             if (c1.getClass().isAssignableFrom(c2.getClass())) {

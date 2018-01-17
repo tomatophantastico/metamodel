@@ -23,7 +23,7 @@ import org.apache.metamodel.schema.ColumnType;
 import org.apache.metamodel.util.BooleanComparator;
 
 public class ToBooleanFunction extends DefaultScalarFunction {
-    
+
     private static final long serialVersionUID = 1L;
 
     @Override

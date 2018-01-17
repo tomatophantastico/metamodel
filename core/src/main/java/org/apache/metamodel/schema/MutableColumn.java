@@ -21,8 +21,8 @@ package org.apache.metamodel.schema;
 import java.io.Serializable;
 
 /**
- * Represents a column and it's metadata description. Columns reside within a
- * Table and can be used as keys for relationships between tables.
+ * Represents a column and it's metadata description. Columns reside within a Table and can be used as keys for
+ * relationships between tables.
  * 
  * @see MutableTable
  * @see Relationship

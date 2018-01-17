@@ -34,8 +34,7 @@ import org.apache.metamodel.util.Resource;
 import org.apache.metamodel.util.ResourceUtils;
 
 /**
- * A very simple {@link SchemaBuilder} that builds a schema consisting of 1
- * table with 1 column, of type {@link Map}.
+ * A very simple {@link SchemaBuilder} that builds a schema consisting of 1 table with 1 column, of type {@link Map}.
  */
 public class SingleMapColumnSchemaBuilder implements SchemaBuilder, DocumentConverter {
 
@@ -57,7 +56,7 @@ public class SingleMapColumnSchemaBuilder implements SchemaBuilder, DocumentConv
     public void offerSources(DocumentSourceProvider documentSourceProvider) {
         // do nothing
     }
-    
+
     @Override
     public String getSchemaName() {
         return _schemaName;

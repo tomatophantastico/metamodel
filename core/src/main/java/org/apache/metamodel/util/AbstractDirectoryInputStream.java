@@ -26,7 +26,6 @@ public abstract class AbstractDirectoryInputStream<T> extends InputStream {
     private int _currentFileIndex = -1;
     private InputStream _currentInputStream;
 
-
     @Override
     public int read(final byte[] b, final int off, final int len) throws IOException {
         if (_currentInputStream != null) {

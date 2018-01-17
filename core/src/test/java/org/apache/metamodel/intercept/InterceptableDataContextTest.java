@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.metamodel.DataContext;
+import org.apache.metamodel.MetaModelHelper;
 import org.apache.metamodel.MockUpdateableDataContext;
 import org.apache.metamodel.data.DataSet;
 import org.apache.metamodel.data.MaxRowsDataSet;
@@ -35,8 +36,7 @@ import junit.framework.TestCase;
 public class InterceptableDataContextTest extends TestCase {
 
     private final MockUpdateableDataContext delegateDataContext = new MockUpdateableDataContext();
-    private final Table table = delegateDataContext.getDefaultSchema()
-            .getTables().get(0);
+    private final Table table = delegateDataContext.getDefaultSchema().getTable(0);
 
     public void testInterceptSchema() throws Exception {
         // without an interceptor
@@ -47,9 +47,8 @@ public class InterceptableDataContextTest extends TestCase {
             List<Schema> schemas = dc.getSchemas();
 
             assertEquals("schema", schema.getName());
-            assertEquals(MutableSchema.class, schema.getClass());
-            assertEquals("[information_schema, schema]",
-                    Arrays.toString(dc.getSchemaNames().toArray()));
+            assertEquals(MutableSchema.class, MetaModelHelper.resolveUnderlyingSchema(schema).getClass());
+            assertEquals("[information_schema, schema]", dc.getSchemaNames().toString());
             assertEquals(2, schemas.size());
             assertEquals("information_schema", schemas.get(0).getName());
             assertEquals("schema", schemas.get(1).getName());
@@ -57,8 +56,8 @@ public class InterceptableDataContextTest extends TestCase {
 
         // with an interceptor
         {
-            DataContext dc = new InterceptableDataContext(delegateDataContext)
-                    .addSchemaInterceptor(new SchemaInterceptor() {
+            DataContext dc =
+                    new InterceptableDataContext(delegateDataContext).addSchemaInterceptor(new SchemaInterceptor() {
                         @Override
                         public Schema intercept(Schema input) {
                             return new MutableSchema(input.getName() + " foo!");
@@ -70,8 +69,7 @@ public class InterceptableDataContextTest extends TestCase {
 
             assertEquals("schema foo!", schema.getName());
             assertEquals(MutableSchema.class, schema.getClass());
-            assertEquals("[information_schema foo!, schema foo!]",
-                    Arrays.toString(dc.getSchemaNames().toArray()));
+            assertEquals("[information_schema foo!, schema foo!]", dc.getSchemaNames().toString());
             assertEquals(2, schemas.size());
             assertEquals("information_schema foo!", schemas.get(0).getName());
             assertEquals("schema foo!", schemas.get(1).getName());
@@ -79,8 +77,8 @@ public class InterceptableDataContextTest extends TestCase {
     }
 
     public void testInterceptDataSet() throws Exception {
-        DataContext dc = new InterceptableDataContext(delegateDataContext)
-                .addDataSetInterceptor(new DataSetInterceptor() {
+        DataContext dc =
+                new InterceptableDataContext(delegateDataContext).addDataSetInterceptor(new DataSetInterceptor() {
                     @Override
                     public DataSet intercept(DataSet dataSet) {
                         return new MaxRowsDataSet(dataSet, 1);
@@ -94,19 +92,17 @@ public class InterceptableDataContextTest extends TestCase {
 
     public void testInterceptQuery() throws Exception {
 
-        DataContext dc = new InterceptableDataContext(delegateDataContext)
-                .addQueryInterceptor(new QueryInterceptor() {
-                    @Override
-                    public Query intercept(Query input) {
-                        return input.select(table.getColumnByName("foo"));
-                    }
-                }).addQueryInterceptor(new QueryInterceptor() {
-                    @Override
-                    public Query intercept(Query input) {
-                        return input.select(table.getColumnByName("bar"));
-
-                    }
-                });
+        DataContext dc = new InterceptableDataContext(delegateDataContext).addQueryInterceptor(new QueryInterceptor() {
+            @Override
+            public Query intercept(Query input) {
+                return input.select(table.getColumnByName("foo"));
+            }
+        }).addQueryInterceptor(new QueryInterceptor() {
+            @Override
+            public Query intercept(Query input) {
+                return input.select(table.getColumnByName("bar"));
+            }
+        });
 
         DataSet ds = dc.executeQuery(new Query().from(table));
         assertEquals("[table.foo, table.bar]", Arrays.toString(ds.getSelectItems().toArray()));

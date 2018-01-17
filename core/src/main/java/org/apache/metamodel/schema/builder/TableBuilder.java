@@ -29,10 +29,9 @@ import org.apache.metamodel.schema.Table;
 public interface TableBuilder {
 
     /**
-     * Offers a {@link DocumentSource} to the {@link TableBuilder}. The
-     * {@link TableBuilder} may consume the source to build/detect a table based
-     * on the observed documents in the source. It may also choose to ignore the
-     * source, if the it does not need it.
+     * Offers a {@link DocumentSource} to the {@link TableBuilder}. The {@link TableBuilder} may consume the source to
+     * build/detect a table based on the observed documents in the source. It may also choose to ignore the source, if
+     * the it does not need it.
      * 
      * @param documentSource
      */

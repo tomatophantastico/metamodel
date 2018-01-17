@@ -86,8 +86,8 @@ public final class FileHelper {
                 logger.error("Could not create tempFile in order to find temporary dir", e);
                 result = new File("metamodel.tmp.dir");
                 if (!result.mkdir()) {
-                    throw new IllegalStateException("Could not create directory for temporary files: "
-                            + result.getName());
+                    throw new IllegalStateException(
+                            "Could not create directory for temporary files: " + result.getName());
                 }
                 result.deleteOnExit();
             }
@@ -203,7 +203,8 @@ public final class FileHelper {
         return getReader(inputStream, encoding);
     }
 
-    public static String readInputStreamAsString(InputStream inputStream, String encoding) throws IllegalStateException {
+    public static String readInputStreamAsString(InputStream inputStream, String encoding)
+            throws IllegalStateException {
         Reader reader = getReader(inputStream, encoding);
         return readAsString(reader);
     }
@@ -410,7 +411,7 @@ public final class FileHelper {
 
     public static void copy(File from, File to) throws IllegalStateException {
         assert from.exists();
-        
+
         final InputStream in = getInputStream(from);
         try {
             final OutputStream out = getOutputStream(to);

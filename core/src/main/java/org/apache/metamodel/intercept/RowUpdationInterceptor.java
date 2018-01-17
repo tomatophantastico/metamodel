@@ -21,10 +21,9 @@ package org.apache.metamodel.intercept;
 import org.apache.metamodel.update.RowUpdationBuilder;
 
 /**
- * An {@link Interceptor} for {@link RowUpdationBuilder}, allowing for
- * interception of "update table" operations before they are executed.
+ * An {@link Interceptor} for {@link RowUpdationBuilder}, allowing for interception of "update table" operations before
+ * they are executed.
  */
-public interface RowUpdationInterceptor extends
-        Interceptor<RowUpdationBuilder> {
+public interface RowUpdationInterceptor extends Interceptor<RowUpdationBuilder> {
 
 }

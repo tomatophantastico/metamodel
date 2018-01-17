@@ -40,25 +40,21 @@ public interface RowInsertionBuilder extends RowBuilder<RowInsertionBuilder> {
     /**
      * Sets all values like the provided row (for easy duplication of a row).
      * 
-     * @param row
-     *            the row from which to take values
+     * @param row the row from which to take values
      * @return the builder itself
      */
     public RowInsertionBuilder like(Row row);
 
     /**
-     * Commits the row insertion operation. This operation will write the row to
-     * the {@link DataContext}.
+     * Commits the row insertion operation. This operation will write the row to the {@link DataContext}.
      * 
-     * @throws MetaModelException
-     *             if the operation was rejected
+     * @throws MetaModelException if the operation was rejected
      */
     public void execute() throws MetaModelException;
 
     /**
-     * Gets a SQL representation of this insert operation. Note that the
-     * generated SQL is dialect agnostic, so it is not accurately the same as
-     * what will be passed to a potential backing database.
+     * Gets a SQL representation of this insert operation. Note that the generated SQL is dialect agnostic, so it is not
+     * accurately the same as what will be passed to a potential backing database.
      * 
      * @return a SQL representation of this insert operation.
      */

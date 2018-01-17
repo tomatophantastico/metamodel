@@ -30,15 +30,15 @@ public interface TableDroppable {
      */
     public boolean isDropTableSupported();
 
-    public TableDropBuilder dropTable(Schema schema, String tableName) throws IllegalArgumentException,
-            IllegalStateException, UnsupportedOperationException;
+    public TableDropBuilder dropTable(Schema schema, String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 
-    public TableDropBuilder dropTable(String schemaName, String tableName) throws IllegalArgumentException,
-            IllegalStateException, UnsupportedOperationException;
+    public TableDropBuilder dropTable(String schemaName, String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 
-    public TableDropBuilder dropTable(String tableName) throws IllegalArgumentException, IllegalStateException,
-            UnsupportedOperationException;
+    public TableDropBuilder dropTable(String tableName)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 
-    public TableDropBuilder dropTable(Table table) throws IllegalArgumentException, IllegalStateException,
-            UnsupportedOperationException;
+    public TableDropBuilder dropTable(Table table)
+            throws IllegalArgumentException, IllegalStateException, UnsupportedOperationException;
 }

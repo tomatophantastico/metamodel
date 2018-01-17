@@ -24,8 +24,7 @@ import java.util.StringTokenizer;
 import org.apache.metamodel.query.FilterItem;
 
 /**
- * Represents a pattern with a wildcard character. These are typically used in
- * FilterItems with the LIKE operator.
+ * Represents a pattern with a wildcard character. These are typically used in FilterItems with the LIKE operator.
  * 
  * @see FilterItem
  */
@@ -40,7 +39,7 @@ public final class WildcardPattern implements Serializable {
     public WildcardPattern(String pattern, char wildcard) {
         _pattern = pattern;
         _wildcard = wildcard;
-        if(_pattern.isEmpty()){
+        if (_pattern.isEmpty()) {
             _startsWithDelim = _endsWithDelim = false;
         } else {
             _startsWithDelim = _pattern.charAt(0) == _wildcard;
@@ -52,8 +51,7 @@ public final class WildcardPattern implements Serializable {
         if (value == null) {
             return false;
         }
-        StringTokenizer st = new StringTokenizer(_pattern,
-                Character.toString(_wildcard));
+        StringTokenizer st = new StringTokenizer(_pattern, Character.toString(_wildcard));
         int charIndex = 0;
         while (st.hasMoreTokens()) {
             int oldIndex = charIndex;

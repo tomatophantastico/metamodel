@@ -21,8 +21,8 @@ package org.apache.metamodel.intercept;
 import org.apache.metamodel.schema.Schema;
 
 /**
- * An {@link Interceptor} for {@link Schema}s, which allows for intercepting
- * schema objects before they are returned to the user.
+ * An {@link Interceptor} for {@link Schema}s, which allows for intercepting schema objects before they are returned to
+ * the user.
  */
 public interface SchemaInterceptor extends Interceptor<Schema> {
 

@@ -44,8 +44,7 @@ public enum SuperColumnType {
     }
 
     /**
-     * @return a java class that is appropriate for handling column values of
-     *         this column super type
+     * @return a java class that is appropriate for handling column values of this column super type
      */
     public Class<?> getJavaEquivalentClass() {
         return _javaEquivalentClass;

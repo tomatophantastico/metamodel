@@ -19,9 +19,8 @@
 package org.apache.metamodel.data;
 
 /**
- * Sub-interface for {@link DataSet}s that wrap other {@link DataSet}s,
- * typically to apply some client-side filtering or enhancement logic on raw
- * data.
+ * Sub-interface for {@link DataSet}s that wrap other {@link DataSet}s, typically to apply some client-side filtering or
+ * enhancement logic on raw data.
  */
 public interface WrappingDataSet extends DataSet {
 

@@ -25,20 +25,19 @@ import org.apache.metamodel.query.Query;
 import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.schema.Column;
 
-final class SatisfiedOrderByBuilderImpl extends GroupedQueryBuilderCallback
-        implements SatisfiedOrderByBuilder<GroupedQueryBuilder> {
+final class SatisfiedOrderByBuilderImpl extends GroupedQueryBuilderCallback implements
+        SatisfiedOrderByBuilder<GroupedQueryBuilder> {
 
     private OrderByItem orderByitem;
 
-    public SatisfiedOrderByBuilderImpl(Column column, Query query,
-            GroupedQueryBuilder queryBuilder) {
+    public SatisfiedOrderByBuilderImpl(Column column, Query query, GroupedQueryBuilder queryBuilder) {
         super(queryBuilder);
         orderByitem = new OrderByItem(new SelectItem(column));
         query.orderBy(orderByitem);
     }
 
-    public SatisfiedOrderByBuilderImpl(FunctionType function, Column column,
-            Query query, GroupedQueryBuilder queryBuilder) {
+    public SatisfiedOrderByBuilderImpl(FunctionType function, Column column, Query query,
+            GroupedQueryBuilder queryBuilder) {
         super(queryBuilder);
         orderByitem = new OrderByItem(new SelectItem(function, column));
         query.orderBy(orderByitem);
@@ -55,7 +54,7 @@ final class SatisfiedOrderByBuilderImpl extends GroupedQueryBuilderCallback
         orderByitem.setDirection(Direction.DESC);
         return getQueryBuilder();
     }
-    
+
     @Override
     public SatisfiedOrderByBuilder<GroupedQueryBuilder> and(Column column) {
         return getQueryBuilder().orderBy(column);

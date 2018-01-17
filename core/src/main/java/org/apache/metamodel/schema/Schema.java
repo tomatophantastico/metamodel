@@ -25,8 +25,7 @@ import java.util.List;
 import org.apache.metamodel.DataContext;
 
 /**
- * Represents a schema and it's metadata description. Schemas represent a
- * collection of tables.
+ * Represents a schema and it's metadata description. Schemas represent a collection of tables.
  * 
  * @see DataContext
  * @see Table
@@ -49,11 +48,9 @@ public interface Schema extends Comparable<Schema>, Serializable, NamedStructure
     public int getTableCount();
 
     /**
-     * Gets the number of tables in this Schema that comply to a given
-     * TableType.
+     * Gets the number of tables in this Schema that comply to a given TableType.
      * 
-     * @param type
-     *            the TableType to use for searching and matching.
+     * @param type the TableType to use for searching and matching.
      * @return the count of tables that match the provided TableType.
      */
     public int getTableCount(TableType type);
@@ -75,33 +72,26 @@ public interface Schema extends Comparable<Schema>, Serializable, NamedStructure
     /**
      * Gets all tables in this Schema of a particular type.
      * 
-     * @param type
-     *            the TableType to use for searching and matching.
-     * @return an array of tables in this schema that matches the specified
-     *         type.
+     * @param type the TableType to use for searching and matching.
+     * @return an array of tables in this schema that matches the specified type.
      */
     public List<Table> getTables(TableType type);
 
     /**
-     * Gets a table by index. Use {@link #getTableCount()} to get the (0-based)
-     * index range
+     * Gets a table by index. Use {@link #getTableCount()} to get the (0-based) index range
      * 
-     * @param index
-     *            the index of the table
+     * @param index the index of the table
      * @return the column with the specified index
      * 
-     * @throws IndexOutOfBoundsException
-     *             if the index is out of bounds (index &gt;= table count)
+     * @throws IndexOutOfBoundsException if the index is out of bounds (index &gt;= table count)
      */
     public Table getTable(int index) throws IndexOutOfBoundsException;
 
     /**
      * Convenience method for retrieving a table by it's name.
      * 
-     * @param tableName
-     *            the name of the table to retrieve
-     * @return the table with the given name. Returns null if no such table is
-     *         found.
+     * @param tableName the name of the table to retrieve
+     * @return the table with the given name. Returns null if no such table is found.
      */
     public Table getTableByName(String tableName);
 

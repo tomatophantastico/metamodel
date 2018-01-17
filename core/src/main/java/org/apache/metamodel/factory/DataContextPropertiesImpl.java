@@ -129,8 +129,8 @@ public class DataContextPropertiesImpl implements DataContextProperties {
         if (obj instanceof String) {
             // TODO: Try parse as JSON
         }
-        throw new IllegalStateException("Expected Map value for property '" + key + "'. Found " + obj.getClass()
-                .getName());
+        throw new IllegalStateException(
+                "Expected Map value for property '" + key + "'. Found " + obj.getClass().getName());
     }
 
     @Override
@@ -160,12 +160,11 @@ public class DataContextPropertiesImpl implements DataContextProperties {
             return new SimpleResourceProperties((URI) resourceValue);
         }
         if (resourceValue instanceof Map) {
-            @SuppressWarnings("unchecked")
-            final Map<String, Object> resourceMap = (Map<String, Object>) resourceValue;
+            @SuppressWarnings("unchecked") final Map<String, Object> resourceMap = (Map<String, Object>) resourceValue;
             return new ResourcePropertiesImpl(resourceMap);
         }
-        throw new IllegalStateException("Expected String, URI or Map value for property 'resource'. Found: "
-                + resourceValue);
+        throw new IllegalStateException(
+                "Expected String, URI or Map value for property 'resource'. Found: " + resourceValue);
     }
 
     @Override

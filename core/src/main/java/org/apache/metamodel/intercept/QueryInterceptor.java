@@ -21,8 +21,7 @@ package org.apache.metamodel.intercept;
 import org.apache.metamodel.query.Query;
 
 /**
- * An {@link Interceptor} for Queries, allowing to touch or modify a query
- * before execution.
+ * An {@link Interceptor} for Queries, allowing to touch or modify a query before execution.
  */
 public interface QueryInterceptor extends Interceptor<Query> {
 

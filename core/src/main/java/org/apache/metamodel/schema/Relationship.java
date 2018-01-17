@@ -22,8 +22,8 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Represents a relationship between two tables where one set of columns is the
- * primary key, and another set is the foreign key.
+ * Represents a relationship between two tables where one set of columns is the primary key, and another set is the
+ * foreign key.
  * 
  * @see Table
  * @see Column
@@ -61,12 +61,9 @@ public interface Relationship extends Serializable, Comparable<Relationship> {
     /**
      * Determines whether this relationship contains a specific pair of columns
      * 
-     * @param pkColumn
-     *            primary key column
-     * @param fkColumn
-     *            foreign key column
-     * @return true if this relation contains the specified primary and foreign
-     *         columns as a part of the relation
+     * @param pkColumn primary key column
+     * @param fkColumn foreign key column
+     * @return true if this relation contains the specified primary and foreign columns as a part of the relation
      */
     public boolean containsColumnPair(Column pkColumn, Column fkColumn);
 

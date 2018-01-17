@@ -34,7 +34,7 @@ public class EqualsBuilderTest extends TestCase {
         MyCloneable o2 = o1.clone();
         assertFalse(EqualsBuilder.equals(o1, o2));
     }
-    
+
     static final class MyCloneable implements Cloneable {
         @Override
         public boolean equals(Object obj) {

@@ -19,20 +19,17 @@
 package org.apache.metamodel.query.parser;
 
 /**
- * Callback of the {@link QueryPartParser}, which recieves notifications
- * whenever a token is identified/parsed. A {@link QueryPartProcessor} is used
- * to perform the actual processing of identified tokens.
+ * Callback of the {@link QueryPartParser}, which recieves notifications whenever a token is identified/parsed. A
+ * {@link QueryPartProcessor} is used to perform the actual processing of identified tokens.
  */
 public interface QueryPartProcessor {
 
     /**
      * Method invoked whenever the {@link QueryPartParser} identifies a token.
      * 
-     * @param delim
-     *            the (previous) delimitor identified before the token. This
-     *            will always be null in case of the first token.
-     * @param token
-     *            the token identified.
+     * @param delim the (previous) delimitor identified before the token. This will always be null in case of the first
+     *            token.
+     * @param token the token identified.
      */
     public void parse(String delim, String token);
 }

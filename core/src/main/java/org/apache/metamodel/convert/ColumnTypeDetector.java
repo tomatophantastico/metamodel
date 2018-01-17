@@ -22,8 +22,8 @@ import org.apache.metamodel.util.BooleanComparator;
 import org.apache.metamodel.util.TimeComparator;
 
 /**
- * A class capable of detecting/narrowing a string column type to something more
- * specific. Either: Boolean, Integer, Double or Date.
+ * A class capable of detecting/narrowing a string column type to something more specific. Either: Boolean, Integer,
+ * Double or Date.
  */
 final class ColumnTypeDetector {
 

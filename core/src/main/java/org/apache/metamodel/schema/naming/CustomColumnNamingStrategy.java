@@ -23,8 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * A {@link ColumnNamingStrategy} that allows the user to supply his own list of
- * custom column names.
+ * A {@link ColumnNamingStrategy} that allows the user to supply his own list of custom column names.
  */
 public class CustomColumnNamingStrategy implements ColumnNamingStrategy {
 

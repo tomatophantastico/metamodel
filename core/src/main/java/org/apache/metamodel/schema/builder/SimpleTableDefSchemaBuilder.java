@@ -25,8 +25,7 @@ import org.apache.metamodel.schema.Table;
 import org.apache.metamodel.util.SimpleTableDef;
 
 /**
- * A {@link SchemaBuilder} that builds a schema according to instructions in the
- * form of {@link SimpleTableDef} objects.
+ * A {@link SchemaBuilder} that builds a schema according to instructions in the form of {@link SimpleTableDef} objects.
  */
 public class SimpleTableDefSchemaBuilder implements SchemaBuilder {
 
@@ -42,7 +41,7 @@ public class SimpleTableDefSchemaBuilder implements SchemaBuilder {
     public void offerSources(DocumentSourceProvider documentSource) {
         // do nothing
     }
-    
+
     @Override
     public String getSchemaName() {
         return _schemaName;

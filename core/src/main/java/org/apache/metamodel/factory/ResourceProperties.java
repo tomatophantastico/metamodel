@@ -25,16 +25,15 @@ import java.util.Map;
 import org.apache.metamodel.util.Resource;
 
 /**
- * Represents the {@link Serializable} properties used to fully describe and
- * construct a {@link Resource}.
+ * Represents the {@link Serializable} properties used to fully describe and construct a {@link Resource}.
  */
 public interface ResourceProperties extends Serializable {
 
     URI getUri();
 
     /**
-     * Gets all the properties represented as a {@link Map}. Note that any
-     * unstandardized properties may also be exposed via this map.
+     * Gets all the properties represented as a {@link Map}. Note that any unstandardized properties may also be exposed
+     * via this map.
      * 
      * @return
      */

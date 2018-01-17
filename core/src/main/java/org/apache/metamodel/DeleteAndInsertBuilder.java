@@ -33,9 +33,8 @@ import org.apache.metamodel.update.AbstractRowUpdationBuilder;
 import org.apache.metamodel.update.RowUpdationBuilder;
 
 /**
- * Simple implementation of the {@link RowUpdationBuilder} interface, which
- * simply uses a combined delete+insert strategy for performing updates. Note
- * that this implementation is not desirable performance-wise in many cases, but
+ * Simple implementation of the {@link RowUpdationBuilder} interface, which simply uses a combined delete+insert
+ * strategy for performing updates. Note that this implementation is not desirable performance-wise in many cases, but
  * does provide a functional equivalent to a "real" update.
  */
 public class DeleteAndInsertBuilder extends AbstractRowUpdationBuilder {
@@ -103,10 +102,7 @@ public class DeleteAndInsertBuilder extends AbstractRowUpdationBuilder {
         final DataContext dc = _updateCallback.getDataContext();
         final Table table = getTable();
         final List<FilterItem> whereItems = getWhereItems();
-        final DataSet dataSet = dc.query()
-                .from(table)
-                .select(table.getColumns())
-                .where(whereItems).execute();
+        final DataSet dataSet = dc.query().from(table).select(table.getColumns()).where(whereItems).execute();
         final List<Row> rows = dataSet.toRows();
         return rows;
     }

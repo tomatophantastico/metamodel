@@ -21,7 +21,7 @@ package org.apache.metamodel.util;
 import junit.framework.TestCase;
 
 public class AlphabeticSequenceTest extends TestCase {
-    
+
     public void testNoArgsConstructor() throws Exception {
         AlphabeticSequence seq = new AlphabeticSequence();
         assertEquals("A", seq.next());
@@ -56,13 +56,13 @@ public class AlphabeticSequenceTest extends TestCase {
         assertEquals("Y", seq.next());
         assertEquals("Z", seq.next());
         assertEquals("AA", seq.next());
-        
+
         seq = new AlphabeticSequence("AZ");
         assertEquals("BA", seq.next());
-        
+
         seq = new AlphabeticSequence("ZZ");
         assertEquals("AAA", seq.next());
-        
+
         seq = new AlphabeticSequence("ABZ");
         assertEquals("ACA", seq.next());
     }

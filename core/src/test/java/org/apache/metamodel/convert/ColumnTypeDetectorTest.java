@@ -29,8 +29,7 @@ public class ColumnTypeDetectorTest extends TestCase {
         d.registerValue("true");
         d.registerValue("0");
 
-        assertEquals(StringToBooleanConverter.class, d.createConverter()
-                .getClass());
+        assertEquals(StringToBooleanConverter.class, d.createConverter().getClass());
 
         d.registerValue("2");
 
@@ -43,14 +42,12 @@ public class ColumnTypeDetectorTest extends TestCase {
         d.registerValue("123");
         d.registerValue("0");
 
-        assertEquals(StringToIntegerConverter.class, d.createConverter()
-                .getClass());
+        assertEquals(StringToIntegerConverter.class, d.createConverter().getClass());
 
         d.registerValue("1123.23");
         d.registerValue("0.0");
 
-        assertEquals(StringToDoubleConverter.class, d.createConverter()
-                .getClass());
+        assertEquals(StringToDoubleConverter.class, d.createConverter().getClass());
 
         d.registerValue("abc");
 
@@ -62,8 +59,7 @@ public class ColumnTypeDetectorTest extends TestCase {
 
         d.registerValue("2010-12-30");
 
-        assertEquals(StringToDateConverter.class, d.createConverter()
-                .getClass());
+        assertEquals(StringToDateConverter.class, d.createConverter().getClass());
 
         d.registerValue("2 abc");
 

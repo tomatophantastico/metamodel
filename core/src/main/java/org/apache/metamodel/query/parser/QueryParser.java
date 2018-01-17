@@ -43,8 +43,7 @@ public class QueryParser {
     }
 
     /**
-     * Performs any preparations (not changing any semantics) to the query
-     * string
+     * Performs any preparations (not changing any semantics) to the query string
      * 
      * @param queryString
      * @return
@@ -79,10 +78,8 @@ public class QueryParser {
 
         // parse FROM
         {
-            final String fromClause = getSubstring(
-                    getLastEndIndex(fromIndices),
-                    getNextStartIndex(whereIndices, groupByIndices, havingIndices, orderByIndices, limitIndices,
-                            offsetIndices));
+            final String fromClause = getSubstring(getLastEndIndex(fromIndices), getNextStartIndex(whereIndices,
+                    groupByIndices, havingIndices, orderByIndices, limitIndices, offsetIndices));
             parseFromClause(query, fromClause);
         }
 
@@ -121,27 +118,24 @@ public class QueryParser {
         }
 
         if (orderByIndices != null) {
-            final String orderByClause = getSubstring(
-                    getLastEndIndex(orderByIndices, havingIndices, groupByIndices, whereIndices, fromIndices,
-                            selectIndices), getNextStartIndex(limitIndices, offsetIndices));
+            final String orderByClause = getSubstring(getLastEndIndex(orderByIndices, havingIndices, groupByIndices,
+                    whereIndices, fromIndices, selectIndices), getNextStartIndex(limitIndices, offsetIndices));
             if (orderByClause != null) {
                 parseOrderByClause(query, orderByClause);
             }
         }
 
         if (limitIndices != null) {
-            final String limitClause = getSubstring(
-                    getLastEndIndex(limitIndices, orderByIndices, havingIndices, groupByIndices, whereIndices,
-                            fromIndices, selectIndices), getNextStartIndex(offsetIndices));
+            final String limitClause = getSubstring(getLastEndIndex(limitIndices, orderByIndices, havingIndices,
+                    groupByIndices, whereIndices, fromIndices, selectIndices), getNextStartIndex(offsetIndices));
             if (limitClause != null) {
                 parseLimitClause(query, limitClause);
             }
         }
 
         if (offsetIndices != null) {
-            final String offsetClause = getSubstring(
-                    getLastEndIndex(offsetIndices, limitIndices, orderByIndices, havingIndices, groupByIndices,
-                            whereIndices, fromIndices, selectIndices), getNextStartIndex());
+            final String offsetClause = getSubstring(getLastEndIndex(offsetIndices, limitIndices, orderByIndices,
+                    havingIndices, groupByIndices, whereIndices, fromIndices, selectIndices), getNextStartIndex());
             if (offsetClause != null) {
                 parseOffsetClause(query, offsetClause);
             }
@@ -239,9 +233,8 @@ public class QueryParser {
     }
 
     /**
-     * Finds the start and end indexes of a string in the query. The string
-     * parameter of this method is expected to be in upper case, while the query
-     * itself is tolerant of case differences.
+     * Finds the start and end indexes of a string in the query. The string parameter of this method is expected to be
+     * in upper case, while the query itself is tolerant of case differences.
      * 
      * @param string
      * @param previousIndices

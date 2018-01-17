@@ -25,5 +25,7 @@ package org.apache.metamodel.query;
  */
 public enum JoinType {
 
-    INNER, LEFT, RIGHT;
+    INNER,
+    LEFT,
+    RIGHT;
 }

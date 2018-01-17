@@ -36,13 +36,10 @@ public abstract class DefaultAggregateFunction<T> implements AggregateFunction {
     /**
      * Executes the function
      * 
-     * @param values
-     *            the values to be evaluated. If a value is null it won't be
-     *            evaluated
-     * @return the result of the function execution. The return type class is
-     *         dependent on the FunctionType and the values provided. COUNT
-     *         yields a Long, AVG and SUM yields Double values and MAX and MIN
-     *         yields the type of the provided values.
+     * @param values the values to be evaluated. If a value is null it won't be evaluated
+     * @return the result of the function execution. The return type class is dependent on the FunctionType and the
+     *         values provided. COUNT yields a Long, AVG and SUM yields Double values and MAX and MIN yields the type of
+     *         the provided values.
      */
     @Override
     public Object evaluate(Object... values) {

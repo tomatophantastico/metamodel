@@ -19,8 +19,7 @@
 package org.apache.metamodel.convert;
 
 /**
- * A {@link TypeConverter} that converts String values (on the physical layer)
- * to interpreted Integers.
+ * A {@link TypeConverter} that converts String values (on the physical layer) to interpreted Integers.
  */
 public class StringToIntegerConverter implements TypeConverter<String, Integer> {
 

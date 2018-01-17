@@ -24,13 +24,12 @@ import org.apache.metamodel.query.Query;
 import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.schema.Column;
 
-final class ColumnSelectBuilderImpl extends SatisfiedSelectBuilderImpl
-        implements ColumnSelectBuilder<GroupedQueryBuilder> {
+final class ColumnSelectBuilderImpl extends SatisfiedSelectBuilderImpl implements
+        ColumnSelectBuilder<GroupedQueryBuilder> {
 
     private SelectItem selectItem;
 
-    public ColumnSelectBuilderImpl(Column column, Query query,
-            GroupedQueryBuilder queryBuilder) {
+    public ColumnSelectBuilderImpl(Column column, Query query, GroupedQueryBuilder queryBuilder) {
         super(queryBuilder);
         this.selectItem = new SelectItem(column);
 

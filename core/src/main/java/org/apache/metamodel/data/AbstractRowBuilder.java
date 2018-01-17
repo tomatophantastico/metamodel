@@ -48,8 +48,8 @@ public abstract class AbstractRowBuilder<RB extends RowBuilder<?>> implements Ro
     }
 
     /**
-     * Gets a boolean array indicating if any of the values have been explicitly
-     * set to null (as opposed to just not set)
+     * Gets a boolean array indicating if any of the values have been explicitly set to null (as opposed to just not
+     * set)
      * 
      * @return
      */
@@ -71,7 +71,9 @@ public abstract class AbstractRowBuilder<RB extends RowBuilder<?>> implements Ro
 
     @Override
     public final Row toRow() {
-        return new DefaultRow(new SimpleDataSetHeader(Arrays.stream(_columns).map(SelectItem::new).collect(Collectors.toList())), _values);
+        return new DefaultRow(
+                new SimpleDataSetHeader(Arrays.stream(_columns).map(SelectItem::new).collect(Collectors.toList())),
+                _values);
     }
 
     @Override
@@ -96,8 +98,7 @@ public abstract class AbstractRowBuilder<RB extends RowBuilder<?>> implements Ro
             throw new IllegalArgumentException("No such column in table: " + column);
         }
 
-        @SuppressWarnings("unchecked")
-        RB result = (RB) this;
+        @SuppressWarnings("unchecked") RB result = (RB) this;
         return result;
     }
 
@@ -112,8 +113,7 @@ public abstract class AbstractRowBuilder<RB extends RowBuilder<?>> implements Ro
         _styles[columnIndex] = style;
         _explicitNulls[columnIndex] = (value == null);
 
-        @SuppressWarnings("unchecked")
-        RB result = (RB) this;
+        @SuppressWarnings("unchecked") RB result = (RB) this;
         return result;
     }
 
@@ -133,8 +133,8 @@ public abstract class AbstractRowBuilder<RB extends RowBuilder<?>> implements Ro
                 return value(i, value, style);
             }
         }
-        throw new IllegalArgumentException("No such column in table: " + columnName + ", available columns are: "
-                + Arrays.toString(_columns));
+        throw new IllegalArgumentException(
+                "No such column in table: " + columnName + ", available columns are: " + Arrays.toString(_columns));
     }
 
     @Override

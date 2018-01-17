@@ -70,9 +70,9 @@ public class SyntaxExamplesTest extends TestCase {
         dc.query().from(table1).selectCount().select(col1).groupBy(col1).having(FunctionType.SUM, col1).greaterThan(3)
                 .orderBy(col1).asc();
     }
-    
+
     public void testMultiGroupByAndHaving() throws Exception {
-        dc.query().from(table1).select("foo", "bar", "COUNT(*)").groupBy("foo","bar").having("COUNT(*)").greaterThan(3)
+        dc.query().from(table1).select("foo", "bar", "COUNT(*)").groupBy("foo", "bar").having("COUNT(*)").greaterThan(3)
                 .orderBy(col1).asc();
     }
 

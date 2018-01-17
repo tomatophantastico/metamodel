@@ -34,11 +34,9 @@ public class FromClause extends AbstractQueryClause<FromItem> {
     }
 
     /**
-     * Gets the alias of a table, if it is registered (and visible, ie. not part
-     * of a sub-query) in the FromClause
+     * Gets the alias of a table, if it is registered (and visible, ie. not part of a sub-query) in the FromClause
      * 
-     * @param table
-     *            the table to get the alias for
+     * @param table the table to get the alias for
      * @return the alias or null if none is found
      */
     public String getAlias(Table table) {
@@ -54,10 +52,9 @@ public class FromClause extends AbstractQueryClause<FromItem> {
     }
 
     /**
-     * Retrieves a table by it's reference which may be it's alias or it's
-     * qualified table name. Typically, this method is used to resolve a
-     * SelectItem with a reference like "foo.bar", where "foo" may either be an
-     * alias or a table name
+     * Retrieves a table by it's reference which may be it's alias or it's qualified table name. Typically, this method
+     * is used to resolve a SelectItem with a reference like "foo.bar", where "foo" may either be an alias or a table
+     * name
      * 
      * @param reference
      * @return a FromItem which matches the provided reference string

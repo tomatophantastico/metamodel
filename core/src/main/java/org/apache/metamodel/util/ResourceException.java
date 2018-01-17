@@ -26,7 +26,7 @@ import org.apache.metamodel.MetaModelException;
 public class ResourceException extends MetaModelException {
 
     private static final long serialVersionUID = 1L;
-    
+
     private final Resource _resource;
 
     public ResourceException(Resource resource, Exception cause) {
@@ -34,16 +34,16 @@ public class ResourceException extends MetaModelException {
         _resource = resource;
     }
 
-    public ResourceException(Resource resource,String message, Exception cause) {
+    public ResourceException(Resource resource, String message, Exception cause) {
         super(message, cause);
         _resource = resource;
     }
 
-    public ResourceException(Resource resource,String message) {
+    public ResourceException(Resource resource, String message) {
         super(message);
         _resource = resource;
     }
-    
+
     public Resource getResource() {
         return _resource;
     }

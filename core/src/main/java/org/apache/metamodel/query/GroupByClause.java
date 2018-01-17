@@ -31,8 +31,7 @@ public class GroupByClause extends AbstractQueryClause<GroupByItem> {
     private static final long serialVersionUID = -3824934110331202101L;
 
     public GroupByClause(Query query) {
-        super(query, AbstractQueryClause.PREFIX_GROUP_BY,
-                AbstractQueryClause.DELIM_COMMA);
+        super(query, AbstractQueryClause.PREFIX_GROUP_BY, AbstractQueryClause.DELIM_COMMA);
     }
 
     public List<SelectItem> getEvaluatedSelectItems() {

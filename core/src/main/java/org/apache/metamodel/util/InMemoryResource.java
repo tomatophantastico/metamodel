@@ -46,8 +46,7 @@ public class InMemoryResource extends AbstractResource implements Serializable {
     }
 
     /**
-     * Constructs a new {@link InMemoryResource} with a path/name and some
-     * initial contents.
+     * Constructs a new {@link InMemoryResource} with a path/name and some initial contents.
      * 
      * @param path
      * @param contents

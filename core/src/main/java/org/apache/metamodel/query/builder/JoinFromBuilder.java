@@ -25,5 +25,5 @@ public interface JoinFromBuilder extends SatisfiedFromBuilder {
     public SatisfiedFromBuilder on(Column left, Column right) throws IllegalArgumentException;
 
     public SatisfiedFromBuilder on(String left, String right) throws IllegalArgumentException;
-    
+
 }

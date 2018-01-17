@@ -89,7 +89,7 @@ public class QueryPartParserTest extends TestCase {
         new QueryPartParser(itemParser, "()", ",").parse();
         assertEquals(0, itemParser.getTokens().size());
     }
-    
+
     public void testMultiParenthesisLevels() throws Exception {
         QueryPartCollectionProcessor itemParser = new QueryPartCollectionProcessor();
 

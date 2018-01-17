@@ -69,12 +69,11 @@ public class DefaultCompiledQueryTest {
         DefaultCompiledQuery defaultCompiledQuery = new DefaultCompiledQuery(query);
         Assert.assertEquals(3, defaultCompiledQuery.getParameters().size());
 
-        Assert.assertEquals(
-                "DefaultCompiledQuery["
-                        + "SELECT changeSetColumn FROM (SELECT dataSourceIdColumn AS innerDataSourceRecordId FROM datastore WHERE dataSourceNameColumn = ? GROUP BY dataSourceIdColumn HAVING COUNT(dataSourceIdColumn) = 2) innerDS, datastore "
-                        + "WHERE versionColumn = 2 AND changeSetColumn = ? AND innerDS.innerDataSourceRecordId = dataSourceIdColumn AND dataSourceNameColumn = ?]",
+        Assert.assertEquals("DefaultCompiledQuery["
+                + "SELECT changeSetColumn FROM (SELECT dataSourceIdColumn AS innerDataSourceRecordId FROM datastore WHERE dataSourceNameColumn = ? GROUP BY dataSourceIdColumn HAVING COUNT(dataSourceIdColumn) = 2) innerDS, datastore "
+                + "WHERE versionColumn = 2 AND changeSetColumn = ? AND innerDS.innerDataSourceRecordId = dataSourceIdColumn AND dataSourceNameColumn = ?]",
                 defaultCompiledQuery.toString());
-        
+
         defaultCompiledQuery.close();
     }
 

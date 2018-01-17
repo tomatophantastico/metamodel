@@ -51,8 +51,8 @@ public final class InMemoryDataSet extends AbstractDataSet {
 
     private static DataSetHeader getHeader(List<Row> rows) {
         if (rows.isEmpty()) {
-            throw new IllegalArgumentException("Cannot hold an empty list of rows, use " + EmptyDataSet.class
-                    + " for this");
+            throw new IllegalArgumentException(
+                    "Cannot hold an empty list of rows, use " + EmptyDataSet.class + " for this");
         }
 
         final List<SelectItem> selectItems = rows.get(0).getSelectItems();

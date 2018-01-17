@@ -24,11 +24,26 @@ import org.apache.metamodel.schema.MutableColumn;
 import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
 
+import static org.junit.Assert.assertNotEquals;
+
 import java.util.List;
 
 public class SelectItemTest extends MetaModelTestCase {
 
     private Schema _schema = getExampleSchema();
+
+    public void testEqualsAndHashCodeWithScalarFunctionParameters() {
+        final SelectItem selectItem = new SelectItem(_schema.getTableByName(TABLE_PROJECT).getColumns().get(0));
+        final SelectItem item1 = selectItem.replaceFunction(FunctionType.SUBSTRING, 2, 2);
+        final SelectItem item2 = selectItem.replaceFunction(FunctionType.SUBSTRING, 2, 2);
+        final SelectItem item3 = selectItem.replaceFunction(FunctionType.SUBSTRING, 2, 3);
+
+        assertEquals(item1, item2);
+        assertEquals(item1.hashCode(), item2.hashCode());
+
+        assertNotEquals(item1, item3);
+        assertNotEquals(item1.hashCode(), item3.hashCode());
+    }
 
     public void testSelectColumnInFromItem() throws Exception {
         final Table projectTable = _schema.getTableByName(TABLE_PROJECT);
@@ -39,16 +54,18 @@ public class SelectItemTest extends MetaModelTestCase {
         q.select(column1, q.getFromClause().getItem(1));
         q.select(column2, q.getFromClause().getItem(0));
 
-        assertEquals("SELECT b.project_id, a.name FROM MetaModelSchema.project a, MetaModelSchema.project b", q.toSql());
+        assertEquals("SELECT b.project_id, a.name FROM MetaModelSchema.project a, MetaModelSchema.project b",
+                q.toSql());
     }
-    
+
     public void testToSql() throws Exception {
         SelectItem selectItem = new SelectItem(_schema.getTableByName(TABLE_PROJECT).getColumns().get(0));
         assertEquals("project.project_id", selectItem.toSql());
     }
-    
+
     public void testToSqlFuntionApproximation() throws Exception {
-        SelectItem selectItem = new SelectItem(FunctionType.MAX, _schema.getTableByName(TABLE_PROJECT).getColumns().get(0));
+        SelectItem selectItem =
+                new SelectItem(FunctionType.MAX, _schema.getTableByName(TABLE_PROJECT).getColumns().get(0));
         selectItem.setFunctionApproximationAllowed(true);
         assertEquals("APPROXIMATE MAX(project.project_id)", selectItem.toSql());
     }
@@ -99,7 +116,7 @@ public class SelectItemTest extends MetaModelTestCase {
         SelectItem item = new SelectItem(FunctionType.COUNT, "*", "").setAlias(null);
         assertEquals("COUNT(*)", item.getSameQueryAlias());
         assertEquals("COUNT(*)", item.getSuperQueryAlias());
-        
+
         item = new SelectItem(FunctionType.SUM, new MutableColumn("foo"));
         assertEquals("SUM(foo)", item.getSameQueryAlias());
         assertEquals("SUM(foo)", item.getSuperQueryAlias());

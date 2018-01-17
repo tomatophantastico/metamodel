@@ -165,7 +165,7 @@ abstract class SatisfiedFromBuilderCallback extends BaseObject implements Satisf
         GroupedQueryBuilder queryBuilder = new GroupedQueryBuilderImpl(dataContext, query);
         return new SatisfiedSelectBuilderImpl(queryBuilder);
     }
-    
+
     @Override
     public SatisfiedSelectBuilder<?> select(String selectExpression, boolean allowExpressionBasedSelectItem) {
         if (selectExpression == null) {

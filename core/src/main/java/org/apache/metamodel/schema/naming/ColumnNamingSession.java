@@ -24,17 +24,15 @@ import org.apache.metamodel.schema.Column;
 import org.apache.metamodel.schema.Table;
 
 /**
- * Represents a 'session' in which a single {@link Table}'s {@link Column}s are
- * named.
+ * Represents a 'session' in which a single {@link Table}'s {@link Column}s are named.
  */
 public interface ColumnNamingSession extends Closeable {
 
     /**
      * Provides the name to apply for a given column.
      * 
-     * @param ctx
-     *            the context of the column naming taking place. This contains
-     *            column index, intrinsic name etc. if available.
+     * @param ctx the context of the column naming taking place. This contains column index, intrinsic name etc. if
+     *            available.
      * @return the name to provide to the column.
      */
     public String getNextColumnName(ColumnNamingContext ctx);

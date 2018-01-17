@@ -29,12 +29,10 @@ import org.apache.metamodel.schema.Column;
 import org.apache.metamodel.schema.Table;
 
 /**
- * Represents a single INSERT INTO operation to be applied to a
- * {@link UpdateableDataContext}. Instead of providing a custom implementation
- * of the {@link UpdateScript} interface, one can use this pre-built
- * single-record insertion implementation. Some {@link DataContext}s may even
- * optimize specifically based on the knowledge that there will only be a single
- * record inserted.
+ * Represents a single INSERT INTO operation to be applied to a {@link UpdateableDataContext}. Instead of providing a
+ * custom implementation of the {@link UpdateScript} interface, one can use this pre-built single-record insertion
+ * implementation. Some {@link DataContext}s may even optimize specifically based on the knowledge that there will only
+ * be a single record inserted.
  */
 public final class InsertInto extends AbstractRowBuilder<InsertInto> implements UpdateScript, RowBuilder<InsertInto> {
 

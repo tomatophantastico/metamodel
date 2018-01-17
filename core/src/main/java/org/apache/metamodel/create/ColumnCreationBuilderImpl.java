@@ -25,7 +25,8 @@ import org.apache.metamodel.schema.Table;
 /**
  * Implementation of the {@link ColumnCreationBuilder}.
  */
-final class ColumnCreationBuilderImpl extends AbstractColumnBuilder<ColumnCreationBuilder> implements ColumnCreationBuilder {
+final class ColumnCreationBuilderImpl extends AbstractColumnBuilder<ColumnCreationBuilder> implements
+        ColumnCreationBuilder {
 
     private final TableCreationBuilder _createTableBuilder;
 

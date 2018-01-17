@@ -19,9 +19,8 @@
 package org.apache.metamodel.data;
 
 /**
- * A filter that is executed client-side because filter criteria are either more
- * dynamic than the Query-functionality offer or because it cannot be expressed
- * using datastore-neutral queries.
+ * A filter that is executed client-side because filter criteria are either more dynamic than the Query-functionality
+ * offer or because it cannot be expressed using datastore-neutral queries.
  * 
  * @see FilteredDataSet
  */

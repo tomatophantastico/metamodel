@@ -27,17 +27,14 @@ import org.apache.metamodel.schema.ColumnType;
  * 
  * Defines methods for refining particular properties of the column build.
  * 
- * @param <T>
- *            the return type of the builder methods
+ * @param <T> the return type of the builder methods
  */
 public interface ColumnBuilder<T extends ColumnBuilder<?>> {
 
     /**
-     * Builds several properties of a column, based on another {@link Column}
-     * object as a prototype.
+     * Builds several properties of a column, based on another {@link Column} object as a prototype.
      * 
-     * @param column
-     *            a prototype for the column being built.
+     * @param column a prototype for the column being built.
      * @return a builder object for further column creation.
      */
     public T like(Column column);
@@ -45,18 +42,15 @@ public interface ColumnBuilder<T extends ColumnBuilder<?>> {
     /**
      * Defines the {@link ColumnType} of the created column.
      * 
-     * @param type
-     *            the column type of the created column.
+     * @param type the column type of the created column.
      * @return a builder object for further column creation.
      */
     public T ofType(ColumnType type);
 
     /**
-     * Defines the native type of the created column (useful especially for SQL
-     * based {@link DataContext}s).
+     * Defines the native type of the created column (useful especially for SQL based {@link DataContext}s).
      * 
-     * @param nativeType
-     *            the native type of the created column
+     * @param nativeType the native type of the created column
      * @return a builder object for further column creation.
      */
     public T ofNativeType(String nativeType);
@@ -64,8 +58,7 @@ public interface ColumnBuilder<T extends ColumnBuilder<?>> {
     /**
      * Defines the size of the created column.
      * 
-     * @param size
-     *            the size of the created column.
+     * @param size the size of the created column.
      * @return a builder object for further column creation.
      */
     public T ofSize(int size);
@@ -73,8 +66,7 @@ public interface ColumnBuilder<T extends ColumnBuilder<?>> {
     /**
      * Defines if the created column should be nullable or not.
      * 
-     * @param nullable
-     *            if the created column should be nullable or not.
+     * @param nullable if the created column should be nullable or not.
      * @return a builder object for further column creation.
      */
     public T nullable(boolean nullable);

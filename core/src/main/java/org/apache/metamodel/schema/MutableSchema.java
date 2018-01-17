@@ -25,13 +25,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Represents a schema and it's metadata. Schemas represent a collection of
- * tables.
+ * Represents a schema and it's metadata. Schemas represent a collection of tables.
  * 
  * @see Table
  */
-public class MutableSchema extends AbstractSchema implements Serializable,
-        Schema {
+public class MutableSchema extends AbstractSchema implements Serializable, Schema {
 
     private static final long serialVersionUID = 4465197783868238863L;
 
@@ -40,7 +38,7 @@ public class MutableSchema extends AbstractSchema implements Serializable,
 
     public MutableSchema() {
         super();
-        _tables = new ArrayList<MutableTable>();
+        _tables = new ArrayList<>();
     }
 
     public MutableSchema(String name) {
@@ -68,7 +66,6 @@ public class MutableSchema extends AbstractSchema implements Serializable,
         return Collections.unmodifiableList(_tables);
     }
 
-
     public MutableSchema setTables(Collection<? extends MutableTable> tables) {
         clearTables();
         for (MutableTable table : tables) {
@@ -84,7 +81,7 @@ public class MutableSchema extends AbstractSchema implements Serializable,
         }
         return this;
     }
-    
+
     public MutableSchema clearTables() {
         _tables.clear();
         return this;

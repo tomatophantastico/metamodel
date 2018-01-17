@@ -38,12 +38,12 @@ public abstract class AbstractTableDropBuilder implements TableDropBuilder {
     public final Table getTable() {
         return _table;
     }
-    
+
     @Override
     public String toString() {
         return toSql();
     }
-    
+
     @Override
     public String toSql() {
         return "DROP TABLE " + _table.getQualifiedLabel();

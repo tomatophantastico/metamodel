@@ -21,8 +21,7 @@ package org.apache.metamodel.factory;
 import org.apache.metamodel.MetaModelException;
 
 /**
- * Exception thrown if a {@link DataContextFactory} or
- * {@link DataContextFactoryRegistry} is being invoked with
+ * Exception thrown if a {@link DataContextFactory} or {@link DataContextFactoryRegistry} is being invoked with
  * {@link DataContextProperties} that are not supported by the implementation.
  */
 public class UnsupportedDataContextPropertiesException extends MetaModelException {

@@ -23,8 +23,8 @@ import java.util.List;
 import org.apache.metamodel.util.BaseObject;
 
 /**
- * Represents an ORDER BY item. An OrderByItem sorts the resulting DataSet
- * according to a SelectItem that may or may not be a part of the query already.
+ * Represents an ORDER BY item. An OrderByItem sorts the resulting DataSet according to a SelectItem that may or may not
+ * be a part of the query already.
  * 
  * @see OrderByClause
  * @see SelectItem
@@ -32,7 +32,8 @@ import org.apache.metamodel.util.BaseObject;
 public class OrderByItem extends BaseObject implements QueryItem, Cloneable {
 
     public enum Direction {
-        ASC, DESC
+        ASC,
+        DESC
     }
 
     private static final long serialVersionUID = -8397473619828484774L;
@@ -43,10 +44,8 @@ public class OrderByItem extends BaseObject implements QueryItem, Cloneable {
     /**
      * Creates an OrderByItem
      * 
-     * @param selectItem
-     *            the select item to order
-     * @param direction
-     *            the direction to order the select item
+     * @param selectItem the select item to order
+     * @param direction the direction to order the select item
      */
     public OrderByItem(SelectItem selectItem, Direction direction) {
         if (selectItem == null) {
@@ -64,7 +63,6 @@ public class OrderByItem extends BaseObject implements QueryItem, Cloneable {
     public OrderByItem(SelectItem selectItem) {
         this(selectItem, Direction.ASC);
     }
-    
 
     @Override
     public String toSql(boolean includeSchemaInColumnPaths) {

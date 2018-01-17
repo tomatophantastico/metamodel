@@ -31,17 +31,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Compares dates of various formats. Since this class has unchecked generic
- * conversion it can compare java.util.Date, java.sql.Date, java.sql.Time,
- * java.util.Calendar, Date-formatted strings etc.
+ * Compares dates of various formats. Since this class has unchecked generic conversion it can compare java.util.Date,
+ * java.sql.Date, java.sql.Time, java.util.Calendar, Date-formatted strings etc.
  */
 public final class TimeComparator implements Comparator<Object> {
 
     private static final Logger logger = LoggerFactory.getLogger(TimeComparator.class);
 
-    private static final String[] prototypePatterns = { "yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd HH:mm:ss",
-            "yyyy-MM-dd HH:mm", "HH:mm:ss.SSS", "yyyy-MM-dd", "dd-MM-yyyy", "yy-MM-dd", "MM-dd-yyyy", "HH:mm:ss",
-            "HH:mm" };
+    private static final String[] prototypePatterns =
+            { "yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "HH:mm:ss.SSS", "yyyy-MM-dd",
+                    "dd-MM-yyyy", "yy-MM-dd", "MM-dd-yyyy", "HH:mm:ss", "HH:mm" };
 
     private static final Comparator<Object> _instance = new TimeComparator();
 

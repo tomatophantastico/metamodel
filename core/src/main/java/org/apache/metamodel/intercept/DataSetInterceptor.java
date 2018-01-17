@@ -21,8 +21,8 @@ package org.apache.metamodel.intercept;
 import org.apache.metamodel.data.DataSet;
 
 /**
- * An {@link Interceptor} for {@link DataSet}s, allowing to touch, enrich or
- * modify a dataset before it is returned to the user.
+ * An {@link Interceptor} for {@link DataSet}s, allowing to touch, enrich or modify a dataset before it is returned to
+ * the user.
  */
 public interface DataSetInterceptor extends Interceptor<DataSet> {
 

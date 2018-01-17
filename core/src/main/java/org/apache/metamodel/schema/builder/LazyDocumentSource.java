@@ -23,10 +23,9 @@ import org.apache.metamodel.data.DocumentSource;
 import org.apache.metamodel.util.LazyRef;
 
 /**
- * A {@link DocumentSource} that is lazy loaded. Using this as a wrapper around
- * another source may save resources, since a {@link DocumentSource} is not
- * always invoked and thus the initial creation and closing of the source can
- * sometimes be avoided.
+ * A {@link DocumentSource} that is lazy loaded. Using this as a wrapper around another source may save resources, since
+ * a {@link DocumentSource} is not always invoked and thus the initial creation and closing of the source can sometimes
+ * be avoided.
  */
 public class LazyDocumentSource implements DocumentSource {
 

@@ -19,19 +19,18 @@
 package org.apache.metamodel.util;
 
 /**
- * A sequence based on alphabetic representations. Typically a sequence begin
- * with "A", "B", "C" etc. and go from "Z" to "AA", from "AZ" to "BA" etc.
+ * A sequence based on alphabetic representations. Typically a sequence begin with "A", "B", "C" etc. and go from "Z" to
+ * "AA", from "AZ" to "BA" etc.
  * 
- * This sequence is practical for generating column names that correspond to
- * column identifiers in spreadsheets and the like.
+ * This sequence is practical for generating column names that correspond to column identifiers in spreadsheets and the
+ * like.
  */
 public class AlphabeticSequence {
 
     private StringBuilder _stringBuilder;
 
     /**
-     * Creates an alphabetic sequence that will have "A" as it's first value, if
-     * iterated using next().
+     * Creates an alphabetic sequence that will have "A" as it's first value, if iterated using next().
      */
     public AlphabeticSequence() {
         this(Character.toString((char) ('A' - 1)));

@@ -22,13 +22,12 @@ import org.apache.metamodel.schema.Schema;
 import org.apache.metamodel.schema.Table;
 
 /**
- * The initial interface used when building a query. A query starts by stating
- * the FROM clause.
+ * The initial interface used when building a query. A query starts by stating the FROM clause.
  */
 public interface InitFromBuilder {
 
     public TableFromBuilder from(Table table);
-    
+
     public TableFromBuilder from(Schema schema, String tableName);
 
     public TableFromBuilder from(String schemaName, String tableName);

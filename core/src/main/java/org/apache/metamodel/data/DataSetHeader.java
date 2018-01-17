@@ -25,8 +25,7 @@ import org.apache.metamodel.query.SelectItem;
 import org.apache.metamodel.schema.Column;
 
 /**
- * Represents the header of a {@link DataSet}, which define the
- * columns/SelectItems of it.
+ * Represents the header of a {@link DataSet}, which define the columns/SelectItems of it.
  */
 public interface DataSetHeader extends Serializable {
 

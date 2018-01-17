@@ -23,8 +23,8 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Represents a table and it's metadata description. Tables reside within a
- * schema and contains columns and relationships to other tables.
+ * Represents a table and it's metadata description. Tables reside within a schema and contains columns and
+ * relationships to other tables.
  * 
  * @see Schema
  * @see Column
@@ -56,22 +56,17 @@ public interface Table extends Comparable<Table>, Serializable, NamedStructure {
     /**
      * Convenience method for retrieving a column by it's name.
      * 
-     * @param columnName
-     *            the name of the column to retrieve
-     * @return the column with the given name. Returns null if no such column is
-     *         found.
+     * @param columnName the name of the column to retrieve
+     * @return the column with the given name. Returns null if no such column is found.
      */
     public Column getColumnByName(String columnName);
 
     /**
-     * Gets a column by index. Use {@link #getColumnCount()} to get the
-     * (0-based) index range.
+     * Gets a column by index. Use {@link #getColumnCount()} to get the (0-based) index range.
      * 
-     * @param index
-     *            the index of the column
+     * @param index the index of the column
      * @return the column with the specified index
-     * @throws IndexOutOfBoundsException
-     *             if the index is out of bounds (index &gt;= column count)
+     * @throws IndexOutOfBoundsException if the index is out of bounds (index &gt;= column count)
      */
     public Column getColumn(int index) throws IndexOutOfBoundsException;
 
@@ -92,16 +87,14 @@ public interface Table extends Comparable<Table>, Serializable, NamedStructure {
     /**
      * Gets all relationships for this table.
      * 
-     * @return all relationsips for this table. To add relations use
-     *         TableRelation.createRelation();
+     * @return all relationsips for this table. To add relations use TableRelation.createRelation();
      */
     public Collection<Relationship> getRelationships();
 
     /**
      * Gets relationships between this table and another table.
      * 
-     * @param otherTable
-     *            another table for which to find relationships to and from.
+     * @param otherTable another table for which to find relationships to and from.
      * @return an array of relationsips between this and the other table.
      */
     public Collection<Relationship> getRelationships(Table otherTable);
@@ -170,16 +163,14 @@ public interface Table extends Comparable<Table>, Serializable, NamedStructure {
     public Collection<Relationship> getPrimaryKeyRelationships();
 
     /**
-     * Gets the columns of this table that are known to be foreign keys (ie.
-     * references primary keys in other tables).
+     * Gets the columns of this table that are known to be foreign keys (ie. references primary keys in other tables).
      * 
      * @return an array of columns that are known to be foreign keys.
      */
     public List<Column> getForeignKeys();
 
     /**
-     * Gets the columns of this table that are known to be primary keys. See
-     * {@link Column#isPrimaryKey()}.
+     * Gets the columns of this table that are known to be primary keys. See {@link Column#isPrimaryKey()}.
      * 
      * @return an array of columns that are known to be primary keys.
      */
@@ -193,21 +184,17 @@ public interface Table extends Comparable<Table>, Serializable, NamedStructure {
     public List<String> getColumnNames();
 
     /**
-     * Gets the columns of this table that conforms to a specified
-     * {@link ColumnType}.
+     * Gets the columns of this table that conforms to a specified {@link ColumnType}.
      * 
-     * @param columnType
-     *            the column type to search for.
+     * @param columnType the column type to search for.
      * @return an array of columns that match the specified ColumnType.
      */
     public List<Column> getColumnsOfType(ColumnType columnType);
 
     /**
-     * Gets the columns of this table that conforms to a specified
-     * {@link SuperColumnType}.
+     * Gets the columns of this table that conforms to a specified {@link SuperColumnType}.
      * 
-     * @param superColumnType
-     *            the super type of the column
+     * @param superColumnType the super type of the column
      * @return an array of columns that match the specified SuperColumnType.
      */
     public List<Column> getColumnsOfSuperType(SuperColumnType superColumnType);

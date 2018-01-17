@@ -35,13 +35,13 @@ public class AbstractRowInsertionBuilderTest {
         final MutableColumn col2 = new MutableColumn("col2").setTable(table);
         table.addColumn(col1).addColumn(col2);
 
-        final AbstractRowInsertionBuilder<UpdateCallback> builder = new AbstractRowInsertionBuilder<UpdateCallback>(
-                null, table) {
-            @Override
-            public void execute() throws MetaModelException {
-                throw new UnsupportedOperationException();
-            }
-        };
+        final AbstractRowInsertionBuilder<UpdateCallback> builder =
+                new AbstractRowInsertionBuilder<UpdateCallback>(null, table) {
+                    @Override
+                    public void execute() throws MetaModelException {
+                        throw new UnsupportedOperationException();
+                    }
+                };
 
         builder.value(col1, "value1").value(col2, "value2");
         assertEquals("INSERT INTO tbl(col1,col2) VALUES (\"value1\",\"value2\")", builder.toString());

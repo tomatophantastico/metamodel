@@ -62,8 +62,8 @@ public class AbstractRowDeletionCallbackTest extends TestCase {
                 assertEquals("DELETE FROM schema.table", delete.toSql());
                 delete.execute();
 
-                assertEquals("DELETE FROM schema.table WHERE table.bar = 'baz'", callback.deleteFrom(table).where("bar")
-                        .eq("baz").toSql());
+                assertEquals("DELETE FROM schema.table WHERE table.bar = 'baz'",
+                        callback.deleteFrom(table).where("bar").eq("baz").toSql());
             }
         });
 

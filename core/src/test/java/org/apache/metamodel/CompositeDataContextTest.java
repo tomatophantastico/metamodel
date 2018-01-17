@@ -32,8 +32,7 @@ import org.apache.metamodel.schema.Table;
 public class CompositeDataContextTest extends TestCase {
 
     /**
-     * A "typical scenario": Use a database and a CSV file to create a query
-     * that joins tables from each
+     * A "typical scenario": Use a database and a CSV file to create a query that joins tables from each
      */
     public void testBaseCaseCompositeQuery() throws Exception {
         DataContext dc1 = new MockDataContext("schema1", "table1", "");
@@ -41,13 +40,10 @@ public class CompositeDataContextTest extends TestCase {
 
         DataContext composite = new CompositeDataContext(dc1, dc2);
 
-        assertEquals("[schema1, schema2]",
-                Arrays.toString(composite.getSchemaNames().toArray()));
+        assertEquals("[schema1, schema2]", Arrays.toString(composite.getSchemaNames().toArray()));
         assertSame(dc1.getDefaultSchema(), composite.getDefaultSchema());
 
-        DataSet ds = composite.query()
-                .from(dc1.getDefaultSchema().getTables().get(0)).select("foo")
-                .execute();
+        DataSet ds = composite.query().from(dc1.getDefaultSchema().getTables().get(0)).select("foo").execute();
         List<Object[]> objectArrays = ds.toObjectArrays();
         assertEquals("1", objectArrays.get(0)[0]);
         assertEquals("2", objectArrays.get(1)[0]);
@@ -60,8 +56,7 @@ public class CompositeDataContextTest extends TestCase {
 
         DataContext composite = new CompositeDataContext(dc1, dc2);
 
-        assertEquals("[schema]",
-                Arrays.toString(composite.getSchemaNames().toArray()));
+        assertEquals("[schema]", Arrays.toString(composite.getSchemaNames().toArray()));
 
         Schema schema = composite.getDefaultSchema();
         assertEquals(4, schema.getTableCount());
@@ -76,31 +71,23 @@ public class CompositeDataContextTest extends TestCase {
 
         DataContext composite = new CompositeDataContext(dc1, dc2);
 
-        assertEquals("[schema]",
-                Arrays.toString(composite.getSchemaNames().toArray()));
+        assertEquals("[schema]", Arrays.toString(composite.getSchemaNames().toArray()));
 
         Schema schema = composite.getDefaultSchema();
         assertEquals(4, schema.getTableCount());
-        assertEquals("[table, an_empty_table, table, an_empty_table]", Arrays.toString(schema.getTableNames().toArray()));
+        assertEquals("[table, an_empty_table, table, an_empty_table]",
+                Arrays.toString(schema.getTableNames().toArray()));
         assertTrue(schema instanceof CompositeSchema);
         Table table1 = schema.getTable(0);
         Table table2 = schema.getTable(2);
         assertNotSame(table1, table2);
 
-        Query q = composite
-                .query()
-                .from(table1)
-                .leftJoin(table2)
-                .on(table1.getColumnByName("foo"),
-                        table2.getColumnByName("foo"))
-                .select(table1.getColumnByName("foo"),
-                        table2.getColumnByName("foo"),
-                        table1.getColumnByName("bar"),
-                        table2.getColumnByName("baz")).toQuery();
-        assertEquals(
-                "SELECT table.foo, table.foo, table.bar, table.baz "
-                        + "FROM schema.table LEFT JOIN schema.table ON table.foo = table.foo",
-                q.toSql());
+        Query q = composite.query().from(table1).leftJoin(table2)
+                .on(table1.getColumnByName("foo"), table2.getColumnByName("foo")).select(table1.getColumnByName("foo"),
+                        table2.getColumnByName("foo"), table1.getColumnByName("bar"), table2.getColumnByName("baz"))
+                .toQuery();
+        assertEquals("SELECT table.foo, table.foo, table.bar, table.baz "
+                + "FROM schema.table LEFT JOIN schema.table ON table.foo = table.foo", q.toSql());
 
         DataSet ds = composite.executeQuery(q);
         assertTrue(ds.next());

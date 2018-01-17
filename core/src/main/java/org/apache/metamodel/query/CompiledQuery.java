@@ -24,18 +24,14 @@ import java.util.List;
 import org.apache.metamodel.DataContext;
 
 /**
- * A {@link CompiledQuery} is a {@link Query} which has been compiled, typically
- * by the data source itself, to provide optimized execution speed. Compiled
- * queries are produced using the {@link DataContext#compileQuery(Query)} method.
+ * A {@link CompiledQuery} is a {@link Query} which has been compiled, typically by the data source itself, to provide
+ * optimized execution speed. Compiled queries are produced using the {@link DataContext#compileQuery(Query)} method.
  * 
- * Typically the compilation itself takes a bit of time, but firing the compiled
- * query is faster than regular queries. This means that for repeated executions
- * of the same query, it is usually faster to use compiled queries.
+ * Typically the compilation itself takes a bit of time, but firing the compiled query is faster than regular queries.
+ * This means that for repeated executions of the same query, it is usually faster to use compiled queries.
  * 
- * To make {@link CompiledQuery} useful for more than just one specific query,
- * variations of the query can be fired, as long as the variations can be
- * expressed as a {@link QueryParameter} for instance in the WHERE clause of the
- * query.
+ * To make {@link CompiledQuery} useful for more than just one specific query, variations of the query can be fired, as
+ * long as the variations can be expressed as a {@link QueryParameter} for instance in the WHERE clause of the query.
  * 
  * @see DataContext#compileQuery(Query)
  * @see QueryParameter
@@ -43,8 +39,8 @@ import org.apache.metamodel.DataContext;
 public interface CompiledQuery extends Closeable {
 
     /**
-     * Gets the {@link QueryParameter}s associated with the compiled query.
-     * Values for these parameters are expected when the query is executed.
+     * Gets the {@link QueryParameter}s associated with the compiled query. Values for these parameters are expected
+     * when the query is executed.
      * 
      * @return a list of query parameters
      */

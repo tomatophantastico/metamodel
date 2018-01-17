@@ -33,8 +33,7 @@ public interface NamedStructure extends HasName {
     public String getName();
 
     /**
-     * Gets an optional quote string that is used to enclose the name of this
-     * structure.
+     * Gets an optional quote string that is used to enclose the name of this structure.
      * 
      * @return A quote string used to enclose the name or null if none exists.
      */
@@ -48,12 +47,11 @@ public interface NamedStructure extends HasName {
     public String getQuotedName();
 
     /**
-     * Gets a qualified label for later lookup. Typically this qualified label
-     * is formatted with a simple dot separator. For example, for a column a
-     * typical qualified label would be: "MY_SCHEMA.MY_TABLE.MY_COLUMN".
+     * Gets a qualified label for later lookup. Typically this qualified label is formatted with a simple dot separator.
+     * For example, for a column a typical qualified label would be: "MY_SCHEMA.MY_TABLE.MY_COLUMN".
      * 
-     * The qualified label can be used as a unique identifier for the structure
-     * but is not necessarily directly transferable to SQL syntax.
+     * The qualified label can be used as a unique identifier for the structure but is not necessarily directly
+     * transferable to SQL syntax.
      * 
      * @return a qualified label
      */

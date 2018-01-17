@@ -22,10 +22,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A {@link ColumnNamingStrategy} that uses the intrinsic column names, but
- * ensures that all column names are unique. When duplicate names are
- * encountered a number will be appended yielding column names like "name",
- * "name_2", "name_3" etc.
+ * A {@link ColumnNamingStrategy} that uses the intrinsic column names, but ensures that all column names are unique.
+ * When duplicate names are encountered a number will be appended yielding column names like "name", "name_2", "name_3"
+ * etc.
  */
 public class UniqueColumnNamingStrategy implements ColumnNamingStrategy {
 

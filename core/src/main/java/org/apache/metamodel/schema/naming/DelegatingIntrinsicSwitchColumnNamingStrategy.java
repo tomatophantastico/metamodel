@@ -19,9 +19,8 @@
 package org.apache.metamodel.schema.naming;
 
 /**
- * A {@link ColumnNamingStrategy} that switches between two other
- * {@link ColumnNamingStrategy} delegates depending on the availability of a
- * intrinsic column name.
+ * A {@link ColumnNamingStrategy} that switches between two other {@link ColumnNamingStrategy} delegates depending on
+ * the availability of a intrinsic column name.
  */
 public class DelegatingIntrinsicSwitchColumnNamingStrategy implements ColumnNamingStrategy {
 

@@ -36,16 +36,16 @@ public class ResourceFactoryRegistryImplTest {
     @Test
     public void testGetQualifiedFileResource() throws Exception {
         final File file = new File("src/test/resources/unicode-text-utf8.txt");
-        final Resource res = registry.createResource(new SimpleResourceProperties("file:///" + file.getAbsolutePath()
-                .replace('\\', '/')));
+        final Resource res = registry
+                .createResource(new SimpleResourceProperties("file:///" + file.getAbsolutePath().replace('\\', '/')));
         assertTrue(res.isExists());
         assertEquals("unicode-text-utf8.txt", res.getName());
     }
 
     @Test
     public void testGetUnqualifiedRelativeFileResource() throws Exception {
-        final Resource res = registry.createResource(new SimpleResourceProperties(
-                "src/test/resources/unicode-text-utf8.txt"));
+        final Resource res =
+                registry.createResource(new SimpleResourceProperties("src/test/resources/unicode-text-utf8.txt"));
         assertTrue(res.isExists());
         assertEquals("unicode-text-utf8.txt", res.getName());
     }
@@ -65,8 +65,8 @@ public class ResourceFactoryRegistryImplTest {
 
     @Test
     public void testGetUrlResource() throws Exception {
-        final Resource res = registry.createResource(new SimpleResourceProperties(
-                "http://metamodel.apache.org/robots.txt"));
+        final Resource res =
+                registry.createResource(new SimpleResourceProperties("http://metamodel.apache.org/robots.txt"));
         assertTrue(res.isExists());
         assertTrue(res instanceof UrlResource);
     }

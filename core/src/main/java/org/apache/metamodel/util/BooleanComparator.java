@@ -28,8 +28,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class BooleanComparator implements Comparator<Object> {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(BooleanComparator.class);
+    private static final Logger logger = LoggerFactory.getLogger(BooleanComparator.class);
 
     private static BooleanComparator _instance = new BooleanComparator();
 
@@ -87,8 +86,7 @@ public final class BooleanComparator implements Comparator<Object> {
             try {
                 return parseBoolean((String) o);
             } catch (IllegalArgumentException e) {
-                logger.warn(
-                        "Could not convert String '{}' to boolean, returning false", o);
+                logger.warn("Could not convert String '{}' to boolean, returning false", o);
                 return false;
             }
         }
@@ -96,16 +94,14 @@ public final class BooleanComparator implements Comparator<Object> {
             int i = ((Number) o).intValue();
             return i >= 1;
         }
-        
-        logger.warn(
-                "Could not convert '{}' to boolean, returning false",
-                o);
+
+        logger.warn("Could not convert '{}' to boolean, returning false", o);
         return false;
     }
 
     /**
-     * Parses a string and returns a boolean representation of it. To parse the
-     * string the following values will be accepted, irrespective of case.
+     * Parses a string and returns a boolean representation of it. To parse the string the following values will be
+     * accepted, irrespective of case.
      * <ul>
      * <li>true</li>
      * <li>false</li>
@@ -117,30 +113,23 @@ public final class BooleanComparator implements Comparator<Object> {
      * <li>n</li>
      * </ul>
      * 
-     * @param string
-     *            the string to parse
+     * @param string the string to parse
      * @return a boolean
-     * @throws IllegalArgumentException
-     *             if the string provided is null or cannot be parsed as a
-     *             boolean
+     * @throws IllegalArgumentException if the string provided is null or cannot be parsed as a boolean
      */
-    public static boolean parseBoolean(String string)
-            throws IllegalArgumentException {
+    public static boolean parseBoolean(String string) throws IllegalArgumentException {
         if (string == null) {
             throw new IllegalArgumentException("string cannot be null");
         }
         string = string.trim();
-        if ("true".equalsIgnoreCase(string) || "1".equals(string)
-                || "y".equalsIgnoreCase(string)
+        if ("true".equalsIgnoreCase(string) || "1".equals(string) || "y".equalsIgnoreCase(string)
                 || "yes".equalsIgnoreCase(string)) {
             return true;
-        } else if ("false".equalsIgnoreCase(string) || "0".equals(string)
-                || "n".equalsIgnoreCase(string)
+        } else if ("false".equalsIgnoreCase(string) || "0".equals(string) || "n".equalsIgnoreCase(string)
                 || "no".equalsIgnoreCase(string)) {
             return false;
         } else {
-            throw new IllegalArgumentException(
-                    "Could not get boolean value of string: " + string);
+            throw new IllegalArgumentException("Could not get boolean value of string: " + string);
         }
     }
 
@@ -149,8 +138,7 @@ public final class BooleanComparator implements Comparator<Object> {
             return true;
         }
         if (o instanceof String) {
-            if ("true".equalsIgnoreCase((String) o)
-                    || "false".equalsIgnoreCase((String) o)) {
+            if ("true".equalsIgnoreCase((String) o) || "false".equalsIgnoreCase((String) o)) {
                 return true;
             }
         }

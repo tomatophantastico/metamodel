@@ -75,7 +75,7 @@ public class NumberComparatorTest {
         assertTrue(NumberComparator.getComparator().compare("1", "bar") > 0);
         assertTrue(NumberComparator.getComparator().compare("foo", "2") < 0);
     }
-    
+
     @Test
     public void testCompareBothNonConvertableStrings() throws Exception {
         // odd cases we don't support - but for regression here's some

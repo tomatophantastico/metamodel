@@ -25,12 +25,12 @@ import junit.framework.TestCase;
 public class InclusionPredicateTest extends TestCase {
 
     public void testEval() throws Exception {
-        InclusionPredicate<String> predicate = new InclusionPredicate<String>(Arrays.asList("foo","bar","baz"));
-        
+        InclusionPredicate<String> predicate = new InclusionPredicate<String>(Arrays.asList("foo", "bar", "baz"));
+
         assertTrue(predicate.test("foo"));
         assertTrue(predicate.test("bar"));
         assertTrue(predicate.test("baz"));
-        
+
         assertFalse(predicate.test("hello world"));
     }
 }

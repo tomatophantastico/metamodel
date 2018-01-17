@@ -24,9 +24,8 @@ import org.apache.metamodel.ConnectionException;
 import org.apache.metamodel.DataContext;
 
 /**
- * Represents a registry of {@link DataContextFactory} objects. This registry
- * can be used to create {@link DataContext}s of varying types using the
- * underlying factories.
+ * Represents a registry of {@link DataContextFactory} objects. This registry can be used to create {@link DataContext}s
+ * of varying types using the underlying factories.
  */
 public interface DataContextFactoryRegistry {
 

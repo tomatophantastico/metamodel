@@ -46,11 +46,13 @@ final class JoinFromBuilderImpl extends SatisfiedFromBuilderCallback implements 
     public SatisfiedFromBuilder on(String left, String right) throws IllegalArgumentException {
         Table leftTable = leftItem.getTable();
         if (leftTable == null) {
-            throw new IllegalArgumentException("Left side of join is not a Table, cannot resolve ON item: '" + left + "'.");
+            throw new IllegalArgumentException(
+                    "Left side of join is not a Table, cannot resolve ON item: '" + left + "'.");
         }
         Table rightTable = rightItem.getTable();
         if (rightTable == null) {
-            throw new IllegalArgumentException("Right side of join is not a Table, cannot resolve ON item: '" + right + "'.");
+            throw new IllegalArgumentException(
+                    "Right side of join is not a Table, cannot resolve ON item: '" + right + "'.");
         }
 
         Column leftColumn = leftTable.getColumnByName(left);

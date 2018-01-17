@@ -24,18 +24,15 @@ import org.apache.metamodel.ConnectionException;
 import org.apache.metamodel.DataContext;
 
 /**
- * Represents a factory of {@link DataContext} objects. Factories take
- * {@link DataContextProperties} and turn them into active {@link DataContext}
- * instances.
+ * Represents a factory of {@link DataContext} objects. Factories take {@link DataContextProperties} and turn them into
+ * active {@link DataContext} instances.
  * 
- * Multiple factories can exist in order to serve different kinds of properties,
- * thereby offering a dynamic factory mechanism. The collection of factories is
- * accessible via {@link DataContextFactoryRegistry}.
+ * Multiple factories can exist in order to serve different kinds of properties, thereby offering a dynamic factory
+ * mechanism. The collection of factories is accessible via {@link DataContextFactoryRegistry}.
  * 
- * These factories are registered via the Java {@link ServiceLoader} SPI API. So
- * add a file with path
- * "/META-INF/services/org.apache.metamodel.factory.DataContextFactory" in any
- * JAR file in order to register another factory.
+ * These factories are registered via the Java {@link ServiceLoader} SPI API. So add a file with path
+ * "/META-INF/services/org.apache.metamodel.factory.DataContextFactory" in any JAR file in order to register another
+ * factory.
  */
 public interface DataContextFactory {
 

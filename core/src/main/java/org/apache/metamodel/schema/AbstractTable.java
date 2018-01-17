@@ -115,9 +115,7 @@ public abstract class AbstractTable implements Table {
 
     @Override
     public final List<Column> getIndexedColumns() {
-        return getColumns().stream()
-                .filter(Column::isIndexed)
-                .collect(Collectors.toList());
+        return getColumns().stream().filter(Column::isIndexed).collect(Collectors.toList());
     }
 
     @Override
@@ -161,26 +159,19 @@ public abstract class AbstractTable implements Table {
 
     @Override
     public final List<String> getColumnNames() {
-        return getColumns().stream()
-                .map(col -> col.getName())
-                .collect(Collectors.toList());
+        return getColumns().stream().map(col -> col.getName()).collect(Collectors.toList());
     }
 
     @Override
     public final List<Column> getColumnsOfType(ColumnType columnType) {
-        return getColumns().stream()
-                .filter(col -> col.getType()!=null)
-                .filter((col -> col.getType().equals(columnType)))
-                .collect(Collectors.toList());
+        return getColumns().stream().filter(col -> col.getType() != null)
+                .filter((col -> col.getType().equals(columnType))).collect(Collectors.toList());
     }
-
-
 
     @Override
     public final List<Column> getColumnsOfSuperType(final SuperColumnType superColumnType) {
-        return getColumns().stream() .filter(col -> col.getType()!=null)
-                .filter((col -> col.getType().getSuperType().equals(superColumnType)))
-                .collect(Collectors.toList());
+        return getColumns().stream().filter(col -> col.getType() != null)
+                .filter((col -> col.getType().getSuperType().equals(superColumnType))).collect(Collectors.toList());
     }
 
     @Override

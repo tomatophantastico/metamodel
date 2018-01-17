@@ -20,4 +20,3 @@
  * DataContext decorator for implicit conversion of value types after querying and before insertion.
  */
 package org.apache.metamodel.convert;
-

@@ -28,13 +28,12 @@ final class InterceptableTableCreationBuilder implements TableCreationBuilder {
     private final TableCreationBuilder _tabelCreationBuilder;
     private final InterceptorList<TableCreationBuilder> _tableCreationInterceptors;
 
-    public InterceptableTableCreationBuilder(
-            TableCreationBuilder tabelCreationBuilder,
+    public InterceptableTableCreationBuilder(TableCreationBuilder tabelCreationBuilder,
             InterceptorList<TableCreationBuilder> tableCreationInterceptors) {
         _tabelCreationBuilder = tabelCreationBuilder;
         _tableCreationInterceptors = tableCreationInterceptors;
     }
-    
+
     @Override
     public String toSql() {
         return _tabelCreationBuilder.toSql();
@@ -48,10 +47,8 @@ final class InterceptableTableCreationBuilder implements TableCreationBuilder {
 
     @Override
     public ColumnCreationBuilder withColumn(String name) {
-        ColumnCreationBuilder columnCreationBuilder = _tabelCreationBuilder
-                .withColumn(name);
-        return new InterceptableColumnCreationBuilder(columnCreationBuilder,
-                this);
+        ColumnCreationBuilder columnCreationBuilder = _tabelCreationBuilder.withColumn(name);
+        return new InterceptableColumnCreationBuilder(columnCreationBuilder, this);
     }
 
     @Override
@@ -62,8 +59,7 @@ final class InterceptableTableCreationBuilder implements TableCreationBuilder {
     @Override
     public Table execute() throws MetaModelException {
         TableCreationBuilder tableCreationBuilder = _tabelCreationBuilder;
-        tableCreationBuilder = _tableCreationInterceptors
-                .interceptAll(tableCreationBuilder);
+        tableCreationBuilder = _tableCreationInterceptors.interceptAll(tableCreationBuilder);
         return tableCreationBuilder.execute();
     }
 }

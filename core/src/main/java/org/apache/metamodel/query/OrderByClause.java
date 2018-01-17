@@ -22,9 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents the ORDER BY clause of a query containing OrderByItem's. The order
- * and direction of the OrderItems define the way that the result of a query
- * will be sorted.
+ * Represents the ORDER BY clause of a query containing OrderByItem's. The order and direction of the OrderItems define
+ * the way that the result of a query will be sorted.
  * 
  * @see OrderByItem
  */
@@ -33,8 +32,7 @@ public class OrderByClause extends AbstractQueryClause<OrderByItem> {
     private static final long serialVersionUID = 2441926135870143715L;
 
     public OrderByClause(Query query) {
-        super(query, AbstractQueryClause.PREFIX_ORDER_BY,
-                AbstractQueryClause.DELIM_COMMA);
+        super(query, AbstractQueryClause.PREFIX_ORDER_BY, AbstractQueryClause.DELIM_COMMA);
     }
 
     public List<SelectItem> getEvaluatedSelectItems() {

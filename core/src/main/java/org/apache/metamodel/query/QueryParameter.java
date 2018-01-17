@@ -21,12 +21,11 @@ package org.apache.metamodel.query;
 import org.apache.metamodel.DataContext;
 
 /**
- * Represents a query parameter, in SQL represented with a '?' symbol.
- * Parameters are values in the query that will be defined at execution time,
- * not parsing/preparation time.
+ * Represents a query parameter, in SQL represented with a '?' symbol. Parameters are values in the query that will be
+ * defined at execution time, not parsing/preparation time.
  * 
  * @see CompiledQuery
- * @see DataContext#compileQuery(Query) 
+ * @see DataContext#compileQuery(Query)
  */
 public class QueryParameter {
 

@@ -24,58 +24,50 @@ import org.apache.metamodel.query.QueryParameter;
 /**
  * Builder interface for WHERE items.
  * 
- * In addition to the {@link FilterBuilder}, the WHERE builder allows using
- * {@link QueryParameter}s as operands in the generated filters.
+ * In addition to the {@link FilterBuilder}, the WHERE builder allows using {@link QueryParameter}s as operands in the
+ * generated filters.
  * 
  * @param <B>
  */
 public interface WhereBuilder<B extends SatisfiedQueryBuilder<?>> extends FilterBuilder<SatisfiedWhereBuilder<B>> {
 
     /**
-     * Equals to a query parameter. Can be used with {@link CompiledQuery}
-     * objects.
+     * Equals to a query parameter. Can be used with {@link CompiledQuery} objects.
      */
     public SatisfiedWhereBuilder<B> eq(QueryParameter queryParameter);
 
     /**
-     * Equals to a query parameter. Can be used with {@link CompiledQuery}
-     * objects.
+     * Equals to a query parameter. Can be used with {@link CompiledQuery} objects.
      */
     public SatisfiedWhereBuilder<B> isEquals(QueryParameter queryParameter);
 
     /**
-     * Not equals to a query parameter. Can be used with {@link CompiledQuery}
-     * objects.
+     * Not equals to a query parameter. Can be used with {@link CompiledQuery} objects.
      */
     public SatisfiedWhereBuilder<B> differentFrom(QueryParameter queryParameter);
 
     /**
-     * Not equals to a query parameter. Can be used with {@link CompiledQuery}
-     * objects.
+     * Not equals to a query parameter. Can be used with {@link CompiledQuery} objects.
      */
     public SatisfiedWhereBuilder<B> ne(QueryParameter queryParameter);
 
     /**
-     * Greater than a query parameter. Can be used with {@link CompiledQuery}
-     * objects.
+     * Greater than a query parameter. Can be used with {@link CompiledQuery} objects.
      */
     public SatisfiedWhereBuilder<B> greaterThan(QueryParameter queryParameter);
 
     /**
-     * Greater than a query parameter. Can be used with {@link CompiledQuery}
-     * objects.
+     * Greater than a query parameter. Can be used with {@link CompiledQuery} objects.
      */
     public SatisfiedWhereBuilder<B> gt(QueryParameter queryParameter);
 
     /**
-     * Less than a query parameter. Can be used with {@link CompiledQuery}
-     * objects.
+     * Less than a query parameter. Can be used with {@link CompiledQuery} objects.
      */
     public SatisfiedWhereBuilder<B> lessThan(QueryParameter queryParameter);
 
     /**
-     * Less than a query parameter. Can be used with {@link CompiledQuery}
-     * objects.
+     * Less than a query parameter. Can be used with {@link CompiledQuery} objects.
      */
     public SatisfiedWhereBuilder<B> lt(QueryParameter queryParameter);
 
